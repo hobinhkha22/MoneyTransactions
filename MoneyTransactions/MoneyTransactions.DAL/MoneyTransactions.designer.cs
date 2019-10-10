@@ -23,7 +23,7 @@ namespace MoneyTransactions.DAL
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="MoneyTransactions")]
-	public partial class MoneyTransactionsContextDataContext : System.Data.Linq.DataContext
+	public partial class MoneyTransactionsDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -45,39 +45,39 @@ namespace MoneyTransactions.DAL
     partial void InsertCryptocurrencyStore(CryptocurrencyStore instance);
     partial void UpdateCryptocurrencyStore(CryptocurrencyStore instance);
     partial void DeleteCryptocurrencyStore(CryptocurrencyStore instance);
-    partial void InsertOrderDetail(OrderDetail instance);
-    partial void UpdateOrderDetail(OrderDetail instance);
-    partial void DeleteOrderDetail(OrderDetail instance);
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
+    partial void InsertOrderDetail(OrderDetail instance);
+    partial void UpdateOrderDetail(OrderDetail instance);
+    partial void DeleteOrderDetail(OrderDetail instance);
     #endregion
 		
-		public MoneyTransactionsContextDataContext() : 
+		public MoneyTransactionsDataContext() : 
 				base(global::MoneyTransactions.DAL.Properties.Settings.Default.MoneyTransactionsConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public MoneyTransactionsContextDataContext(string connection) : 
+		public MoneyTransactionsDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public MoneyTransactionsContextDataContext(System.Data.IDbConnection connection) : 
+		public MoneyTransactionsDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public MoneyTransactionsContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MoneyTransactionsDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public MoneyTransactionsContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public MoneyTransactionsDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -123,19 +123,19 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<OrderDetail> OrderDetails
-		{
-			get
-			{
-				return this.GetTable<OrderDetail>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Order> Orders
 		{
 			get
 			{
 				return this.GetTable<Order>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OrderDetail> OrderDetails
+		{
+			get
+			{
+				return this.GetTable<OrderDetail>();
 			}
 		}
 	}
@@ -1186,253 +1186,6 @@ namespace MoneyTransactions.DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDetail")]
-	public partial class OrderDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _OrderDetailID;
-		
-		private System.Guid _OrderID;
-		
-		private System.Guid _SalerID;
-		
-		private System.Guid _BuyerID;
-		
-		private string _MoneyType;
-		
-		private System.Nullable<System.DateTimeOffset> _CreatedDate;
-		
-		private decimal _Amount;
-		
-		private EntityRef<Order> _Order;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnOrderDetailIDChanging(System.Guid value);
-    partial void OnOrderDetailIDChanged();
-    partial void OnOrderIDChanging(System.Guid value);
-    partial void OnOrderIDChanged();
-    partial void OnSalerIDChanging(System.Guid value);
-    partial void OnSalerIDChanged();
-    partial void OnBuyerIDChanging(System.Guid value);
-    partial void OnBuyerIDChanged();
-    partial void OnMoneyTypeChanging(string value);
-    partial void OnMoneyTypeChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTimeOffset> value);
-    partial void OnCreatedDateChanged();
-    partial void OnAmountChanging(decimal value);
-    partial void OnAmountChanged();
-    #endregion
-		
-		public OrderDetail()
-		{
-			this._Order = default(EntityRef<Order>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderDetailID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid OrderDetailID
-		{
-			get
-			{
-				return this._OrderDetailID;
-			}
-			set
-			{
-				if ((this._OrderDetailID != value))
-				{
-					this.OnOrderDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._OrderDetailID = value;
-					this.SendPropertyChanged("OrderDetailID");
-					this.OnOrderDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid OrderID
-		{
-			get
-			{
-				return this._OrderID;
-			}
-			set
-			{
-				if ((this._OrderID != value))
-				{
-					if (this._Order.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOrderIDChanging(value);
-					this.SendPropertyChanging();
-					this._OrderID = value;
-					this.SendPropertyChanged("OrderID");
-					this.OnOrderIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalerID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid SalerID
-		{
-			get
-			{
-				return this._SalerID;
-			}
-			set
-			{
-				if ((this._SalerID != value))
-				{
-					this.OnSalerIDChanging(value);
-					this.SendPropertyChanging();
-					this._SalerID = value;
-					this.SendPropertyChanged("SalerID");
-					this.OnSalerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid BuyerID
-		{
-			get
-			{
-				return this._BuyerID;
-			}
-			set
-			{
-				if ((this._BuyerID != value))
-				{
-					this.OnBuyerIDChanging(value);
-					this.SendPropertyChanging();
-					this._BuyerID = value;
-					this.SendPropertyChanged("BuyerID");
-					this.OnBuyerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyType", DbType="NVarChar(300)")]
-		public string MoneyType
-		{
-			get
-			{
-				return this._MoneyType;
-			}
-			set
-			{
-				if ((this._MoneyType != value))
-				{
-					this.OnMoneyTypeChanging(value);
-					this.SendPropertyChanging();
-					this._MoneyType = value;
-					this.SendPropertyChanged("MoneyType");
-					this.OnMoneyTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTimeOffset")]
-		public System.Nullable<System.DateTimeOffset> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money NOT NULL")]
-		public decimal Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDetail", Storage="_Order", ThisKey="OrderID", OtherKey="OrderID", IsForeignKey=true)]
-		public Order Order
-		{
-			get
-			{
-				return this._Order.Entity;
-			}
-			set
-			{
-				Order previousValue = this._Order.Entity;
-				if (((previousValue != value) 
-							|| (this._Order.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Order.Entity = null;
-						previousValue.OrderDetails.Remove(this);
-					}
-					this._Order.Entity = value;
-					if ((value != null))
-					{
-						value.OrderDetails.Add(this);
-						this._OrderID = value.OrderID;
-					}
-					else
-					{
-						this._OrderID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Order");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Order]")]
 	public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1681,6 +1434,253 @@ namespace MoneyTransactions.DAL
 		{
 			this.SendPropertyChanging();
 			entity.Order = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OrderDetail")]
+	public partial class OrderDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _OrderDetailID;
+		
+		private System.Guid _OrderID;
+		
+		private System.Guid _SalerID;
+		
+		private System.Guid _BuyerID;
+		
+		private string _MoneyType;
+		
+		private System.Nullable<System.DateTimeOffset> _CreatedDate;
+		
+		private decimal _Amount;
+		
+		private EntityRef<Order> _Order;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrderDetailIDChanging(System.Guid value);
+    partial void OnOrderDetailIDChanged();
+    partial void OnOrderIDChanging(System.Guid value);
+    partial void OnOrderIDChanged();
+    partial void OnSalerIDChanging(System.Guid value);
+    partial void OnSalerIDChanged();
+    partial void OnBuyerIDChanging(System.Guid value);
+    partial void OnBuyerIDChanged();
+    partial void OnMoneyTypeChanging(string value);
+    partial void OnMoneyTypeChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTimeOffset> value);
+    partial void OnCreatedDateChanged();
+    partial void OnAmountChanging(decimal value);
+    partial void OnAmountChanged();
+    #endregion
+		
+		public OrderDetail()
+		{
+			this._Order = default(EntityRef<Order>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderDetailID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid OrderDetailID
+		{
+			get
+			{
+				return this._OrderDetailID;
+			}
+			set
+			{
+				if ((this._OrderDetailID != value))
+				{
+					this.OnOrderDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._OrderDetailID = value;
+					this.SendPropertyChanged("OrderDetailID");
+					this.OnOrderDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					if (this._Order.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrderIDChanging(value);
+					this.SendPropertyChanging();
+					this._OrderID = value;
+					this.SendPropertyChanged("OrderID");
+					this.OnOrderIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SalerID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid SalerID
+		{
+			get
+			{
+				return this._SalerID;
+			}
+			set
+			{
+				if ((this._SalerID != value))
+				{
+					this.OnSalerIDChanging(value);
+					this.SendPropertyChanging();
+					this._SalerID = value;
+					this.SendPropertyChanged("SalerID");
+					this.OnSalerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid BuyerID
+		{
+			get
+			{
+				return this._BuyerID;
+			}
+			set
+			{
+				if ((this._BuyerID != value))
+				{
+					this.OnBuyerIDChanging(value);
+					this.SendPropertyChanging();
+					this._BuyerID = value;
+					this.SendPropertyChanged("BuyerID");
+					this.OnBuyerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MoneyType", DbType="NVarChar(300)")]
+		public string MoneyType
+		{
+			get
+			{
+				return this._MoneyType;
+			}
+			set
+			{
+				if ((this._MoneyType != value))
+				{
+					this.OnMoneyTypeChanging(value);
+					this.SendPropertyChanging();
+					this._MoneyType = value;
+					this.SendPropertyChanged("MoneyType");
+					this.OnMoneyTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTimeOffset")]
+		public System.Nullable<System.DateTimeOffset> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Money NOT NULL")]
+		public decimal Amount
+		{
+			get
+			{
+				return this._Amount;
+			}
+			set
+			{
+				if ((this._Amount != value))
+				{
+					this.OnAmountChanging(value);
+					this.SendPropertyChanging();
+					this._Amount = value;
+					this.SendPropertyChanged("Amount");
+					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Order_OrderDetail", Storage="_Order", ThisKey="OrderID", OtherKey="OrderID", IsForeignKey=true)]
+		public Order Order
+		{
+			get
+			{
+				return this._Order.Entity;
+			}
+			set
+			{
+				Order previousValue = this._Order.Entity;
+				if (((previousValue != value) 
+							|| (this._Order.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Order.Entity = null;
+						previousValue.OrderDetails.Remove(this);
+					}
+					this._Order.Entity = value;
+					if ((value != null))
+					{
+						value.OrderDetails.Add(this);
+						this._OrderID = value.OrderID;
+					}
+					else
+					{
+						this._OrderID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Order");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

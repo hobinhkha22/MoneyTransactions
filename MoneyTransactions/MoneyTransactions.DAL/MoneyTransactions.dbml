@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MoneyTransactions" Class="MoneyTransactionsContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MoneyTransactions" Class="MoneyTransactionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-J4I9GGB;Initial Catalog=MoneyTransactions;Persist Security Info=True;User ID=sa" SettingsObjectName="MoneyTransactions.DAL.Properties.Settings" SettingsPropertyName="MoneyTransactionsConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
@@ -52,18 +52,6 @@
       <Association Name="CryptocurrencyStore_Wallet" Member="Wallets" ThisKey="CryptocurrencyStoreID" OtherKey="CryptocurrencyStoreID" Type="Wallet" />
     </Type>
   </Table>
-  <Table Name="dbo.OrderDetail" Member="OrderDetails">
-    <Type Name="OrderDetail">
-      <Column Name="OrderDetailID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="OrderID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SalerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="BuyerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="MoneyType" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
-      <Column Name="Amount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Association Name="Order_OrderDetail" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.[Order]" Member="Orders">
     <Type Name="Order">
       <Column Name="OrderID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -74,6 +62,18 @@
       <Column Name="AccountID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="Order_OrderDetail" Member="OrderDetails" ThisKey="OrderID" OtherKey="OrderID" Type="OrderDetail" />
       <Association Name="Account_Order" Member="Account" ThisKey="AccountID" OtherKey="AccountID" Type="Account" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetail" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="OrderDetailID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SalerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BuyerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MoneyType" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="Order_OrderDetail" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

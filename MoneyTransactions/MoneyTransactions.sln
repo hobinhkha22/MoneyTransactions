@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTransactions.DAL", "MoneyTransactions.DAL\MoneyTransactions.DAL.csproj", "{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MoneyTransactions.Web", "MoneyTransactions.Web\MoneyTransactions.Web.vbproj", "{E6869479-39EC-4BD1-8EFE-3285D4C2D075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTransactions.WEB", "MoneyTransactions.WEB\MoneyTransactions.WEB.csproj", "{DBEAAD4C-4611-4C69-9ED5-E1195ABA48A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBEAAD4C-4611-4C69-9ED5-E1195ABA48A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBEAAD4C-4611-4C69-9ED5-E1195ABA48A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBEAAD4C-4611-4C69-9ED5-E1195ABA48A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBEAAD4C-4611-4C69-9ED5-E1195ABA48A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
