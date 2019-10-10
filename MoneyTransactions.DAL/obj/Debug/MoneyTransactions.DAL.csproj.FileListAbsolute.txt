@@ -1,0 +1,8 @@
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DAL.dll
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DAL.pdb
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DTO.dll
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DTO.pdb
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.csprojAssemblyReference.cache
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.csproj.CopyComplete
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.dll
+C:\Users\hackm\Desktop\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.pdb

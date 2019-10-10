@@ -1,0 +1,5 @@
+C:\Users\hackm\Desktop\MoneyTransactions.DTO\bin\Debug\MoneyTransactions.DTO.dll
+C:\Users\hackm\Desktop\MoneyTransactions.DTO\bin\Debug\MoneyTransactions.DTO.pdb
+C:\Users\hackm\Desktop\MoneyTransactions.DTO\obj\Debug\MoneyTransactions.DTO.csprojAssemblyReference.cache
+C:\Users\hackm\Desktop\MoneyTransactions.DTO\obj\Debug\MoneyTransactions.DTO.dll
+C:\Users\hackm\Desktop\MoneyTransactions.DTO\obj\Debug\MoneyTransactions.DTO.pdb
