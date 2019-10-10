@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyTransactions.DAL", "MoneyTransactions.DAL\MoneyTransactions.DAL.csproj", "{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MoneyTransactions.Web", "MoneyTransactions.Web\MoneyTransactions.Web.vbproj", "{E6869479-39EC-4BD1-8EFE-3285D4C2D075}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6869479-39EC-4BD1-8EFE-3285D4C2D075}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C02676F3-616B-4362-A560-6C0E370F34FD}
+	EndGlobalSection
+EndGlobal
