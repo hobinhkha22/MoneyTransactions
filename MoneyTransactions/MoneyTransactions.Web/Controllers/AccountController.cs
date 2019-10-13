@@ -24,6 +24,7 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         // GET: Account/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -35,7 +36,13 @@ namespace MoneyTransactions.WEB.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                string username = collection["Username"];
+                string password = collection["Password"];
+                string phone = collection["Phone"];
+                string email = collection["Email"];
+                string nickname = collection["Nickname"];
+
+                accountService.CreateAccount(username, password, phone, email, nickname);
 
                 return RedirectToAction("Index");
             }
@@ -67,6 +74,12 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Detail(int id)
+        {
+            return View();
+        }
+
         // GET: Account/Delete/5
         public ActionResult Delete(int id)
         {
@@ -79,7 +92,7 @@ namespace MoneyTransactions.WEB.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                // TODO : DO SOMETHING
 
                 return RedirectToAction("Index");
             }
@@ -88,5 +101,6 @@ namespace MoneyTransactions.WEB.Controllers
                 return View();
             }
         }
+
     }
 }

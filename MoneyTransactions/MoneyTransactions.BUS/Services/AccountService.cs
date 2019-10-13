@@ -47,6 +47,7 @@ namespace MoneyTransactions.BUS.Services
             try
             {
                 Account account = new Account();
+                account.AccountID = Guid.NewGuid();
                 account.Username = username;
                 account.Password = password;
                 account.Phone = phone;
@@ -66,7 +67,13 @@ namespace MoneyTransactions.BUS.Services
         {
             try
             {
-                var listUserModel = db.Accounts.Select(x => new UserModel() { }).ToList();
+                var listUserModel = db.Accounts.Select(x => new UserModel() {
+                    Email = x.Email,
+                    Nickname = x.Nickname,
+                    Password = x.Password,
+                    Username = x.Username,
+                    Phone = x.Phone
+                }).ToList();
 
                 return listUserModel;
             }
