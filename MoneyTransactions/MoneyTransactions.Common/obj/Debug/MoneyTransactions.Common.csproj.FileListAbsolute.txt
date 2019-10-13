@@ -1,6 +1,0 @@
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\bin\Debug\MoneyTransactions.Common.dll
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\bin\Debug\MoneyTransactions.Common.pdb
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\obj\Debug\MoneyTransactions.Common.csprojAssemblyReference.cache
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\obj\Debug\MoneyTransactions.Common.csproj.CoreCompileInputs.cache
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\obj\Debug\MoneyTransactions.Common.dll
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.Common\obj\Debug\MoneyTransactions.Common.pdb
