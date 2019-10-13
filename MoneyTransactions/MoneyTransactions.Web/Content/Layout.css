@@ -1,0 +1,14 @@
+﻿body {
+    
+}
+
+#fix-color {
+    background-color: #210c34;
+}
+
+.remi-header-top-menu {
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
