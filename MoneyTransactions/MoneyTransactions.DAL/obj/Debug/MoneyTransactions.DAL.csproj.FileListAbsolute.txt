@@ -1,7 +1,0 @@
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DAL.dll.config
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DAL.dll
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\bin\Debug\MoneyTransactions.DAL.pdb
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.csprojAssemblyReference.cache
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.csproj.CoreCompileInputs.cache
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.dll
-D:\Money\MoneyTransactions\MoneyTransactions\MoneyTransactions.DAL\obj\Debug\MoneyTransactions.DAL.pdb
