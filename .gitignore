@@ -1,5 +1,5 @@
-﻿MoneyTransactions/.vs/
-MoneyTransactions/MoneyTransactions.DAL/obj
-MoneyTransactions/MoneyTransactions.Common/obj
-MoneyTransactions/MoneyTransactions.BUS/obj
-MoneyTransactions/MoneyTransactions.Web/obj
+﻿MoneyTransactions/.vs/*
+MoneyTransactions/MoneyTransactions.DAL/obj/*
+MoneyTransactions/MoneyTransactions.Common/obj/*
+MoneyTransactions/MoneyTransactions.BUS/obj/*
+MoneyTransactions/MoneyTransactions.Web/obj/*
