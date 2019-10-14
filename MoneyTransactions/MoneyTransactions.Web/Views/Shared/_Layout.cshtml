@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" id="fix-color">
         <div class="container">
-            <div class="navbar-header">               
+            <div class="navbar-header">
                 @Html.ActionLink("Remitano", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
@@ -25,13 +25,37 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <!-- Container -->
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info" id="div-intro">
+                    <p>
+                        In order to further protect sellers from fraud attempt,
+                        starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
+                        and increase the limit on a daily basis for each account based on verification level.
+                        Please beware of this when you schedule to buy a large amount of coin on remitano.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="col-xs-12 container" id="div1">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+                <div class=""></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="" id="fix-color">
+        <p>Hello fix_color</p>
+    </div>
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
