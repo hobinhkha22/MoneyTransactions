@@ -18,8 +18,7 @@
                     <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
                     <li>@Html.ActionLink("Example 2", "About", "Home")</li>
                     <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Example 4", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Example 5", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Đăng nhập / Đăng ký", "Contact", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -27,7 +26,6 @@
 
     <!-- Container -->
     <div class="container">
-        @RenderBody()
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-info" id="div-intro">
@@ -42,17 +40,12 @@
         </div>
     </div>
 
-    <div class="col-xs-12 container" id="div1">
-        <div class="row">
-            <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
-                <div class=""></div>
-                <div></div>
-            </div>
+    <div class="col-xs-12 container">
+        <div class="row" id="render-body">
+            @RenderBody()
+            <p>asdsadadad</p>
+            <p>asdsadadad</p>
         </div>
-    </div>
-
-    <div class="" id="fix-color">
-        <p>Hello fix_color</p>
     </div>
 
 

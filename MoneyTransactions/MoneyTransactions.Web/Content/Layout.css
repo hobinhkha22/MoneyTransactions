@@ -20,4 +20,10 @@
 
 #div1 {
     padding: 250px;
+    margin: 250px;
+}
+
+#render-body {
+    background-color: #210c34;
+    padding: 200px;
 }
