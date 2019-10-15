@@ -27,3 +27,54 @@
     background-color: #210c34;
     padding: 200px;
 }
+
+#remi-bid-ask-info {
+    color: #49474a;
+    display: block;
+    overflow: auto;
+    padding-top: 3.2rem;
+    margin: 1.6rem auto;
+    text-align: left;
+    font-family: Helvetica Neue;
+}
+
+#long-panel {
+    width: 100%;
+    text-align: center;
+}
+
+#row-added {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+#dropdown-button {
+    text-align: center;
+}
+
+#div-left-sell {
+    border: 1px solid;
+    padding: 50px 15px;
+    text-align: center;
+    margin-right: 5px;
+    width: 48%;
+    float: left;
+}
+
+#div-left-buy {
+    border: 1px solid;
+    padding: 50px 20px;
+    text-align: center;
+    width: 48%;
+    float: right;
+}
+
+#title {
+    font-size: 1.6rem;
+}
+
+#remi-rate {
+    font-size: 2.1rem;
+    margin: 1.3rem 0 1.6rem;
+    line-height: 2.4rem;
+}

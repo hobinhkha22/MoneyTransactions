@@ -10,7 +10,7 @@ namespace MoneyTransactions.WEB.Controllers
     {
         // GET: Home
         public ActionResult Index()
-        {
+        {// This is login
             return View();
         }
 
