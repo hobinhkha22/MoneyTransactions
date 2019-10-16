@@ -41,6 +41,7 @@
 #long-panel {
     width: 100%;
     text-align: center;
+    font-size: 20px;
 }
 
 #row-added {
@@ -53,19 +54,16 @@
 }
 
 #div-left-sell {
-    border: 1px solid;
     padding: 50px 15px;
-    text-align: center;
-    margin-right: 5px;
-    width: 48%;
+    text-align: left;
+    width: 50%;
     float: left;
 }
 
 #div-left-buy {
-    border: 1px solid;
     padding: 50px 20px;
-    text-align: center;
-    width: 48%;
+    text-align: left;
+    width: 50%;
     float: right;
 }
 
@@ -73,8 +71,137 @@
     font-size: 1.6rem;
 }
 
+.btn-ask {
+    padding: 1.2rem 2.2rem 1.6rem;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    border-width: .2rem;
+    border-radius: .4rem;
+    border-color: #299d82;
+    background-color: #299d82;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-bid {
+    background-color: #e96c6c;
+    padding: 1.2rem 2.2rem 1.6rem;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    border-width: .2rem;
+    border-radius: .4rem;
+    border-color: #e65656;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.currency {
+    color: #e8e8e8;
+}
+
+.vertical-middle {
+    vertical-align: middle;
+    color: #fff;
+}
+
 #remi-rate {
     font-size: 2.1rem;
     margin: 1.3rem 0 1.6rem;
     line-height: 2.4rem;
+}
+
+.ads-rate-panel-wrapper {
+    padding: 18px 0 27px 27px;
+    background-color: #321f44;
+    border-radius: .6rem;
+}
+
+#dropdown-added {
+    width: 100%;
+    text-align: center;
+}
+
+    #dropdown-added > li > a {
+        font-size: 15px;
+    }
+
+
+/* Footer */
+
+footer {
+    display: block;
+}
+
+.remi-footer {
+    background-color: #19171c;
+    padding: 53px 0 18px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 50px;
+}
+
+.remi-logo-container {
+    user-select: none;
+    color: #2f2f2f;
+    text-transform: uppercase;
+}
+
+.remi-footer-company-info {
+    font-weight: 300;
+    line-height: 19px;
+    margin-top: 25px;
+}
+
+.remi-footer-title {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 22px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+
+table {
+    display: none;
+}
+
+.remi-footer .remi-footer-title {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 22px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+
+.remi-footer .remi-footer-email {
+    font-weight: 700;
+    color: #9b59b6;
+}
+
+.remi-link, a {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a {
+    background-color: transparent;
+}
+
+/**, ::after, ::before {
+    box-sizing: border-box;
+}*/
+
+.remi-footer ul {
+    list-style: none;
+}
+
+.remi-footer {
+    font-size: 14px;
 }
