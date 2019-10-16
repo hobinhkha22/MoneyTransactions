@@ -13,7 +13,7 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
     <!--===============================================================================================-->
-    
+
     <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -82,6 +82,7 @@
                         <button class="login100-form-btn">
                             Login
                         </button>
+                        @Html.ActionLink("Back", "Index", "Home", null, htmlAttributes: new { @class = "login100-form-btn", @id = "back-btn" })
                     </div>
 
                 </form>
