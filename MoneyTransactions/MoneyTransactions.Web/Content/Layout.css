@@ -25,8 +25,9 @@
 
 #render-body {
     background-color: #210c34;
-    padding: 200px;
+    padding: 60px;    
 }
+
 
 #remi-bid-ask-info {
     color: #49474a;
@@ -129,9 +130,7 @@
 
 
 /* Footer */
-
 footer {
-    display: block;
 }
 
 .remi-footer {
@@ -140,7 +139,7 @@ footer {
     font-size: 14px;
     color: #fff;
     font-weight: 500;
-    margin-top: 50px;
+    margin-top: 700px;
 }
 
 .remi-logo-container {
@@ -163,10 +162,6 @@ footer {
     text-transform: uppercase;
 }
 
-
-table {
-    display: none;
-}
 
 .remi-footer .remi-footer-title {
     font-size: 16px;

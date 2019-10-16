@@ -102,5 +102,10 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
+        public ActionResult Login(string username, string password)
+        {
+            return View();
+        }
+
     }
 }

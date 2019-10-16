@@ -12,7 +12,7 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Index()
         {// This is login
             return View();
-        }
+        }        
 
         // GET: Home/Details/5
         public ActionResult Details(int id)
