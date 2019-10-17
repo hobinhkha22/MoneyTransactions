@@ -146,5 +146,11 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            return View();
+        }
+
     }
 }
