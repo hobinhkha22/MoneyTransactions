@@ -33,7 +33,7 @@ namespace MoneyTransactions.BUS.Services
                     existedPassword.Password = newPassword;
 
                     db.SubmitChanges();
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -67,7 +67,8 @@ namespace MoneyTransactions.BUS.Services
         {
             try
             {
-                var listUserModel = db.Accounts.Select(x => new UserModel() {
+                var listUserModel = db.Accounts.Select(x => new UserModel()
+                {
                     Email = x.Email,
                     Nickname = x.Nickname,
                     Password = x.Password,
@@ -106,6 +107,28 @@ namespace MoneyTransactions.BUS.Services
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public UserModel FindUser(string username, string password)
+        {
+            var findUser = db.Accounts.FirstOrDefault(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower());
+
+            if (findUser == null)
+            {
+                return null;
+            }
+
+            UserModel changeToUserModel = new UserModel
+            {
+                Id = findUser.AccountID,
+                Username = findUser.Username,
+                Password = findUser.Password,
+                Email = findUser.Email,
+                Nickname = findUser.Nickname,
+                Phone = findUser.Phone
+            };
+
+            return changeToUserModel;
         }
     }
 }

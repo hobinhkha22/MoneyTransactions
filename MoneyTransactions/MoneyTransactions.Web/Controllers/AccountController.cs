@@ -102,7 +102,46 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
-        public ActionResult Login(string username, string password)
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(FormCollection collection)
+        {
+            string username = collection["Username"];
+            string password = collection["Password"];
+            var usermodel = accountService.FindUser(username, password);
+
+            if (usermodel == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                if (usermodel.Username.ToLower() == "admin" || usermodel.Username.ToLower() == "admin@gmail.com")
+                {
+                    return RedirectToAction("AdminPage", "Account");
+                }
+
+                if (usermodel.Username.ToLower() == "user1" || usermodel.Username.ToLower() == "user1@gmail.com")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (usermodel.Username.ToLower() == "user2" || usermodel.Username.ToLower() == "user2@gmail.com")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpGet]
+        public ActionResult AdminPage()
         {
             return View();
         }
