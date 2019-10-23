@@ -19,5 +19,7 @@ namespace MoneyTransactions.BUS.Models
         public string Email { get; set; }
 
         public string Nickname { get; set; }
+
+        public List<WalletModel> WalletModels { get; set; }
     }
 }

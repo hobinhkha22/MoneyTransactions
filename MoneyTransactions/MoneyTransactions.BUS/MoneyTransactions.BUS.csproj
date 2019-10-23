@@ -43,7 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IAccountService.cs" />
+    <Compile Include="Models\AccountBankDetail.cs" />
+    <Compile Include="Models\Bank.cs" />
+    <Compile Include="Models\BaseOrder.cs" />
+    <Compile Include="Models\CryptocurrencyStore.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\WalletModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
   </ItemGroup>
