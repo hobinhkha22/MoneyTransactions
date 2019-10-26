@@ -8,7 +8,7 @@ namespace MoneyTransactions.BUS.Interface
 {
     public interface IWallet
     {
-        void CreateWallet(Guid Id);
+        void CreateWallet(Guid AccountId);
 
         bool UpdateWallet();
 

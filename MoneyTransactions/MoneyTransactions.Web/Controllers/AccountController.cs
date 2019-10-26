@@ -152,5 +152,10 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
     }
 }
