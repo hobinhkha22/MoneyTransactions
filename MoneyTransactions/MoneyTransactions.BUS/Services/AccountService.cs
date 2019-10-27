@@ -42,17 +42,19 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public void CreateAccount(string username, string password)
+        public void CreateAccount(string username, string password, string confirmPassword)
         {
             try
             {
-                Account account = new Account();
-                account.AccountID = Guid.NewGuid();
-                account.Username = username;
-                account.Password = password;
-                account.Phone = string.Empty;
-                account.Email = string.Empty;
-                account.Nickname = string.Empty;
+                Account account = new Account
+                {
+                    AccountID = Guid.NewGuid(),
+                    Username = username,
+                    Password = password,
+                    Phone = string.Empty,
+                    Email = string.Empty,
+                    Nickname = string.Empty
+                };
 
                 db.Accounts.InsertOnSubmit(account);
                 db.SubmitChanges();

@@ -2,6 +2,7 @@
 using MoneyTransactions.BUS.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,12 +14,14 @@ namespace MoneyTransactions.WEB.Controllers
         private readonly AccountService accountService = new AccountService();
 
         // GET: Account
+        [HttpGet]
         public ActionResult Index()
         {
             return View(accountService.GetAccounts());
         }
 
         // GET: Account/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View();
@@ -110,9 +113,10 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(UserModel userModel)
         {
-            string username = userModel.Username;
+            string username = userModel?.Username;
             string password = userModel.Password;
             var usermodel = accountService.FindUser(username, password);
 
@@ -122,17 +126,17 @@ namespace MoneyTransactions.WEB.Controllers
             }
             else
             {
-                if (usermodel.Username.ToLower() == "admin" || usermodel.Username.ToLower() == "admin@gmail.com")
+                if (usermodel.Username.ToUpperInvariant() == "admin" || usermodel.Username.ToUpperInvariant() == "admin@gmail.com")
                 {
                     return RedirectToAction("AdminPage", "Account");
                 }
 
-                if (usermodel.Username.ToLower() == "user1" || usermodel.Username.ToLower() == "user1@gmail.com")
+                if (usermodel.Username.ToUpperInvariant() == "user1" || usermodel.Username.ToUpperInvariant() == "user1@gmail.com")
                 {
                     return RedirectToAction("Index", "Home");
                 }
 
-                if (usermodel.Username.ToLower() == "user2" || usermodel.Username.ToLower() == "user2@gmail.com")
+                if (usermodel.Username.ToUpperInvariant() == "user2" || usermodel.Username.ToUpperInvariant() == "user2@gmail.com")
                 {
                     return RedirectToAction("Index", "Home");
                 }
