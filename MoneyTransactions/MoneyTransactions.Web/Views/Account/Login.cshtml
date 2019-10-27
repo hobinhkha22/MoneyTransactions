@@ -79,7 +79,7 @@
 
                 <div class="container-login100-form-btn">
                     <input type="submit" value="Login" class="login100-form-btn" />
-                    <input type="submit" value="Register" class="login100-form-btn" id="register-btn" />
+                    @Html.ActionLink("Register", "Register", "Account", null, htmlAttributes: new { @class = "login100-form-btn", @id = "register-btn-login" })                    
                 </div>
 
                 @*</form>*@

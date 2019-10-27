@@ -53,7 +53,7 @@ namespace MoneyTransactions.BUS.Services
                     Password = password,
                     Phone = string.Empty,
                     Email = string.Empty,
-                    Nickname = string.Empty
+                    Nickname = username
                 };
 
                 db.Accounts.InsertOnSubmit(account);

@@ -170,18 +170,16 @@ namespace MoneyTransactions.WEB.Controllers
             var password = formCollection["Password"];
             var confirmPassword = formCollection["ConfirmPassword"];
 
-            if (password.ToString() == confirmPassword.ToString())
-            {
-                // same
-                accountService.CreateAccount(username, password);                
-            }
-            else
+            if (password.ToString().ToLower() != confirmPassword.ToString().ToLower())
             {
                 // wrong
                 return RedirectToAction("Register", "Account");
             }
 
-            return View();
+            // same password and confirm
+            accountService.CreateAccount(username, password, confirmPassword);
+            
+            return RedirectToAction("Index", "Home");
         }
     }
 }
