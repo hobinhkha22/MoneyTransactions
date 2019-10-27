@@ -77,18 +77,11 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        @*                        <input type="submit" value="Create" class="btn btn-default" />*@
-                        @Html.ActionLink("Login", "Login", "Account", null, htmlAttributes: new { @class = "login100-form-btn", @id = "back-btn", @type = "submit" })
-                    </div>
+                <div class="container-login100-form-btn">
+                    <input type="submit" value="Login" class="login100-form-btn" />
+                    <input type="submit" value="Register" class="login100-form-btn" id="register-btn" />
                 </div>
 
-                @*<div class="container-login100-form-btn">
-                        <input type="submit" name="Login" value="Login" />
-
-                        @Html.ActionLink("Register", "Register", "Account", null, htmlAttributes: new { @class = "login100-form-btn", @id = "register-btn" })
-                    </div>*@
                 @*</form>*@
             </div>
         </div>

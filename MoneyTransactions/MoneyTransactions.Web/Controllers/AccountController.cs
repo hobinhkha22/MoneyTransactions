@@ -116,7 +116,7 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserModel userModel)
         {
-            string username = userModel?.Username;
+            string username = userModel.Username;
             string password = userModel.Password;
             var usermodel = accountService.FindUser(username, password);
 
@@ -126,17 +126,17 @@ namespace MoneyTransactions.WEB.Controllers
             }
             else
             {
-                if (usermodel.Username.ToUpperInvariant() == "admin" || usermodel.Username.ToUpperInvariant() == "admin@gmail.com")
+                if (usermodel.Username.ToLower() == "admin" || usermodel.Username.ToUpperInvariant() == "admin@gmail.com")
                 {
                     return RedirectToAction("AdminPage", "Account");
                 }
 
-                if (usermodel.Username.ToUpperInvariant() == "user1" || usermodel.Username.ToUpperInvariant() == "user1@gmail.com")
+                if (usermodel.Username.ToLower() == "user1" || usermodel.Username.ToUpperInvariant() == "user1@gmail.com")
                 {
                     return RedirectToAction("Index", "Home");
                 }
 
-                if (usermodel.Username.ToUpperInvariant() == "user2" || usermodel.Username.ToUpperInvariant() == "user2@gmail.com")
+                if (usermodel.Username.ToLower() == "user2" || usermodel.Username.ToUpperInvariant() == "user2@gmail.com")
                 {
                     return RedirectToAction("Index", "Home");
                 }
