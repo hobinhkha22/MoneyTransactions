@@ -1,4 +1,5 @@
-﻿using MoneyTransactions.BUS.Services;
+﻿using MoneyTransactions.BUS.Models;
+using MoneyTransactions.BUS.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,10 +110,10 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection collection)
+        public ActionResult Login(UserModel userModel)
         {
-            string username = collection["Username"];
-            string password = collection["Password"];
+            string username = userModel.Username;
+            string password = userModel.Password;
             var usermodel = accountService.FindUser(username, password);
 
             if (usermodel == null)
@@ -155,6 +156,27 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(FormCollection formCollection)
+        {
+            var username = formCollection["Username"];
+            var password = formCollection["Password"];
+            var confirmPassword = formCollection["ConfirmPassword"];
+
+            if (password.ToString() == confirmPassword.ToString())
+            {
+                // same
+                accountService.CreateAccount(username, password);                
+            }
+            else
+            {
+                // wrong
+                return RedirectToAction("Register", "Account");
+            }
+
             return View();
         }
     }

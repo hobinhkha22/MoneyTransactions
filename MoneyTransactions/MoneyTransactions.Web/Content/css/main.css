@@ -387,6 +387,10 @@ iframe {
 }
 
 #back-btn {
+    /*margin-left: 90px;*/
+}
+
+#register-btn {
     margin-left: 90px;
 }
 

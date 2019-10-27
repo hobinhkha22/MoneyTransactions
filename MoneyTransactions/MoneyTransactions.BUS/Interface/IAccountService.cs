@@ -10,7 +10,9 @@ namespace MoneyTransactions.BUS.Interface
 {
     public interface IAccountService
     {
-        void CreateAccount(string username, string password, string phone, string email, string nickname);
+        void CreateAccount(string username, string password);
+
+        void CreateAccount(string username, string password, string phone = null, string email = null, string nickname = null);
 
         void UpdateAccount(string usernameExisted, string newPhone, string newEmail, string newNickname);
 
