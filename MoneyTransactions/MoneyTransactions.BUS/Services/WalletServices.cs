@@ -1,4 +1,5 @@
 ﻿using MoneyTransactions.BUS.Interface;
+using MoneyTransactions.Common;
 using MoneyTransactions.DAL;
 using NBitcoin;
 using System;
@@ -22,24 +23,52 @@ namespace MoneyTransactions.BUS.Services
 
         public void CreateWallet(Guid AccountId)
         {
-            Key privateKey = new Key(); // generate a random private key
-            BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);  // get our private key for the mainnet            
-                                                                                          //Debug.WriteLine(mainNetPrivateKey); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn            
+            // Get info crypto money
+            List<CryptocurrencyStore> cryptocurrencyStore = db.CryptocurrencyStores.ToList();
 
-            //BitcoinSecret bitcoinPrivateKey = privateKey.GetWif(Network.Main); // L5B67zvrndS5c71EjkrTJZ99UaoVbMUAK58GKdQUfYCpAa6jypvn
-            //Key samePrivateKey = bitcoinPrivateKey.PrivateKey;
+            // wallet for btc
+            Wallet walletBtc = new Wallet();
+            walletBtc.WalletID = Guid.NewGuid();
+            walletBtc.AccountID = AccountId;
+            walletBtc.WalletAddress = CreateAddress();
+            walletBtc.CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() 
+            == CryptoCurrencyCommon.Bitcoin.ToLower()).CryptocurrencyStoreID;
+            
 
-            PubKey publicKey = privateKey.PubKey;
-            //BitcoinPubKeyAddress bitcoinPubicKey = publicKey.GetAddress(Network.Main); // 1PUYsjwfNmX64wS368ZR5FMouTtUmvtmTY
-
-            Wallet wallet = new Wallet
+            // wallet for ripple
+            Wallet walletRipple = new Wallet
             {
+                WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
-                WalletAddress = publicKey.GetAddress(Network.Main).ToString()
+                WalletAddress = CreateAddress(),
+                CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower()).CryptocurrencyStoreID
             };
 
-            db.Wallets.InsertOnSubmit(wallet);
+            // wallet for eth
+            Wallet walletEth = new Wallet
+            {
+                WalletID = Guid.NewGuid(),
+                AccountID = AccountId,
+                WalletAddress = CreateAddress(),
+                CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower()).CryptocurrencyStoreID
+            };
+
+            db.Wallets.InsertOnSubmit(walletBtc);
+            db.Wallets.InsertOnSubmit(walletRipple);
+            db.Wallets.InsertOnSubmit(walletEth);
+
             db.SubmitChanges();
+        }
+
+        private string CreateAddress()
+        {
+            Key privateKey = new Key(); // generate a random private key
+            BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);
+            PubKey publicKey = privateKey.PubKey;
+
+            var address = publicKey.GetAddress(Network.Main);
+
+            return address.ToString();
         }
 
         public bool UpdateWallet()

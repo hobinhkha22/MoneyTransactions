@@ -133,13 +133,13 @@
 footer {
 }
 
-.remi-footer {
+.remi-footer {    
     background-color: #19171c;
     padding: 53px 0 18px;
     font-size: 14px;
     color: #fff;
     font-weight: 500;
-    margin-top: 700px;
+    margin-top: 50px;
 }
 
 .remi-logo-container {

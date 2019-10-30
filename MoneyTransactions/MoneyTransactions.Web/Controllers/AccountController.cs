@@ -12,11 +12,12 @@ namespace MoneyTransactions.WEB.Controllers
     public class AccountController : Controller
     {
         private readonly AccountService accountService = new AccountService();
+        private readonly WalletServices walletServices = new WalletServices();
 
         // GET: Account
         [HttpGet]
         public ActionResult Index()
-        {
+        {            
             return View(accountService.GetAccounts());
         }
 
@@ -164,6 +165,7 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(FormCollection formCollection)
         {
             var username = formCollection["Username"];
@@ -176,10 +178,15 @@ namespace MoneyTransactions.WEB.Controllers
                 return RedirectToAction("Register", "Account");
             }
 
-            // same password and confirm
+            // create account
             accountService.CreateAccount(username, password, confirmPassword);
             
-            return RedirectToAction("Index", "Home");
+            // Create wallet after account created
+            var findCreatedAccount = accountService.FindUser(username, password);
+            walletServices.CreateWallet(findCreatedAccount.Id);
+            ViewBag.ForAccount = findCreatedAccount.Username;
+
+            return RedirectToAction("Index", "Account");
         }
     }
 }

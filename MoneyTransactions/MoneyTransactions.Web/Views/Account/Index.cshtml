@@ -1,57 +1,133 @@
 ﻿@model IEnumerable<MoneyTransactions.BUS.Models.UserModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </th>
-        <th></th>
-    </tr>
+<div class="navbar navbar-inverse navbar-fixed-top" id="fix-color">
+    <div class="container">
+        <div class="navbar-header">
+            @Html.ActionLink("Demo", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav remi-header-top-menu">
+                <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
+                <li>@Html.ActionLink("Example 2", "About", "Home")</li>
+                <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
+                <li>@ViewBag.ForAccount</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nickname)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+<!-- Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" id="div-intro">
+                <p>
+                    In order to further protect sellers from fraud attempt,
+                    starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
+                    and increase the limit on a daily basis for each account based on verification level.
+                    Please beware of this when you schedule to buy a large amount of coin on remitano.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-</table>
+<div class="col-xs-12 container" id="render-body">
+    <div class="row" id="render-body">
+
+    </div>
+</div>
+
+<footer id="footer" class="remi-footer col-xs-12 container">
+    <div class="container">
+        <div class="col-md-3 col-xs-12">
+            <div class="remi-logo-container">
+                <div class="remi-logo-container remi-logo-img">
+                    <img src="#" alt="Demo's logo" />
+                </div>
+            </div>
+            <div class="remi-footer-company-info">
+                © 2014–2019, DEMO
+                <br />
+                <span>All rights reserved.</span>
+                <br />
+                <span>Demo on stream</span>
+                <br />
+                <span>Website currency</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <h5 class="">Về chúng tôi</h5>
+            <ul>
+                <li><a href="#">Về Chúng Tôi</a></li>
+                <li><a href="#">Tuyển dụng</a></li>
+                <li><a href="#">Giao dịch đảm bảo</a></li>
+                <li><a href="#">Truyền thông</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <h5 class="remi-footer-title">Liên hệ</h5>
+            <ul>
+                <li>
+                    Email: <a href="#" target="_blank" rel="noopener noreferrer" class="remi-footer-email">mail@example.com</a>
+                </li>
+                <li>
+                    <span class="remi-link">Hỗ trợ trực tuyến</span>
+                </li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer">Liên hệ</a></li>
+                <li><a href="#" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                <li>Số điện thoại gọi đi của chúng tôi là: +8888 888 888</li>
+            </ul><hr>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <h5 class="remi-footer-title">Mạng xã hội</h5>
+            <div class="row remi-footer-social">
+                <div class="col-xs-6">
+                    <ul>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" to="https://www.facebook.com/" href="#">
+                                <div class="icon-facebook-squared svg-icon icon-white mr-8">
+
+                                </div>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                <div class="icon-twitter-squared svg-icon icon-white mr-8">
+                                </div>
+                                <span>Twitter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-6">
+                    <ul>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                <div class="icon-linkedin-squared svg-icon icon-white mr-8">
+
+                                </div>
+                                <span>LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                <div class="icon-telegram svg-icon icon-white mr-8">
+
+                                </div>
+                                <span>Telegram</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

@@ -8,19 +8,32 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top" id="fix-color">
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("Demo", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav remi-header-top-menu">
-                    <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Example 2", "About", "Home")</li>
-                    <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Đăng nhập / Đăng ký", "Login", "Account")</li>
-                </ul>
-            </div>
+            @{
+                if (ViewBag.ForAccount == null)
+                {
+                    Html.RenderPartial("PartialViewResult", "Home");
+                }
+                else
+                {
+                    Html.RenderPartial("LoggedViewResult", "Home");
+                }
+
+            }
+
+            @*<div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav remi-header-top-menu">
+                        <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Example 2", "About", "Home")</li>
+                        <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Đăng nhập / Đăng ký", "Login", "Account")</li>
+                    </ul>
+                </div>*@
         </div>
     </div>
 
@@ -33,7 +46,7 @@
                         In order to further protect sellers from fraud attempt,
                         starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
                         and increase the limit on a daily basis for each account based on verification level.
-                        Please beware of this when you schedule to buy a large amount of coin on remitano.
+                        Please beware of this when you schedule to buy a large amount of coin on Demo.
                     </p>
                 </div>
             </div>
@@ -44,12 +57,9 @@
         <div class="row" id="render-body">
             @RenderBody()
         </div>
-        <div>
-
-        </div>
     </div>
 
-    <footer id="footer" class="remi-footer">
+    <footer id="footer" class="remi-footer col-xs-12 container">
         <div class="container">
             <div class="col-md-3 col-xs-12">
                 <div class="remi-logo-container">

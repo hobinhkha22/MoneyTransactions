@@ -12,6 +12,6 @@ namespace MoneyTransactions.BUS.Interface
 
         bool UpdateWallet();
 
-        
+
     }
 }
