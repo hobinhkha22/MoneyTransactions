@@ -17,7 +17,7 @@ namespace MoneyTransactions.WEB.Controllers
         // GET: Account
         [HttpGet]
         public ActionResult Index()
-        {            
+        {
             return View(accountService.GetAccounts());
         }
 
@@ -180,13 +180,26 @@ namespace MoneyTransactions.WEB.Controllers
 
             // create account
             accountService.CreateAccount(username, password, confirmPassword);
-            
+
             // Create wallet after account created
             var findCreatedAccount = accountService.FindUser(username, password);
             walletServices.CreateWallet(findCreatedAccount.Id);
-            ViewBag.ForAccount = findCreatedAccount.Username;
+
+            Session["AccountLogged"] = findCreatedAccount.Username;            
 
             return RedirectToAction("Index", "Account");
+        }
+
+        [HttpGet]
+        public PartialViewResult LayoutViewResult()
+        {
+            return PartialView();
+        }
+
+        [HttpGet]
+        public PartialViewResult LoggedViewResult()
+        {
+            return PartialView();
         }
     }
 }

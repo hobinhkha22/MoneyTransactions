@@ -9,27 +9,17 @@ namespace MoneyTransactions.WEB.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
             // This is login
             //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
-            
-            return View();
-        }   
-        
-        [HttpGet]
-        public PartialViewResult PartialViewResult()
-        {
-            return PartialViewResult();
-        }
 
-        [HttpGet]
-        public PartialViewResult LoggedViewResult()
-        {
-            return PartialViewResult();
+            return View();
         }
 
         // GET: Home/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View();
@@ -60,6 +50,7 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         // GET: Home/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View();
@@ -67,6 +58,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         // POST: Home/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -82,6 +74,7 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         // GET: Home/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View();

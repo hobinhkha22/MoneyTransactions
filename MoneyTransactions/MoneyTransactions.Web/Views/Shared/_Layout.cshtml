@@ -14,26 +14,25 @@
             <div class="navbar-header">
                 @Html.ActionLink("Demo", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @{
-                if (ViewBag.ForAccount == null)
-                {
-                    Html.RenderPartial("PartialViewResult", "Home");
-                }
-                else
-                {
-                    Html.RenderPartial("LoggedViewResult", "Home");
-                }
 
-            }
-
-            @*<div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav remi-header-top-menu">
-                        <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Example 2", "About", "Home")</li>
-                        <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Đăng nhập / Đăng ký", "Login", "Account")</li>
-                    </ul>
-                </div>*@
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav remi-header-top-menu">
+                    <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Example 2", "About", "Home")</li>
+                    <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
+                    <li>
+                        @{ if (Session["AccountLogged"] == null)
+                            {
+                                @Html.ActionLink("Đăng nhập / Đăng ký", "Login", "Account")
+                            }
+                            else
+                            {
+                                <a>@Session["AccountLogged"].ToString()</a>
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 

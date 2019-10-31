@@ -2112,7 +2112,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\AdminPage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\PartialViewResult.cshtml" />
+    <Content Include="Views\Home\LayoutViewResult.cshtml" />
     <Content Include="Views\Home\LoggedViewResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
