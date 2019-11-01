@@ -9,8 +9,8 @@ namespace MoneyTransactions.Common
     public class CryptoCurrencyCommon
     {
         public const string Bitcoin = "BTC";
-        public const string Ethereum = "Ethereum";
-        public const string Ripple = "Ripple";
+        public const string Ethereum = "ETH";
+        public const string Ripple = "XRP";
         
     }
 }
