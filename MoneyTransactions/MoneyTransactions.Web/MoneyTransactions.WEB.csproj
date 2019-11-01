@@ -1766,6 +1766,7 @@
     <Content Include="Content\fonts\montserrat\OFL.txt" />
     <Content Include="Content\fonts\raleway\OFL.txt" />
     <Content Include="Content\fonts\ubuntu\UFL.txt" />
+    <Content Include="Content\gijgo.min.css" />
     <Content Include="Content\images\icons\favicon.ico" />
     <Content Include="Content\images\icons\icon-google.png" />
     <Content Include="Content\images\icons\map-marker.png" />
@@ -2082,6 +2083,7 @@
     <Content Include="Content\AdminDashboard\vendor\jquery\jquery.min.map" />
     <Content Include="Content\AdminDashboard\vendor\jquery\jquery.slim.min.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\gijgo.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

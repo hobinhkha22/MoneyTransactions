@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyTransactions.BUS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MoneyTransactions.BUS.Interface
 {
     public interface IOrderServices
     {
-        void RegisterTransaction();
-        void ShowTransaction();
+        void CreateTransaction(UserModel userModel, decimal amount, decimal amountBought);
+        List<DAL.Order> ShowRecentTransaction();
     }
 }

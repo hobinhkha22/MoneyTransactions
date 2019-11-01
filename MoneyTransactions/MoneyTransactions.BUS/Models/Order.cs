@@ -8,8 +8,8 @@ namespace MoneyTransactions.BUS.Models
 {
     public class Order : BaseOrder
     {
-        public double Amount { get; set; }
-        public double AmountBought { get; set; }
+        public string Amount { get; set; }
+        public string AmountBought { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
 
