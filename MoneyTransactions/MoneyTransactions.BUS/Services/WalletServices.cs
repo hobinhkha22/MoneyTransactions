@@ -25,31 +25,36 @@ namespace MoneyTransactions.BUS.Services
         {
             // Get info crypto money
             List<CryptocurrencyStore> cryptocurrencyStore = db.CryptocurrencyStores.ToList();
-
+            var walletBTCAddress = CreateAddress();
             // wallet for btc
             Wallet walletBtc = new Wallet();
             walletBtc.WalletID = Guid.NewGuid();
             walletBtc.AccountID = AccountId;
-            walletBtc.WalletAddress = CreateAddress();
-            walletBtc.CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() 
+            walletBtc.WalletAddress = walletBTCAddress.Values.ElementAt(0);
+            walletBtc.PrivateKey = walletBTCAddress.Keys.ElementAt(0);
+            walletBtc.CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower()
             == CryptoCurrencyCommon.Bitcoin.ToLower()).CryptocurrencyStoreID;
-            
 
+
+            var walletRippleAddress = CreateAddress();
             // wallet for ripple
             Wallet walletRipple = new Wallet
             {
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
-                WalletAddress = CreateAddress(),
+                WalletAddress = walletRippleAddress.Values.ElementAt(0),
+                PrivateKey = walletRippleAddress.Keys.ElementAt(0),
                 CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower()).CryptocurrencyStoreID
             };
 
+            var walletEthAddress = CreateAddress();
             // wallet for eth
             Wallet walletEth = new Wallet
             {
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
-                WalletAddress = CreateAddress(),
+                WalletAddress = walletEthAddress.Values.ElementAt(0),
+                PrivateKey = walletEthAddress.Keys.ElementAt(0),
                 CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower()).CryptocurrencyStoreID
             };
 
@@ -60,16 +65,28 @@ namespace MoneyTransactions.BUS.Services
             db.SubmitChanges();
         }
 
-        private string CreateAddress()
+        /// <summary>
+        /// Dictionary<string1, string2>
+        /// 
+        /// string1: private key
+        /// string2: bitcoin address
+        /// </summary>        
+        /// <returns></returns>
+        public Dictionary<string, string> CreateAddress()
         {
+            var dic = new Dictionary<string, string>();
+
             Key privateKey = new Key(); // generate a random private key
-            BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main);
+            BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main); // bitcoin secret
             PubKey publicKey = privateKey.PubKey;
 
-            var address = publicKey.GetAddress(Network.Main);
+            var address = publicKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main);
 
-            return address.ToString();
+            dic.Add(privateKey.ToString(Network.Main), address.ToString());
+
+            return dic;
         }
+
 
         public bool UpdateWallet()
         {

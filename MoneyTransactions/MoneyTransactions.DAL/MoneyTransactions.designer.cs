@@ -424,6 +424,8 @@ namespace MoneyTransactions.DAL
 		
 		private System.Guid _AccountID;
 		
+		private string _PrivateKey;
+		
 		private EntityRef<Account> _Account;
 		
 		private EntityRef<CryptocurrencyStore> _CryptocurrencyStore;
@@ -444,6 +446,8 @@ namespace MoneyTransactions.DAL
     partial void OnCryptocurrencyStoreIDChanged();
     partial void OnAccountIDChanging(System.Guid value);
     partial void OnAccountIDChanged();
+    partial void OnPrivateKeyChanging(string value);
+    partial void OnPrivateKeyChanged();
     #endregion
 		
 		public Wallet()
@@ -577,6 +581,26 @@ namespace MoneyTransactions.DAL
 					this._AccountID = value;
 					this.SendPropertyChanged("AccountID");
 					this.OnAccountIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrivateKey", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string PrivateKey
+		{
+			get
+			{
+				return this._PrivateKey;
+			}
+			set
+			{
+				if ((this._PrivateKey != value))
+				{
+					this.OnPrivateKeyChanging(value);
+					this.SendPropertyChanging();
+					this._PrivateKey = value;
+					this.SendPropertyChanged("PrivateKey");
+					this.OnPrivateKeyChanged();
 				}
 			}
 		}
