@@ -52,10 +52,61 @@
         </div>
     </div>
 
-    <div class="col-xs-12 container" id="render-body">
+    <div class="col-xs-12 container render-body-bottom" id="render-body">
         <div class="row" id="render-body">
-            @RenderBody()
+
+            <div class="col-xs-12 container">
+                <!--Currency Dropdown -->
+                <div class="row" id="row-added">
+                    <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+                        <div class="dropdown" id="dropdown-button">
+                            <button class="btn btn-primary dropdown-toggle" id="long-panel" type="button" data-toggle="dropdown">
+                                Bitcoin
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="dropdown-added">
+                                <li><a href="#">Bitcoin</a></li>
+                                <li><a href="#">Ethereum</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="remi-bid-ask-info">
+                            <!-- Sell side-->
+                            <div class="col-xs-6" id="div-left-sell">
+                                <div class="ads-rate-panel-wrapper">
+                                    <div id="title" class="vertical-middle">Giá bán:</div>
+                                    <div id="remi-rate">
+                                        <span>
+                                            <span class="amount">191,467,996</span>
+                                            <span class="currency">VND</span>
+                                        </span>
+                                    </div>
+                                    <a class="btn btn-ask" href="#">Bán ngay</a>
+                                </div>
+                            </div>
+
+                            <!--Buy side-->
+                            <div class="col-xs-6" id="div-left-buy">
+                                <div class="ads-rate-panel-wrapper">
+                                    <div id="title" class="vertical-middle">Giá mua:</div>
+                                    <div id="remi-rate">
+                                        <span>
+                                            <span class="amount">188,484,283</span>
+                                            <span class="currency">VND</span>
+                                        </span>
+                                    </div>
+                                    <a class="btn btn-bid" href="#">Mua ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div class="container">
+        @RenderBody()
     </div>
 
     <footer id="footer" class="remi-footer col-xs-12 container">

@@ -1,9 +1,43 @@
-﻿@model IEnumerable<MoneyTransactions.BUS.Models.UserModel>
-
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<MoneyTransactions.DAL.Order>
 
 <div class="container">
-    <p>Lorem</p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountBought)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountBought)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Mua", "Buy", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>

@@ -28,6 +28,9 @@
     padding: 60px;
 }
 
+.render-body-bottom {
+    margin-bottom: 30px;
+}
 
 #remi-bid-ask-info {
     color: #49474a;
@@ -133,7 +136,7 @@
 footer {
 }
 
-.remi-footer {    
+.remi-footer {
     background-color: #19171c;
     padding: 53px 0 18px;
     font-size: 14px;
@@ -199,4 +202,123 @@ a {
 
 .remi-footer {
     font-size: 14px;
+}
+
+/*Index Home */
+
+.p-16 {
+    padding: 16px !important;
+}
+
+.cta-box {
+    border: 1px solid #dadada;
+    background-color: #f3f3f3;
+    overflow: auto;
+    position: relative;
+}
+
+.cta-right-column {
+    margin-right: 175px;
+    margin-left: 120px;
+}
+
+.cta-box .cta-right-column .cta-content .cta-title {
+    padding-bottom: 9px;
+    color: #9b59b6;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 3.2rem;
+}
+
+.cta-box .cta-right-column .cta-content .cta-details {
+    font-size: 1.4rem;
+}
+
+.cta-button-wrapper {
+    position: absolute;
+    right: 25px;
+    top: 30%;
+}
+
+.cta-box .cta-right-column .cta-button-wrapper .cta-button {
+    margin: 0 auto;
+}
+
+body .text-sm-center {
+    text-align: center;
+}
+
+.mt-16 {
+    margin-top: 16px !important;
+}
+
+.main-container {
+    transition: all .5s;
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.row-with-thick-left-border {
+    color: #49474a;
+    background-color: #f8f8fa;
+    border-radius: .2rem;
+    border-left: .3rem solid #d8d9de;
+}
+
+.flex-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.py-16 {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.mb-6 {
+    margin-bottom: 6px !important;
+}
+
+.row {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.body-02 {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.offer-price {
+    cursor: pointer;
+}
+
+.text-success {
+    color: #299d82;
+}
+
+.remi-offer-item .remi-offer-item-price .offer-price .coin-currency, .remi-offer-item .remi-offer-item-price .offer-price .currency, .remi-offer-item .remi-offer-item-price .offer-price .slash {
+    color: #5e5862;
 }

@@ -1,60 +1,87 @@
-﻿
+﻿@model IEnumerable<MoneyTransactions.DAL.Order>
+
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="col-xs-12 container">
-
-    <!--Currency Dropdown -->
-    <div class="row" id="row-added">
-        <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
-            <div class="dropdown" id="dropdown-button">
-                <button class="btn btn-primary dropdown-toggle" id="long-panel" type="button" data-toggle="dropdown">
-                    Bitcoin
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" id="dropdown-added">
-                    <li><a href="#">Bitcoin</a></li>
-                    <li><a href="#">Ethereum</a></li>
-                </ul>
+<div class="col-sm-12">
+    <div class="p-16 cta-box">
+        <div class="gift-thumb">
+            <div class="icon-gift-alt">
             </div>
-
-            <div id="remi-bid-ask-info">
-                <!-- Sell side-->
-                <div class="col-xs-6" id="div-left-sell">
-                    <div class="ads-rate-panel-wrapper">
-                        <div id="title" class="vertical-middle">Giá bán:</div>
-                        <div id="remi-rate">
-                            <span>
-                                <span class="amount">191,467,996</span>
-                                <span class="currency">VND</span>
-                            </span>
+        </div>
+        <div class="cta-right-column">
+            <div class="cta-content">
+                <div class="cta-title">Mời bạn bè</div>
+                <span class="cta-details">
+                    <div class="short-description">
+                        <span>
+                            Nhận ngay <b>0.01 BTC (~ 2,100,000 VND)</b> cho mỗi một người
+                            được bạn giới thiệu tham gia Localhost.
+                        </span>
+                        <div class="block-10">Chia sẻ liên kết sau:</div>
+                        <div class="text-sm-center">
+                            @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class="btn btn-primary btn-sm" })                            
                         </div>
-                        <a class="btn btn-ask" href="#">Bán ngay</a>
                     </div>
-                </div>
-
-                <!--Buy side-->
-                <div class="col-xs-6" id="div-left-buy">
-                    <div class="ads-rate-panel-wrapper">
-                        <div id="title" class="vertical-middle">Giá mua:</div>
-                        <div id="remi-rate">
-                            <span>
-                                <span class="amount">188,484,283</span>
-                                <span class="currency">VND</span>
-                            </span>
-                        </div>
-                        <a class="btn btn-bid" href="#">Mua ngay</a>
-                    </div>
-                </div>
+                </span>
+            </div>
+            <div class="cta-button-wrapper">
+                <a href="#" class="btn btn-success cta-button">
+                    Tìm hiểu thêm
+                </a>
             </div>
         </div>
     </div>
 </div>
 
 
-<div class="container">
-
-
-
+<!-- Ban muon mua bitcoin -->
+<div class="sell-offers offer-list-section mb-24">
+    <div class="title-accent heading-03">
+        <span>
+            <div class="icon-flag-squared svg-icon icon-secondary icon-24">
+                <svg>
+                    <use xlink:href="#flag-squared"></use>
+                </svg>
+            </div>
+            <span>
+                Bạn muốn <span class="text-success">mua</span> Bitcoin?
+            </span>
+        </span>
+    </div>
 </div>
+
+<!-- Danh sach mua -->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>mdo</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>fat</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>twitter</td>
+        </tr>
+    </tbody>
+</table>
+
+

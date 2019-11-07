@@ -19,8 +19,8 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);
-            return View();
+            //orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);            
+            return View(orderServices.ShowRecentTransaction());
         }
 
         // GET: Account/Details/5
