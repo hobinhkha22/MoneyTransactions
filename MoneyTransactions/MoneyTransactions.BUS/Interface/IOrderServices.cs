@@ -9,7 +9,7 @@ namespace MoneyTransactions.BUS.Interface
 {
     public interface IOrderServices
     {
-        void CreateTransaction(UserModel userModel, decimal amount, decimal amountBought);
+        void CreateTransaction(Guid guid, decimal amount, decimal amountBought);
         List<DAL.Order> ShowRecentTransaction();
     }
 }

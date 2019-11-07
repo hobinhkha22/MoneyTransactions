@@ -13,12 +13,14 @@ namespace MoneyTransactions.WEB.Controllers
     {
         private readonly AccountService accountService = new AccountService();
         private readonly WalletServices walletServices = new WalletServices();
+        private readonly OrderServices orderServices = new OrderServices();
 
         // GET: Account
         [HttpGet]
         public ActionResult Index()
         {
-            return View(accountService.GetAccounts());
+            orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);
+            return View();
         }
 
         // GET: Account/Details/5

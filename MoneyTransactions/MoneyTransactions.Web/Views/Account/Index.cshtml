@@ -4,35 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Responsive Bootstrap jQuery Grid</title>
-    <meta charset="utf-8" />
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <table id="grid" data-source="/Players/Get" data-ui-library="bootstrap">
-        <thead>
-            <tr>
-                <th width="36">ID</th>
-                <th>Name</th>
-                <th data-field="PlaceOfBirth" data-min-width="250" data-priority="1">Place Of Birth</th>
-                <th data-field="DateOfBirth" data-type="date" data-min-width="250" data-priority="2">Date Of Birth</th>
-            </tr>
-        </thead>
-    </table>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var $grid = $('#grid').grid({
-                detailTemplate: '<div class="row"></div>',
-                responsive: true,
-                showHiddenColumnsAsDetails: true
-            });
-        });
-    </script>
-</body>
-</html>
+<div class="container">
+    <p>Lorem</p>
+</div>
