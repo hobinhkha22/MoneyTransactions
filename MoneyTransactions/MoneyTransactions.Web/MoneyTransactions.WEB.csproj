@@ -2188,6 +2188,7 @@
     <Content Include="Views\Home\LayoutViewResult.cshtml" />
     <Content Include="Views\Home\LoggedViewResult.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\DanhMucBan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

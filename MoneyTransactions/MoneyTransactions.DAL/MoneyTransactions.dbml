@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MoneyTransactions" Class="MoneyTransactionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ALEX;Initial Catalog=MoneyTransactions;User ID=sa" SettingsObjectName="MoneyTransactions.DAL.Properties.Settings" SettingsPropertyName="MoneyTransactionsConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=BLUE;Initial Catalog=MoneyTransactions;User ID=sa" SettingsObjectName="MoneyTransactions.DAL.Properties.Settings" SettingsPropertyName="MoneyTransactionsConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="AccountID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -21,7 +21,7 @@
       <Column Name="BalanceAmountTransaction" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="CryptocurrencyStoreID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="AccountID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PrivateKey" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PrivateKey" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Account_Wallet" Member="Account" ThisKey="AccountID" OtherKey="AccountID" Type="Account" IsForeignKey="true" />
       <Association Name="CryptocurrencyStore_Wallet" Member="CryptocurrencyStore" ThisKey="CryptocurrencyStoreID" OtherKey="CryptocurrencyStoreID" Type="CryptocurrencyStore" IsForeignKey="true" />
     </Type>
@@ -61,6 +61,7 @@
       <Column Name="CreatedDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
       <Column Name="ModifiedDate" Type="System.DateTimeOffset" DbType="DateTimeOffset" CanBeNull="true" />
       <Column Name="AccountID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="OrderType" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="Order_OrderDetail" Member="OrderDetails" ThisKey="OrderID" OtherKey="OrderID" Type="OrderDetail" />
       <Association Name="Account_Order" Member="Account" ThisKey="AccountID" OtherKey="AccountID" Type="Account" IsForeignKey="true" />
     </Type>

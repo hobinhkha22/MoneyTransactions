@@ -1,22 +1,40 @@
 ﻿@model IEnumerable<MoneyTransactions.DAL.Order>
 
+<div class="col-sm-12 render-body-bottom">
+    <div class="p-16 cta-box">
+        <div class="gift-thumb">
+            <div class="icon-gift-alt">
+            </div>
+        </div>
+        <div class="cta-right-column">
+            <div class="cta-content">
+                <div class="cta-title">Mời bạn bè</div>
+                <span class="cta-details">
+                    <div class="short-description">
+                        <span>
+                            Nhận ngay <b>0.01 BTC (~ 2,100,000 VND)</b> cho mỗi một người
+                            được bạn giới thiệu tham gia Localhost.
+                        </span>
+                        <div class="block-10">Chia sẻ liên kết sau:</div>
+                        <div class="text-sm-center">
+                            @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class = "btn btn-primary btn-sm" })
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="cta-button-wrapper">
+                <a href="#" class="btn btn-success cta-button">
+                    Tìm hiểu thêm
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="container">
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Account.Username)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountBought)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th></th>
-        </tr>
 
         @foreach (var item in Model)
         {

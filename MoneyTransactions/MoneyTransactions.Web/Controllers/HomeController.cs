@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyTransactions.BUS.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +9,16 @@ namespace MoneyTransactions.WEB.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private OrderServices _orderServices = new OrderServices();
         // GET: Home
         [HttpGet]
         public ActionResult Index()
         {
+
             // This is login
             //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
 
-            return View();
+            return View(_orderServices.ShowRecentTransaction().Take(5));
         }
 
         // GET: Home/Details/5

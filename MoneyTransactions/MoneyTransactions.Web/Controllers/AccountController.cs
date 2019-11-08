@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MoneyTransactions.WEB.Controllers
 {
@@ -131,21 +132,13 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 if (usermodel.Username.ToLower() == "admin" || usermodel.Username.ToUpperInvariant() == "admin@gmail.com")
                 {
+                    Session["AccountLogged"] = usermodel.Username;
                     return RedirectToAction("AdminPage", "Account");
                 }
-
-                if (usermodel.Username.ToLower() == "user1" || usermodel.Username.ToUpperInvariant() == "user1@gmail.com")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-
-                if (usermodel.Username.ToLower() == "user2" || usermodel.Username.ToUpperInvariant() == "user2@gmail.com")
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                
+                Session["AccountLogged"] = usermodel.Username;
+                return RedirectToAction("Index", "Account");
             }
-
-            return RedirectToAction("Login", "Account");
         }
 
         [HttpGet]
@@ -157,7 +150,9 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            return View();
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -187,13 +182,13 @@ namespace MoneyTransactions.WEB.Controllers
             var findCreatedAccount = accountService.FindUser(username, password);
             walletServices.CreateWallet(findCreatedAccount.Id);
 
-            Session["AccountLogged"] = findCreatedAccount.Username;            
+            Session["AccountLogged"] = findCreatedAccount.Username;
 
             return RedirectToAction("Index", "Account");
         }
 
         [HttpGet]
-        public PartialViewResult LayoutViewResult()
+        public PartialViewResult DanhMucBan()
         {
             return PartialView();
         }

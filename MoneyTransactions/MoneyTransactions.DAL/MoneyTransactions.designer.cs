@@ -585,7 +585,7 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrivateKey", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrivateKey", DbType="NVarChar(MAX)")]
 		public string PrivateKey
 		{
 			get
@@ -1228,6 +1228,8 @@ namespace MoneyTransactions.DAL
 		
 		private System.Guid _AccountID;
 		
+		private string _OrderType;
+		
 		private EntitySet<OrderDetail> _OrderDetails;
 		
 		private EntityRef<Account> _Account;
@@ -1248,6 +1250,8 @@ namespace MoneyTransactions.DAL
     partial void OnModifiedDateChanged();
     partial void OnAccountIDChanging(System.Guid value);
     partial void OnAccountIDChanged();
+    partial void OnOrderTypeChanging(string value);
+    partial void OnOrderTypeChanged();
     #endregion
 		
 		public Order()
@@ -1377,6 +1381,26 @@ namespace MoneyTransactions.DAL
 					this._AccountID = value;
 					this.SendPropertyChanged("AccountID");
 					this.OnAccountIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderType", DbType="NVarChar(100)")]
+		public string OrderType
+		{
+			get
+			{
+				return this._OrderType;
+			}
+			set
+			{
+				if ((this._OrderType != value))
+				{
+					this.OnOrderTypeChanging(value);
+					this.SendPropertyChanging();
+					this._OrderType = value;
+					this.SendPropertyChanged("OrderType");
+					this.OnOrderTypeChanged();
 				}
 			}
 		}

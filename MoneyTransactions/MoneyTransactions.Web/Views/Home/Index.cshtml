@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<div class="col-sm-12">
+<div class="col-sm-12 render-body-bottom">
     <div class="p-16 cta-box">
         <div class="gift-thumb">
             <div class="icon-gift-alt">
@@ -21,7 +21,7 @@
                         </span>
                         <div class="block-10">Chia sẻ liên kết sau:</div>
                         <div class="text-sm-center">
-                            @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class="btn btn-primary btn-sm" })                            
+                            @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class = "btn btn-primary btn-sm" })
                         </div>
                     </div>
                 </span>
@@ -46,42 +46,56 @@
                 </svg>
             </div>
             <span>
-                Bạn muốn <span class="text-success">mua</span> Bitcoin?
+                Bạn muốn <span class="text-warning">mua</span> Bitcoin?
             </span>
         </span>
     </div>
 </div>
 
-<!-- Danh sach mua -->
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-        </tr>
-    </tbody>
-</table>
+<div class="render-body-bottom">
+    <table class="table" style="border: none">
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
+                    <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
+                    <td> @Html.ActionLink("Mua", "#", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>
 
+<!-- Danh muc ban -->
+<!-- Ban muon mua bitcoin -->
+<div class="sell-offers offer-list-section mb-24">
+    <div class="title-accent heading-03">
+        <span>
+            <div class="icon-flag-squared svg-icon icon-secondary icon-24">
+                <svg>
+                    <use xlink:href="#flag-squared"></use>
+                </svg>
+            </div>
+            <span>
+                Bạn muốn <span class="text-success">bán</span> Bitcoin?
+            </span>
+        </span>
+    </div>
+</div>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
+                <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
+                <td> @Html.ActionLink("Mua", "#", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+            </tr>
+        </tbody>
+    }
+</table>
 
