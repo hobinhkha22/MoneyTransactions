@@ -1821,6 +1821,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootnavbar.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\util.css" />
     <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -1837,6 +1838,7 @@
     <Content Include="Content\images\icons\icon-google.png" />
     <Content Include="Content\images\icons\map-marker.png" />
     <Content Include="Content\images\icons\symbol-01.png" />
+    <Content Include="Content\js\bootnavbar.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\vendor\animate\animate.css" />

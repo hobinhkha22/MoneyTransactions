@@ -1,4 +1,4 @@
-﻿$.ready(function () {    
+﻿$.ready(function() {
     console.log("hello console");
 
 
@@ -6,4 +6,7 @@
 
     }
 
+    $(function() {
+        $("#bootnavbar").bootnavbar();
+    });
 });

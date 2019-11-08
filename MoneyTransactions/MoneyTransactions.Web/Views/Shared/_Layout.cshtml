@@ -20,17 +20,29 @@
                     <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
                     <li>@Html.ActionLink("Example 2", "About", "Home")</li>
                     <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
-                    <li>
-                        @{ if (Session["AccountLogged"] == null)
-                            {
+                    @{ if (Session["AccountLogged"] == null)
+                        {
+                            <li>
                                 @Html.ActionLink("Đăng nhập / Đăng ký", "Login", "Account")
-                            }
-                            else
-                            {
-                                <a>@Session["AccountLogged"].ToString()</a>
-                            }
+                            </li>
                         }
-                    </li>
+                        else
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    @Session["AccountLogged"].ToString()
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Setting</a></li>
+                                    @*<div class="dropdown-divider"></div>*@
+                                    <li>@Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "dropdown-item" })</li>
+                                    @*<li><a class="dropdown-item" href="#">Logout</a></li>*@
+                                </ul>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
