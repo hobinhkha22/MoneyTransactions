@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MoneyTransactions.DAL.Order>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ";
 }
 
 <div class="col-sm-12 render-body-bottom">
@@ -61,7 +61,7 @@
                     <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
                     <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
-                    <td> @Html.ActionLink("Mua", "#", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                    <td> @Html.ActionLink("Mua", "Detail", "Account", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                 </tr>
             </tbody>
         }
@@ -93,7 +93,7 @@
                 <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
                 <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
                 <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
-                <td> @Html.ActionLink("Mua", "#", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                <td> @Html.ActionLink("Bán", "Detail", "Account", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
             </tr>
         </tbody>
     }

@@ -21,7 +21,7 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Index()
         {
             //orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);            
-            return View(orderServices.ShowRecentTransaction());
+            return View(orderServices.ShowRecentTransaction().Take(5));
         }
 
         // GET: Account/Details/5
@@ -83,7 +83,7 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult Detail(int id)
+        public ActionResult Detail(string id)
         {
             return View();
         }
