@@ -420,11 +420,13 @@ namespace MoneyTransactions.DAL
 		
 		private System.Nullable<decimal> _BalanceAmountTransaction;
 		
-		private System.Guid _CryptocurrencyStoreID;
-		
 		private System.Guid _AccountID;
 		
 		private string _PrivateKey;
+		
+		private System.Guid _CryptocurrencyStoreID;
+		
+		private EntitySet<CryptocurrencyStore> _CryptocurrencyStores;
 		
 		private EntityRef<Account> _Account;
 		
@@ -442,16 +444,17 @@ namespace MoneyTransactions.DAL
     partial void OnBalanceAmountChanged();
     partial void OnBalanceAmountTransactionChanging(System.Nullable<decimal> value);
     partial void OnBalanceAmountTransactionChanged();
-    partial void OnCryptocurrencyStoreIDChanging(System.Guid value);
-    partial void OnCryptocurrencyStoreIDChanged();
     partial void OnAccountIDChanging(System.Guid value);
     partial void OnAccountIDChanged();
     partial void OnPrivateKeyChanging(string value);
     partial void OnPrivateKeyChanged();
+    partial void OnCryptocurrencyStoreIDChanging(System.Guid value);
+    partial void OnCryptocurrencyStoreIDChanged();
     #endregion
 		
 		public Wallet()
 		{
+			this._CryptocurrencyStores = new EntitySet<CryptocurrencyStore>(new Action<CryptocurrencyStore>(this.attach_CryptocurrencyStores), new Action<CryptocurrencyStore>(this.detach_CryptocurrencyStores));
 			this._Account = default(EntityRef<Account>);
 			this._CryptocurrencyStore = default(EntityRef<CryptocurrencyStore>);
 			OnCreated();
@@ -537,30 +540,6 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CryptocurrencyStoreID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CryptocurrencyStoreID
-		{
-			get
-			{
-				return this._CryptocurrencyStoreID;
-			}
-			set
-			{
-				if ((this._CryptocurrencyStoreID != value))
-				{
-					if (this._CryptocurrencyStore.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCryptocurrencyStoreIDChanging(value);
-					this.SendPropertyChanging();
-					this._CryptocurrencyStoreID = value;
-					this.SendPropertyChanged("CryptocurrencyStoreID");
-					this.OnCryptocurrencyStoreIDChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountID", DbType="UniqueIdentifier NOT NULL")]
 		public System.Guid AccountID
 		{
@@ -585,7 +564,7 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrivateKey", DbType="NVarChar(MAX)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrivateKey", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string PrivateKey
 		{
 			get
@@ -602,6 +581,43 @@ namespace MoneyTransactions.DAL
 					this.SendPropertyChanged("PrivateKey");
 					this.OnPrivateKeyChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CryptocurrencyStoreID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid CryptocurrencyStoreID
+		{
+			get
+			{
+				return this._CryptocurrencyStoreID;
+			}
+			set
+			{
+				if ((this._CryptocurrencyStoreID != value))
+				{
+					if (this._CryptocurrencyStore.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCryptocurrencyStoreIDChanging(value);
+					this.SendPropertyChanging();
+					this._CryptocurrencyStoreID = value;
+					this.SendPropertyChanged("CryptocurrencyStoreID");
+					this.OnCryptocurrencyStoreIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Wallet_CryptocurrencyStore", Storage="_CryptocurrencyStores", ThisKey="WalletID", OtherKey="WalletID")]
+		public EntitySet<CryptocurrencyStore> CryptocurrencyStores
+		{
+			get
+			{
+				return this._CryptocurrencyStores;
+			}
+			set
+			{
+				this._CryptocurrencyStores.Assign(value);
 			}
 		}
 		
@@ -691,6 +707,18 @@ namespace MoneyTransactions.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_CryptocurrencyStores(CryptocurrencyStore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Wallet = this;
+		}
+		
+		private void detach_CryptocurrencyStores(CryptocurrencyStore entity)
+		{
+			this.SendPropertyChanging();
+			entity.Wallet = null;
 		}
 	}
 	
@@ -1084,7 +1112,11 @@ namespace MoneyTransactions.DAL
 		
 		private string _Description;
 		
+		private System.Guid _WalletID;
+		
 		private EntitySet<Wallet> _Wallets;
+		
+		private EntityRef<Wallet> _Wallet;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1096,11 +1128,14 @@ namespace MoneyTransactions.DAL
     partial void OnMoneyTypeChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
+    partial void OnWalletIDChanging(System.Guid value);
+    partial void OnWalletIDChanged();
     #endregion
 		
 		public CryptocurrencyStore()
 		{
 			this._Wallets = new EntitySet<Wallet>(new Action<Wallet>(this.attach_Wallets), new Action<Wallet>(this.detach_Wallets));
+			this._Wallet = default(EntityRef<Wallet>);
 			OnCreated();
 		}
 		
@@ -1164,6 +1199,30 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WalletID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid WalletID
+		{
+			get
+			{
+				return this._WalletID;
+			}
+			set
+			{
+				if ((this._WalletID != value))
+				{
+					if (this._Wallet.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWalletIDChanging(value);
+					this.SendPropertyChanging();
+					this._WalletID = value;
+					this.SendPropertyChanged("WalletID");
+					this.OnWalletIDChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CryptocurrencyStore_Wallet", Storage="_Wallets", ThisKey="CryptocurrencyStoreID", OtherKey="CryptocurrencyStoreID")]
 		public EntitySet<Wallet> Wallets
 		{
@@ -1174,6 +1233,40 @@ namespace MoneyTransactions.DAL
 			set
 			{
 				this._Wallets.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Wallet_CryptocurrencyStore", Storage="_Wallet", ThisKey="WalletID", OtherKey="WalletID", IsForeignKey=true)]
+		public Wallet Wallet
+		{
+			get
+			{
+				return this._Wallet.Entity;
+			}
+			set
+			{
+				Wallet previousValue = this._Wallet.Entity;
+				if (((previousValue != value) 
+							|| (this._Wallet.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Wallet.Entity = null;
+						previousValue.CryptocurrencyStores.Remove(this);
+					}
+					this._Wallet.Entity = value;
+					if ((value != null))
+					{
+						value.CryptocurrencyStores.Add(this);
+						this._WalletID = value.WalletID;
+					}
+					else
+					{
+						this._WalletID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Wallet");
+				}
 			}
 		}
 		

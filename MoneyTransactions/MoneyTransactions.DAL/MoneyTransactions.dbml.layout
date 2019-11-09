@@ -2,88 +2,95 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 12" name="MoneyTransactions">
   <DataContextMoniker Name="/MoneyTransactionsDataContext" />
   <nestedChildShapes>
-    <classShape Id="ef8d6978-35a4-4d7d-b07a-73c6b9e7a8e0" absoluteBounds="0.75, 4.125, 2, 1.9631982421875005">
+    <classShape Id="1353a99d-41ad-4719-af2a-01ab59ef363c" absoluteBounds="0.75, 4.125, 2, 1.9631982421875005">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/Account" />
       <nestedChildShapes>
-        <elementListCompartment Id="f67765ec-1edf-425b-b09d-2d46e755fb08" absoluteBounds="0.765, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="64724acf-6222-4831-a396-40811104df01" absoluteBounds="0.765, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ad2fd77a-b656-4dec-91fa-5d16f20d6bd1" absoluteBounds="3.5, 1, 2, 2.1554996744791666">
+    <classShape Id="cc86496b-ddb4-4732-9d39-70b69184b845" absoluteBounds="3.5, 1, 2, 2.1554996744791666">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/Wallet" />
       <nestedChildShapes>
-        <elementListCompartment Id="3935f5b2-994b-4367-a287-755b1c2a7a85" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5fd7753a-ca20-4562-869c-afe03b32539d" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="919ee819-a7d2-4efe-a388-5c83868658de" absoluteBounds="3.5, 4.125, 2, 1.9631982421875005">
+    <classShape Id="f38d2e30-2d16-49f7-ac38-9c30f80f0650" absoluteBounds="3.5, 4.125, 2, 1.9631982421875005">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/AccountBankDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="4a4f26bf-31bd-49d1-8620-28b0121b3b25" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7f1f18fd-452a-47bc-9ba6-6a7cee7d6d2b" absoluteBounds="3.515, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5d93817d-76cc-45ee-8240-413637978220" absoluteBounds="0.75, 7.5, 2, 1.1939925130208344">
+    <classShape Id="ab09348b-ffea-4411-99a1-d2d0b53befce" absoluteBounds="0.75, 1.5, 2, 1.1939925130208335">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/Bank" />
       <nestedChildShapes>
-        <elementListCompartment Id="e1caf5c6-d244-4f7b-98d6-3299883429e5" absoluteBounds="0.765, 7.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4cabbadc-474c-4f8e-81ce-866a8075525d" absoluteBounds="0.765, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a98adcfb-6095-4062-801d-adaa05bbd535" absoluteBounds="0.75, 1.375, 2, 1.3862939453125003">
+    <classShape Id="214e5a7e-d0b1-47ff-b8b2-299be5c28f70" absoluteBounds="6.25, 1.25, 2, 1.5785953776041666">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/CryptocurrencyStore" />
       <nestedChildShapes>
-        <elementListCompartment Id="e57bb9a3-7212-485d-8d1f-d1d196de41db" absoluteBounds="0.765, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="18098753-f695-4e0f-9cf6-1f403fabdd5d" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5edac4b2-ecdd-48b5-891c-a3c7cac1258a" absoluteBounds="3.5, 9.625, 2, 2.1554996744791666">
+    <classShape Id="a4db23f2-e284-4c03-ae12-ec1aca5b9d28" absoluteBounds="3.5, 9.625, 2, 2.1554996744791666">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/Order" />
       <nestedChildShapes>
-        <elementListCompartment Id="27dae6f6-5c16-496a-bc8d-d68a9638df2d" absoluteBounds="3.515, 10.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c8d359b2-de12-4f4c-88c4-3e11010ca87f" absoluteBounds="3.515, 10.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="da422df8-a92a-4f95-94b0-f6c8578c6aaa" absoluteBounds="6.25, 9.625, 2, 2.1554996744791666">
+    <classShape Id="89b8c7f1-e8ef-44b8-8d1f-709a9b478e7d" absoluteBounds="6.25, 9.625, 2, 2.1554996744791666">
       <DataClassMoniker Name="/MoneyTransactionsDataContext/OrderDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="36f65f09-f9a5-441b-867b-694c612de83a" absoluteBounds="6.265, 10.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4f572044-eb92-429a-8480-092f69aee8ea" absoluteBounds="6.265, 10.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 4.125); (3.125 : 3.75); (3.125 : 2.07774983723958); (3.5 : 2.07774983723958)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/Account/Account_Wallet" />
       <nodes>
-        <classShapeMoniker Id="ef8d6978-35a4-4d7d-b07a-73c6b9e7a8e0" />
-        <classShapeMoniker Id="ad2fd77a-b656-4dec-91fa-5d16f20d6bd1" />
+        <classShapeMoniker Id="1353a99d-41ad-4719-af2a-01ab59ef363c" />
+        <classShapeMoniker Id="cc86496b-ddb4-4732-9d39-70b69184b845" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 5.13785162109375); (3.5 : 5.13785162109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/Account/Account_AccountBankDetail" />
       <nodes>
-        <classShapeMoniker Id="ef8d6978-35a4-4d7d-b07a-73c6b9e7a8e0" />
-        <classShapeMoniker Id="919ee819-a7d2-4efe-a388-5c83868658de" />
+        <classShapeMoniker Id="1353a99d-41ad-4719-af2a-01ab59ef363c" />
+        <classShapeMoniker Id="f38d2e30-2d16-49f7-ac38-9c30f80f0650" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.09699625651042); (3.04166666666667 : 8.09699625651042 : JumpStart); (3.20833333333333 : 8.09699625651042 : JumpEnd); (4.5 : 8.09699625651042); (4.5 : 6.0881982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.66276401652644); (3.06607443490112 : 2.97883845142756 : JumpStart); (3.18392556509888 : 3.09668958162532 : JumpEnd); (3.28125 : 3.19401401652644); (3.28125 : 4.60017381054688); (3.5 : 4.60017381054688)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/Bank/Bank_AccountBankDetail" />
       <nodes>
-        <classShapeMoniker Id="5d93817d-76cc-45ee-8240-413637978220" />
-        <classShapeMoniker Id="919ee819-a7d2-4efe-a388-5c83868658de" />
+        <classShapeMoniker Id="ab09348b-ffea-4411-99a1-d2d0b53befce" />
+        <classShapeMoniker Id="f38d2e30-2d16-49f7-ac38-9c30f80f0650" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.66387491861979); (3.5 : 1.66387491861979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.25 : 2.03929768880208); (5.5 : 2.03929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/CryptocurrencyStore/CryptocurrencyStore_Wallet" />
       <nodes>
-        <classShapeMoniker Id="a98adcfb-6095-4062-801d-adaa05bbd535" />
-        <classShapeMoniker Id="ad2fd77a-b656-4dec-91fa-5d16f20d6bd1" />
+        <classShapeMoniker Id="214e5a7e-d0b1-47ff-b8b2-299be5c28f70" />
+        <classShapeMoniker Id="cc86496b-ddb4-4732-9d39-70b69184b845" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.08668708969351); (3.125 : 6.46168708969351); (3.125 : 10.7027498372396); (3.5 : 10.7027498372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 1.58214884440104); (6.25 : 1.58214884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MoneyTransactionsDataContext/Wallet/Wallet_CryptocurrencyStore" />
+      <nodes>
+        <classShapeMoniker Id="cc86496b-ddb4-4732-9d39-70b69184b845" />
+        <classShapeMoniker Id="214e5a7e-d0b1-47ff-b8b2-299be5c28f70" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 6.0881982421875); (1.75 : 10.7027498372396); (3.5 : 10.7027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/Account/Account_Order" />
       <nodes>
-        <classShapeMoniker Id="ef8d6978-35a4-4d7d-b07a-73c6b9e7a8e0" />
-        <classShapeMoniker Id="5edac4b2-ecdd-48b5-891c-a3c7cac1258a" />
+        <classShapeMoniker Id="1353a99d-41ad-4719-af2a-01ab59ef363c" />
+        <classShapeMoniker Id="a4db23f2-e284-4c03-ae12-ec1aca5b9d28" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 10.7027498372396); (6.25 : 10.7027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/MoneyTransactionsDataContext/Order/Order_OrderDetail" />
       <nodes>
-        <classShapeMoniker Id="5edac4b2-ecdd-48b5-891c-a3c7cac1258a" />
-        <classShapeMoniker Id="da422df8-a92a-4f95-94b0-f6c8578c6aaa" />
+        <classShapeMoniker Id="a4db23f2-e284-4c03-ae12-ec1aca5b9d28" />
+        <classShapeMoniker Id="89b8c7f1-e8ef-44b8-8d1f-709a9b478e7d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
