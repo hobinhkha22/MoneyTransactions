@@ -424,13 +424,9 @@ namespace MoneyTransactions.DAL
 		
 		private string _PrivateKey;
 		
-		private System.Guid _CryptocurrencyStoreID;
-		
 		private EntitySet<CryptocurrencyStore> _CryptocurrencyStores;
 		
 		private EntityRef<Account> _Account;
-		
-		private EntityRef<CryptocurrencyStore> _CryptocurrencyStore;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -448,15 +444,12 @@ namespace MoneyTransactions.DAL
     partial void OnAccountIDChanged();
     partial void OnPrivateKeyChanging(string value);
     partial void OnPrivateKeyChanged();
-    partial void OnCryptocurrencyStoreIDChanging(System.Guid value);
-    partial void OnCryptocurrencyStoreIDChanged();
     #endregion
 		
 		public Wallet()
 		{
 			this._CryptocurrencyStores = new EntitySet<CryptocurrencyStore>(new Action<CryptocurrencyStore>(this.attach_CryptocurrencyStores), new Action<CryptocurrencyStore>(this.detach_CryptocurrencyStores));
 			this._Account = default(EntityRef<Account>);
-			this._CryptocurrencyStore = default(EntityRef<CryptocurrencyStore>);
 			OnCreated();
 		}
 		
@@ -584,30 +577,6 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CryptocurrencyStoreID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CryptocurrencyStoreID
-		{
-			get
-			{
-				return this._CryptocurrencyStoreID;
-			}
-			set
-			{
-				if ((this._CryptocurrencyStoreID != value))
-				{
-					if (this._CryptocurrencyStore.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCryptocurrencyStoreIDChanging(value);
-					this.SendPropertyChanging();
-					this._CryptocurrencyStoreID = value;
-					this.SendPropertyChanged("CryptocurrencyStoreID");
-					this.OnCryptocurrencyStoreIDChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Wallet_CryptocurrencyStore", Storage="_CryptocurrencyStores", ThisKey="WalletID", OtherKey="WalletID")]
 		public EntitySet<CryptocurrencyStore> CryptocurrencyStores
 		{
@@ -651,40 +620,6 @@ namespace MoneyTransactions.DAL
 						this._AccountID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Account");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CryptocurrencyStore_Wallet", Storage="_CryptocurrencyStore", ThisKey="CryptocurrencyStoreID", OtherKey="CryptocurrencyStoreID", IsForeignKey=true)]
-		public CryptocurrencyStore CryptocurrencyStore
-		{
-			get
-			{
-				return this._CryptocurrencyStore.Entity;
-			}
-			set
-			{
-				CryptocurrencyStore previousValue = this._CryptocurrencyStore.Entity;
-				if (((previousValue != value) 
-							|| (this._CryptocurrencyStore.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CryptocurrencyStore.Entity = null;
-						previousValue.Wallets.Remove(this);
-					}
-					this._CryptocurrencyStore.Entity = value;
-					if ((value != null))
-					{
-						value.Wallets.Add(this);
-						this._CryptocurrencyStoreID = value.CryptocurrencyStoreID;
-					}
-					else
-					{
-						this._CryptocurrencyStoreID = default(System.Guid);
-					}
-					this.SendPropertyChanged("CryptocurrencyStore");
 				}
 			}
 		}
@@ -1114,8 +1049,6 @@ namespace MoneyTransactions.DAL
 		
 		private System.Guid _WalletID;
 		
-		private EntitySet<Wallet> _Wallets;
-		
 		private EntityRef<Wallet> _Wallet;
 		
     #region Extensibility Method Definitions
@@ -1134,7 +1067,6 @@ namespace MoneyTransactions.DAL
 		
 		public CryptocurrencyStore()
 		{
-			this._Wallets = new EntitySet<Wallet>(new Action<Wallet>(this.attach_Wallets), new Action<Wallet>(this.detach_Wallets));
 			this._Wallet = default(EntityRef<Wallet>);
 			OnCreated();
 		}
@@ -1223,19 +1155,6 @@ namespace MoneyTransactions.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CryptocurrencyStore_Wallet", Storage="_Wallets", ThisKey="CryptocurrencyStoreID", OtherKey="CryptocurrencyStoreID")]
-		public EntitySet<Wallet> Wallets
-		{
-			get
-			{
-				return this._Wallets;
-			}
-			set
-			{
-				this._Wallets.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Wallet_CryptocurrencyStore", Storage="_Wallet", ThisKey="WalletID", OtherKey="WalletID", IsForeignKey=true)]
 		public Wallet Wallet
 		{
@@ -1288,18 +1207,6 @@ namespace MoneyTransactions.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Wallets(Wallet entity)
-		{
-			this.SendPropertyChanging();
-			entity.CryptocurrencyStore = this;
-		}
-		
-		private void detach_Wallets(Wallet entity)
-		{
-			this.SendPropertyChanging();
-			entity.CryptocurrencyStore = null;
 		}
 	}
 	

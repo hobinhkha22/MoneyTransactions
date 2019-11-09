@@ -31,9 +31,7 @@ namespace MoneyTransactions.BUS.Services
             walletBtc.WalletID = Guid.NewGuid();
             walletBtc.AccountID = AccountId;
             walletBtc.WalletAddress = walletBTCAddress.Values.ElementAt(0);
-            walletBtc.PrivateKey = walletBTCAddress.Keys.ElementAt(0);
-            walletBtc.CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower()
-            == CryptoCurrencyCommon.Bitcoin.ToLower()).CryptocurrencyStoreID;
+            walletBtc.PrivateKey = walletBTCAddress.Keys.ElementAt(0);            
 
 
             var walletRippleAddress = CreateAddress();
@@ -43,8 +41,7 @@ namespace MoneyTransactions.BUS.Services
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
                 WalletAddress = walletRippleAddress.Values.ElementAt(0),
-                PrivateKey = walletRippleAddress.Keys.ElementAt(0),
-                CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower()).CryptocurrencyStoreID
+                PrivateKey = walletRippleAddress.Keys.ElementAt(0),                
             };
 
             var walletEthAddress = CreateAddress();
@@ -54,8 +51,7 @@ namespace MoneyTransactions.BUS.Services
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
                 WalletAddress = walletEthAddress.Values.ElementAt(0),
-                PrivateKey = walletEthAddress.Keys.ElementAt(0),
-                CryptocurrencyStoreID = cryptocurrencyStore.FirstOrDefault(x => x.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower()).CryptocurrencyStoreID
+                PrivateKey = walletEthAddress.Keys.ElementAt(0),                
             };
 
             db.Wallets.InsertOnSubmit(walletBtc);
