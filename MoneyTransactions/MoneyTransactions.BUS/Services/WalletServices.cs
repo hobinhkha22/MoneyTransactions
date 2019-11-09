@@ -15,7 +15,6 @@ namespace MoneyTransactions.BUS.Services
     {
         private readonly MoneyTransactionsDataContext db;
 
-
         public WalletServices()
         {
             db = new MoneyTransactionsDataContext();
@@ -23,40 +22,96 @@ namespace MoneyTransactions.BUS.Services
 
         public void CreateWallet(Guid AccountId)
         {
-            // Get info crypto money
-            List<CryptocurrencyStore> cryptocurrencyStore = db.CryptocurrencyStores.ToList();
-            var walletBTCAddress = CreateAddress();
             // wallet for btc
-            Wallet walletBtc = new Wallet();
-            walletBtc.WalletID = Guid.NewGuid();
-            walletBtc.AccountID = AccountId;
-            walletBtc.WalletAddress = walletBTCAddress.Values.ElementAt(0);
-            walletBtc.PrivateKey = walletBTCAddress.Keys.ElementAt(0);            
+            var walletBTCAddress = CreateAddress();
+            Wallet walletBtc = new Wallet
+            {
+                WalletID = Guid.NewGuid(),
+                AccountID = AccountId,
+                WalletAddress = walletBTCAddress.Values.ElementAt(0),
+                PrivateKey = walletBTCAddress.Keys.ElementAt(0),
+                BalanceAmount = 0,
+                BalanceAmountTransaction = 0
+            };
+            walletBtc.CryptocurrencyStores = new System.Data.Linq.EntitySet<CryptocurrencyStore>()
+            {
+                new CryptocurrencyStore()
+                {
+                    CryptocurrencyStoreID = Guid.NewGuid(),
+                    Description = CryptoCurrencyCommon.BitcointDescription,
+                    MoneyType = CryptoCurrencyCommon.Bitcoin,
+                     WalletID = walletBtc.WalletID
+                }
+            };
 
-
-            var walletRippleAddress = CreateAddress();
             // wallet for ripple
+            var walletRippleAddress = CreateAddress();
             Wallet walletRipple = new Wallet
             {
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
                 WalletAddress = walletRippleAddress.Values.ElementAt(0),
-                PrivateKey = walletRippleAddress.Keys.ElementAt(0),                
+                PrivateKey = walletRippleAddress.Keys.ElementAt(0),
+                BalanceAmount = 0,
+                BalanceAmountTransaction = 0
+            };
+            walletRipple.CryptocurrencyStores = new System.Data.Linq.EntitySet<CryptocurrencyStore>()
+            {
+                new CryptocurrencyStore()
+                {
+                    CryptocurrencyStoreID = Guid.NewGuid(),
+                    Description = CryptoCurrencyCommon.RippleDescription,
+                    MoneyType = CryptoCurrencyCommon.Ripple
+                }
             };
 
-            var walletEthAddress = CreateAddress();
             // wallet for eth
+            var walletEthAddress = CreateAddress();
             Wallet walletEth = new Wallet
             {
                 WalletID = Guid.NewGuid(),
                 AccountID = AccountId,
                 WalletAddress = walletEthAddress.Values.ElementAt(0),
-                PrivateKey = walletEthAddress.Keys.ElementAt(0),                
+                PrivateKey = walletEthAddress.Keys.ElementAt(0),
+                BalanceAmount = 0,
+                BalanceAmountTransaction = 0
+            };
+            walletEth.CryptocurrencyStores = new System.Data.Linq.EntitySet<CryptocurrencyStore>()
+            {
+                new CryptocurrencyStore()
+                {
+                    CryptocurrencyStoreID = Guid.NewGuid(),
+                    Description = CryptoCurrencyCommon.EthereumDescription,
+                    MoneyType = CryptoCurrencyCommon.Ethereum,
+                    WalletID = walletEth.WalletID
+                }
+            };
+
+            // wallet for vnd
+            var walletVndAddress = CreateAddress();
+            Wallet walletVnd = new Wallet
+            {
+                WalletID = Guid.NewGuid(),
+                AccountID = AccountId,
+                WalletAddress = walletVndAddress.Values.ElementAt(0),
+                PrivateKey = walletVndAddress.Keys.ElementAt(0),
+                BalanceAmount = 0,
+                BalanceAmountTransaction = 0
+            };
+            walletVnd.CryptocurrencyStores = new System.Data.Linq.EntitySet<CryptocurrencyStore>()
+            {
+                new CryptocurrencyStore() {
+                     CryptocurrencyStoreID = Guid.NewGuid(),
+                     Description = CryptoCurrencyCommon.VietNamDongDescription,
+                     MoneyType = CryptoCurrencyCommon.VietnamDong,
+                     WalletID = walletVnd.WalletID
+                }
             };
 
             db.Wallets.InsertOnSubmit(walletBtc);
             db.Wallets.InsertOnSubmit(walletRipple);
             db.Wallets.InsertOnSubmit(walletEth);
+            db.Wallets.InsertOnSubmit(walletVnd);
 
             db.SubmitChanges();
         }
@@ -82,7 +137,6 @@ namespace MoneyTransactions.BUS.Services
 
             return dic;
         }
-
 
         public bool UpdateWallet()
         {

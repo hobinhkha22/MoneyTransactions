@@ -11,6 +11,12 @@ namespace MoneyTransactions.Common
         public const string Bitcoin = "BTC";
         public const string Ethereum = "ETH";
         public const string Ripple = "XRP";
-        
+        public const string VietnamDong = "VND";
+
+        public const string BitcointDescription = "Bitcoin";
+        public const string RippleDescription = "Ripple";
+        public const string EthereumDescription = "Ethereum";
+        public const string VietNamDongDescription = "Vietnamdong";
+
     }
 }

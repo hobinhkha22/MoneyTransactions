@@ -86,11 +86,11 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public List<UserModel> GetAccounts()
+        public List<Account> GetAccounts()
         {
             try
             {
-                var listUserModel = db.Accounts.Select(x => new UserModel()
+                var listAccount = db.Accounts.Select(x => new Account()
                 {
                     Email = x.Email,
                     Nickname = x.Nickname,
@@ -99,7 +99,7 @@ namespace MoneyTransactions.BUS.Services
                     Phone = x.Phone
                 }).ToList();
 
-                return listUserModel;
+                return listAccount;
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public UserModel FindUser(string username, string password)
+        public Account FindUser(string username, string password)
         {
             var findUser = db.Accounts.FirstOrDefault(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower());
 
@@ -140,18 +140,8 @@ namespace MoneyTransactions.BUS.Services
             {
                 return null;
             }
-
-            UserModel changeToUserModel = new UserModel
-            {
-                Id = findUser.AccountID,
-                Username = findUser.Username,
-                Password = findUser.Password,
-                Email = findUser.Email,
-                Nickname = findUser.Nickname,
-                Phone = findUser.Phone
-            };
-
-            return changeToUserModel;
+            
+            return findUser;
         }
     }
 }

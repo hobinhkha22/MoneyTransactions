@@ -1,5 +1,6 @@
 ﻿using MoneyTransactions.BUS.Models;
 using MoneyTransactions.BUS.Services;
+using MoneyTransactions.DAL;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -118,7 +119,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(UserModel userModel)
+        public ActionResult Login(Account userModel)
         {
             string username = userModel.Username;
             string password = userModel.Password;
@@ -180,7 +181,7 @@ namespace MoneyTransactions.WEB.Controllers
 
             // Create wallet after account created
             var findCreatedAccount = accountService.FindUser(username, password);
-            walletServices.CreateWallet(findCreatedAccount.Id);
+            walletServices.CreateWallet(findCreatedAccount.AccountID);
 
             Session["AccountLogged"] = findCreatedAccount.Username;
 

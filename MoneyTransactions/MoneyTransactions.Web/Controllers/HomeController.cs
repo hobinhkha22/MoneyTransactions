@@ -10,13 +10,14 @@ namespace MoneyTransactions.WEB.Controllers
     public class HomeController : Controller
     {
         private OrderServices _orderServices = new OrderServices();
+        private WalletServices _walletServices = new WalletServices();
+
         // GET: Home
         [HttpGet]
         public ActionResult Index()
         {
-
             // This is login
-            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
+            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";                       
 
             return View(_orderServices.ShowRecentTransaction().Take(5));
         }

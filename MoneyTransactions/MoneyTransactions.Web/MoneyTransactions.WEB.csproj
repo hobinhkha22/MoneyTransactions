@@ -1871,10 +1871,13 @@
     <Content Include="Content\vendor\select2\select2.js" />
     <Content Include="Content\vendor\select2\select2.min.css" />
     <Content Include="Content\vendor\select2\select2.min.js" />
+    <Content Include="Data\Account.sql" />
     <Content Include="Data\AccountBankDetailData.sql" />
     <Content Include="Data\BankData.sql" />
-    <Content Include="Data\CryptoCurrencyStoreData.sql" />
+    <Content Include="Data\CryptocurrencyStoreData.sql" />
     <Content Include="Data\OrderData.sql" />
+    <Content Include="Data\OrderDetailData.sql" />
+    <Content Include="Data\WalletData.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

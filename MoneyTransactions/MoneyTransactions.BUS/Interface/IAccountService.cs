@@ -18,8 +18,8 @@ namespace MoneyTransactions.BUS.Interface
 
         void ChangePassword(string username, string oldPassword, string newPassword);
 
-        UserModel FindUser(string username, string password);
+        Account FindUser(string username, string password);
 
-        List<UserModel> GetAccounts();
+        List<Account> GetAccounts();
     }
 }
