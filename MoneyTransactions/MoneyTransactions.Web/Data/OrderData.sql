@@ -1,9 +1,13 @@
-use MoneyTransactions
-go
-
-insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID]) VALUES('312FCC06-5E50-472A-9CFD-D9254F3A7C38', 9.12343, 6.12423, '2020-12-12 19:30:30.12345Z', '', '51e3fb71-c014-4bb1-a77c-38460e8f0ca5')
-insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID]) VALUES('312FCC06-5E50-472A-9CFD-D9254F3A7C38', 0.12411, 0.00042, '2020-12-12 19:30:30.12345Z', '', '67600943-2897-45f6-bd2a-f014d2743ec1')
-insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID]) VALUES('312FCC06-5E50-472A-9CFD-D9254F3A7C38', 0.00228, 0.00012, '2020-12-12 19:30:30.12345Z', '', '749161a8-f2a7-433d-b2b8-03d9d7b5e212')
-insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID]) VALUES('312FCC06-5E50-472A-9CFD-D9254F3A7C38', 3.41345, 1.85942, '2020-12-12 19:30:30.12345Z', '', 'b2fcc381-c9e5-4732-a0d8-d3fdda5297d0')
-insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID]) VALUES('312FCC06-5E50-472A-9CFD-D9254F3A7C38', 1.12232, 0.63381, '2020-12-12 19:30:30.12345Z', '', '4b741272-eaa0-490c-bdcc-8e97d5245228')
-
+USE MoneyTransactions
+GO
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('12F39E21-704E-4481-8B85-07D3CF74782A', 9.12343, 6.12423, '2019-09-12 03:15:30.12345Z', '', '51e3fb71-c014-4bb1-a77c-38460e8f0ca5', 'Buy')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('F0A61699-C1A4-4D8D-935F-257B2B58915A', 0.12411, 0.00042, '2019-08-22 22:01:30.12345Z', '', '67600943-2897-45f6-bd2a-f014d2743ec1', 'Sell')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('086DD5F3-7BCF-4342-BD80-2EF2A667F6FE', 0.00228, 0.00012, '2019-11-13 23:19:30.12345Z', '', '749161a8-f2a7-433d-b2b8-03d9d7b5e212', 'Buy')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('C098FFD7-E70A-48B8-9D40-46949789C048', 3.41345, 1.85942, '2019-03-09 01:05:30.12345Z', '', 'b2fcc381-c9e5-4732-a0d8-d3fdda5297d0', 'Sell')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('0CBBD18F-80C6-4E53-A6A2-47A1E0170DD4', 1.12232, 0.63381, '2019-02-22 07:11:30.12345Z', '', '4b741272-eaa0-490c-bdcc-8e97d5245228', 'Buy')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('2BE034A9-F0E2-4ACF-9F0A-548927344715', 3.49553, 1.64724, '2019-01-30 06:20:30.12345Z', '', '4ac1767f-d5da-4051-bfe8-1de6484b1095', 'Sell')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('64D579CE-827D-44DB-9E54-C06B068D5ED9', 2.36815, 0.24613, '2019-06-10 20:03:30.12345Z', '', 'df377153-5165-4130-9329-b80eaf92031e', 'Buy')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('30534FE7-594C-416C-8F77-DA87044595FA', 4.84348, 3.28274, '2019-10-27 21:02:30.12345Z', '', 'e2c84406-fbc8-43ca-b6f0-918dbe8df608', 'Sell')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('E3163D28-9FFB-48E2-BCFB-FCE1303575F7', 2.77118, 1.59291, '2019-08-30 06:17:30.12345Z', '', '3fabc416-372c-4a07-b2cb-66984f344330', 'Buy')
+insert into [Order]([AccountID], [Amount], [AmountBought], [CreatedDate], [ModifiedDate], [OrderID], [OrderType]) VALUES('7617F09B-6ED4-40ED-8BB1-FEC58D866233', 4.65678, 2.78581, '2019-12-18 10:10:30.12345Z', '', 'cc5f6c41-7bf8-4ed0-98d5-8c7af1d86574', 'Sell')
+GO
