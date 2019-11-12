@@ -1,9 +1,7 @@
 ﻿using MoneyTransactions.BUS.Interface;
-using MoneyTransactions.BUS.Models;
+using MoneyTransactions.Common;
 using MoneyTransactions.DAL;
 using NBitcoin;
-using QBitNinja.Client;
-using QBitNinja.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,80 +22,120 @@ namespace MoneyTransactions.BUS.Services
             walletServices = new WalletServices();
         }
 
-        public void CreateTransaction(Guid guid, decimal amount, decimal amountBought)
+        [Obsolete]
+        void IOrderServices.CreateSellTransaction(Guid accountID, string privateKeySeller, decimal amountWantToSell)
         {
-            //var getAccountWallet = db.Wallets.FirstOrDefault(w => w.AccountID == guid);
-            //var secret = new BitcoinSecret(getAccountWallet.PrivateKey);
+            BitcoinSecret SellerWallet;
 
-            #region Consume transaction ID
-            // Create a client
-            QBitNinjaClient client = new QBitNinjaClient(Network.Main);
-            // Parse transaction id to NBitcoin.uint256 so the client can eat it
-            var transactionId = uint256.Parse("f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94");
-            // Query the transaction
-            GetTransactionResponse transactionResponse = client.GetTransaction(transactionId).Result;
-            #endregion
-
-            #region transactionResponse is GetTransactionResponse
-
-            NBitcoin.Transaction transaction = transactionResponse.Transaction;
-            #endregion
-
-            #region Put bitcoin into bitcoin address - this is output part
-            List<ICoin> receivedCoins = transactionResponse.ReceivedCoins; // get coin
-            foreach (var coin in receivedCoins)
+            var getPrivateKeySeller = db.Wallets.FirstOrDefault(p => p.PrivateKey == privateKeySeller);
+            if (getPrivateKeySeller != null)
             {
-                Money amounts = coin.Amount as Money;
+                SellerWallet = new BitcoinSecret(getPrivateKeySeller.PrivateKey);
 
-                Debug.WriteLine(amounts.ToDecimal(MoneyUnit.BTC)); // 100 milion satoshi
-                var paymentScript = coin.TxOut.ScriptPubKey; // scriptpubkey giống như sổ đỏ
-                Debug.WriteLine(paymentScript);  // It's the ScriptPubKey
-                var address = paymentScript.GetDestinationAddress(Network.Main);
-                Debug.WriteLine(address); // 1HfbwN6Lvma9eDsv7mdwp529tgiyfNr7jc                
+                // tao 1 trans muon ban
+                // so luong amountWantToSell.ToString() phai tru vao object
+                // sau do luu tru
+                Transaction SellerWalletFunding = new Transaction()
+                {
+                    Outputs =
+                    {
+                        new TxOut(amountWantToSell.ToString(), SellerWallet.GetAddress())
+                    }
+                };
+
+                var subtract = getPrivateKeySeller.BalanceAmount - amountWantToSell;
+                getPrivateKeySeller.BalanceAmountTransaction = subtract;
+
+                // tao mot transaction voi order luu vao db -> Done
+                Order newOrderForSeller = new Order();
+                newOrderForSeller.OrderID = Guid.NewGuid();
+                newOrderForSeller.AccountID = accountID;
+                newOrderForSeller.Amount = amountWantToSell; // here
+                newOrderForSeller.AmountBought = 0;
+                newOrderForSeller.CreatedDate = DateTimeOffset.Now;
+                newOrderForSeller.ModifiedDate = DateTimeOffset.Now;
+                newOrderForSeller.OrderType = OrderCommon.OrderSell;
+                db.Orders.InsertOnSubmit(newOrderForSeller);
+                db.SubmitChanges(); // change data
             }
-            #endregion
-
-            #region Put bitcoin into bitcoin address  with NBitcoin.Transaction class - this is output part
-            var outputs = transaction.Outputs;
-            foreach (TxOut output in outputs)
+            else
             {
-                Money amounts = output.Value;
-                
-                Debug.WriteLine(amounts.ToDecimal(MoneyUnit.BTC));
-                var paymentScript = output.ScriptPubKey;                
-                Console.WriteLine(paymentScript);  // It's the ScriptPubKey
-                var address = paymentScript.GetDestinationAddress(Network.Main);
-                Debug.WriteLine(address);                
+                throw new Exception("Can't get object");
             }
-            #endregion
-
-            #region input part - see previous part
-            var inputs = transaction.Inputs;
-            foreach (TxIn input in inputs)
-            {
-                OutPoint previousOutpoint = input.PrevOut;
-                Debug.WriteLine(previousOutpoint.Hash); // hash of prev tx
-                Debug.WriteLine(previousOutpoint.N); // idx of out from prev tx, that has been spent in the current tx                
-            }
-            #endregion
-
-            #region create 21 bitcoin
-            Money twentyOneBtc = new Money(21, MoneyUnit.BTC);
-            var scriptPubKey = transaction.Outputs[0].ScriptPubKey;
-            TxOut txOut = new TxOut(twentyOneBtc, scriptPubKey);
-            #endregion
-
-            #region Outpoint - including transactionId and its index
-            OutPoint firstOutPoint = receivedCoins[0].Outpoint;
-            Debug.WriteLine(firstOutPoint.Hash); // f13dc48fb035bbf0a6e989a26b3ecb57b84f85e0836e777d6edf60d87a4a2d94
-            Debug.WriteLine(firstOutPoint.N); // 0
-            #endregion
-
         }
 
-        public List<DAL.Order> ShowRecentTransaction()
+        public List<Order> ShowRecentTransaction()
         {
             return db.Orders.ToList();
         }
+
+        [Obsolete]
+        public void CreateBuyTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        {
+            // noi xay ra giao dich tai day
+            var getBuyer = db.Wallets.FirstOrDefault(b => b.AccountID == Buyer);
+            var getSeller = db.Wallets.FirstOrDefault(b => b.AccountID == Seller);
+
+            BitcoinSecret buyerWallet = new BitcoinSecret(getBuyer.PrivateKey);
+            BitcoinSecret sellerWallet = new BitcoinSecret(getSeller.PrivateKey);
+
+            if (getBuyer != null && getSeller != null)
+            {
+                // check balance amount enough to perform buy action
+                if (getBuyer.BalanceAmount > amountWantToBuy)
+                {
+                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
+                    // trich quy ra de mua
+                    Transaction buyerFunding = new Transaction()
+                    {
+                        Outputs =   {
+                            new TxOut(buyerSubtract.ToString(), buyerWallet.GetAddress())
+                        }
+                    };
+
+                    Coin[] buyerCoins = buyerFunding
+                                        .Outputs
+                                        .Select((o, i) => new Coin(new OutPoint(buyerFunding.GetHash(), i), o))
+                                        .ToArray();
+
+                    string totalToSend = "";
+                    foreach (var item in buyerCoins)
+                    {
+                        totalToSend += item.TxOut.Value.ToString();
+                    }
+
+                    // construct transaction
+                    TransactionBuilder txBuilder = new TransactionBuilder();
+                    var tx = txBuilder
+                        .AddCoins(buyerCoins)
+                        .AddKeys(buyerWallet.PrivateKey)
+                        .Send(sellerWallet.GetAddress(), totalToSend)
+                        .SendFees("0.001")
+                        .SetChange(buyerWallet.GetAddress())
+                        .BuildTransaction(true);
+                    Assert(txBuilder.Verify(tx)); //check fully signed
+
+                    // get coin from buyer to sent for seller
+                    Coin[] sellerCoins = tx.Outputs.Select((o, i) => new Coin(new OutPoint(tx.GetHash(), i), o)).ToArray();
+
+                    string totalSend = "";
+                    foreach (var item in sellerCoins)
+                    {
+                        totalSend += item.TxOut.Value.ToString();
+                    }
+                    getSeller.BalanceAmount = getSeller.BalanceAmount + Decimal.Parse(totalSend);
+                    getBuyer.BalanceAmount = getBuyer.BalanceAmount + getSeller.BalanceAmountTransaction;
+                    getSeller.BalanceAmountTransaction = 0;
+
+                    db.SubmitChanges();
+                }
+            }
+        }
+        private void Assert(bool value)
+        {
+            if (!value)
+                throw new Exception("Bug");
+        }
+
     }
 }
