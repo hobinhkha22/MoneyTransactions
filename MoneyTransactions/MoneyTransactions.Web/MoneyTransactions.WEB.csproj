@@ -194,7 +194,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TransasctionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2191,7 +2193,16 @@
     <Content Include="Views\Home\LayoutViewResult.cshtml" />
     <Content Include="Views\Home\LoggedViewResult.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\DanhMucBan.cshtml" />
+    <Content Include="Views\Account\WithdrawFromAddress.cshtml" />
+    <Content Include="Views\Account\DepositToAddress.cshtml" />
+    <Content Include="Views\Bank\Index.cshtml" />
+    <Content Include="Views\Bank\Login.cshtml" />
+    <Content Include="Views\Bank\DepositFromBank.cshtml" />
+    <Content Include="Views\Bank\WithdrawToBank.cshtml" />
+    <Content Include="Views\Transasction\SellDetails.cshtml" />
+    <Content Include="Views\Transasction\BuyDetails.cshtml" />
+    <Content Include="Views\Transasction\CreateSell.cshtml" />
+    <Content Include="Views\Transasction\CreateBuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

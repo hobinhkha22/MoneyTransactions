@@ -192,13 +192,13 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult DanhMucBan()
+        public ActionResult WithdrawFromAddress()
         {
             return PartialView();
         }
 
         [HttpGet]
-        public PartialViewResult LoggedViewResult()
+        public ActionResult DepositToAddress()
         {
             return PartialView();
         }
