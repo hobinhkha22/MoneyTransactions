@@ -1,4 +1,4 @@
-﻿MoneyTransactions/.vs
+MoneyTransactions/.vs
 MoneyTransactions/MoneyTransactions.BUS/bin
 MoneyTransactions/MoneyTransactions.BUS/obj
 
@@ -13,3 +13,6 @@ MoneyTransactions/MoneyTransactions.Web/obj
 
 
 
+MoneyTransactions/MoneyTransactions.Entities/bin/Debug/MoneyTransactions.Entities.dll
+MoneyTransactions/MoneyTransactions.Entities/bin/Debug/MoneyTransactions.Entities.pdb
+obj
