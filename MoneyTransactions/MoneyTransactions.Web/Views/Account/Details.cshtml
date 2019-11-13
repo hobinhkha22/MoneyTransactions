@@ -1,17 +1,17 @@
-﻿@model MoneyTransactions.BUS.Models.UserModel
+﻿@model MoneyTransactions.DAL.Account
 
 @{
     ViewBag.Title = "Detail";
 }
 
-<h2>Detail</h2>
+    <h2>Thông tin order của <span style="color: red;">@ViewBag.username</span>
+        </h2>
 
-<div>
-    <h4>UserModel</h4>
+<div>    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Username)
+            @Html.DisplayName("Username")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayName("Password")
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayName("Phone")
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayName("Email")
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
+            @Html.DisplayName("Nickname")
         </dt>
 
         <dd>
@@ -53,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AccountID }) |
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>

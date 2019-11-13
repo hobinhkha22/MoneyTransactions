@@ -20,6 +20,8 @@ namespace MoneyTransactions.BUS.Interface
 
         Account FindUser(string username, string password);
 
+        Account FindUserById(string id);
+
         List<Account> GetAccounts();
     }
 }

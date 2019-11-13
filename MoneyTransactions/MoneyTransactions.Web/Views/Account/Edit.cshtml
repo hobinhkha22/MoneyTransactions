@@ -1,11 +1,8 @@
-﻿@model MoneyTransactions.BUS.Models.UserModel
+﻿@model MoneyTransactions.DAL.Account
 
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -64,7 +61,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "Home")
 </div>
 
 @section Scripts {

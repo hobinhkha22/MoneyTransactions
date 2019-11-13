@@ -14,6 +14,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         // GET: Home
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             // This is login
@@ -24,7 +25,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         // GET: Home/Details/5
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View();
         }
@@ -55,7 +56,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         // GET: Home/Edit/5
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View();
         }
@@ -63,7 +64,7 @@ namespace MoneyTransactions.WEB.Controllers
         // POST: Home/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace MoneyTransactions.WEB.Controllers
 
         // GET: Home/Delete/5
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             return View();
         }
@@ -87,7 +88,7 @@ namespace MoneyTransactions.WEB.Controllers
         // POST: Home/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {

@@ -143,5 +143,10 @@ namespace MoneyTransactions.BUS.Services
             
             return findUser;
         }
+
+        public Account FindUserById(string id)
+        {
+            return db.Accounts.FirstOrDefault(a => a.AccountID == Guid.Parse(id));
+        }
     }
 }

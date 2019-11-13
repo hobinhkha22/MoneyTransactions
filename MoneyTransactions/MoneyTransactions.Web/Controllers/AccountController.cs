@@ -26,10 +26,19 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         // GET: Account/Details/5
-        [HttpGet]
-        public ActionResult Details(int id)
+        [HttpGet]        
+        public ActionResult Details(string id)
         {
-            return View();
+            var getAcc = accountService.FindUserById(id);
+            if (getAcc != null)
+            {
+                ViewBag.username = getAcc.Username;
+                return View(getAcc);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
         // GET: Account/Create
@@ -62,14 +71,14 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         // GET: Account/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
             return View();
         }
 
         // POST: Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection)
         {
             try
             {
@@ -83,21 +92,15 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Detail(string id)
-        {
-            return View();
-        }
-
         // GET: Account/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
             return View();
         }
 
         // POST: Account/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
@@ -136,7 +139,7 @@ namespace MoneyTransactions.WEB.Controllers
                     Session["AccountLogged"] = usermodel.Username;
                     return RedirectToAction("AdminPage", "Account");
                 }
-                
+
                 Session["AccountLogged"] = usermodel.Username;
                 return RedirectToAction("Index", "Account");
             }

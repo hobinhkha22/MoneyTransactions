@@ -12,6 +12,6 @@ namespace MoneyTransactions.BUS.Models
         public string MoneyType { get; set; }
         public string Description { get; set; }
 
-        public List<WalletModel> WalletModels { get; set; }
+        public WalletModel WalletModels { get; set; }
     }
 }
