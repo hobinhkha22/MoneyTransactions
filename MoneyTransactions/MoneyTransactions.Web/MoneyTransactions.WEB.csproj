@@ -1877,8 +1877,11 @@
     <Content Include="Data\AccountBankDetailData.sql" />
     <Content Include="Data\BankData.sql" />
     <Content Include="Data\CryptocurrencyStoreData.sql" />
+    <Content Include="Data\Database_Schema.sql" />
     <Content Include="Data\OrderData.sql" />
     <Content Include="Data\OrderDetailData.sql" />
+    <Content Include="Data\OrderInputData.txt" />
+    <Content Include="Data\RoleData.sql" />
     <Content Include="Data\WalletData.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2233,6 +2236,10 @@
     <ProjectReference Include="..\MoneyTransactions.DAL\MoneyTransactions.DAL.csproj">
       <Project>{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}</Project>
       <Name>MoneyTransactions.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
+      <Project>{9cb3885f-bd17-4423-84d5-2ab2f26b9b4b}</Project>
+      <Name>MoneyTransactions.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
