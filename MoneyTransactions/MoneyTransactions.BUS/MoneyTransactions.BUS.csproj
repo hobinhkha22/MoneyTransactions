@@ -108,6 +108,10 @@
       <Project>{3fccd6af-eb47-40d4-999b-1c3442d8852e}</Project>
       <Name>MoneyTransactions.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
+      <Project>{9CB3885F-BD17-4423-84D5-2AB2F26B9B4B}</Project>
+      <Name>MoneyTransactions.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

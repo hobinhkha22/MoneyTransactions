@@ -13,6 +13,6 @@ namespace MoneyTransactions.BUS.Interface
         
         void CreateBuyTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy);
         
-        List<DAL.Order> ShowRecentTransaction();
+        List<Order> ShowRecentTransaction();
     }
 }

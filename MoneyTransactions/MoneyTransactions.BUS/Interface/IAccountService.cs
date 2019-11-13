@@ -1,5 +1,6 @@
 ﻿using MoneyTransactions.BUS.Models;
 using MoneyTransactions.DAL;
+using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

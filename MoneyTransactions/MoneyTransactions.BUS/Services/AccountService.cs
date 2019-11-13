@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MoneyTransactions.DAL;
 using MoneyTransactions.Common;
+using MoneyTransactions.Entities;
 
 namespace MoneyTransactions.BUS.Services
 {
@@ -69,13 +70,13 @@ namespace MoneyTransactions.BUS.Services
         {
             try
             {
-                Account account = new Account();
-                account.AccountID = Guid.NewGuid();
-                account.Username = username;
-                account.Password = password;
-                account.Phone = phone;
-                account.Email = email;
-                account.Nickname = nickname;
+                //Account account = new Account();
+                //account.AccountID = Guid.NewGuid();
+                //account.Username = username;
+                //account.Password = password;
+                //account.Phone = phone;
+                //account.Email = email;
+                //account.Nickname = nickname;
 
                 db.Accounts.InsertOnSubmit(account);
                 db.SubmitChanges();

@@ -13,11 +13,11 @@ namespace MoneyTransactions.BUS.Services
 {
     public class WalletServices : IWallet
     {
-        private readonly MoneyTransactionsDataContext db;
+        private readonly MoneyTransactionsContext db;
 
         public WalletServices()
         {
-            db = new MoneyTransactionsDataContext();
+            //db = new MoneyTransactionsContextFactory.Instance.GetOrCreateContext();
         }
 
         public void CreateWallet(Guid AccountId)
