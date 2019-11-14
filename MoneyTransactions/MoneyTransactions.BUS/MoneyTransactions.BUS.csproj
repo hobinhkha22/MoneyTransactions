@@ -83,17 +83,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IAccountService.cs" />
-    <Compile Include="Interface\IOrderServices.cs" />
-    <Compile Include="Interface\IWallet.cs" />
-    <Compile Include="Models\AccountBankDetail.cs" />
-    <Compile Include="Models\Bank.cs" />
-    <Compile Include="Models\BaseOrder.cs" />
-    <Compile Include="Models\CryptocurrencyStore.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\WalletModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\OrderServices.cs" />
@@ -107,6 +96,10 @@
     <ProjectReference Include="..\MoneyTransactions.DAL\MoneyTransactions.DAL.csproj">
       <Project>{3fccd6af-eb47-40d4-999b-1c3442d8852e}</Project>
       <Name>MoneyTransactions.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
+      <Project>{9CB3885F-BD17-4423-84D5-2AB2F26B9B4B}</Project>
+      <Name>MoneyTransactions.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -9,5 +9,6 @@ namespace MoneyTransactions.Common
     public static class ExceptionMessageConstant
     {
         public const string USERNOTEXIST = "Account doesn't exist in db";
+        public const string PASSWORDNOTEXIST = "Password not true";
     }
 }

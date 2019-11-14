@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
@@ -2238,11 +2239,12 @@
       <Name>MoneyTransactions.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
-      <Project>{9cb3885f-bd17-4423-84d5-2ab2f26b9b4b}</Project>
+      <Project>{9CB3885F-BD17-4423-84D5-2AB2F26B9B4B}</Project>
       <Name>MoneyTransactions.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
