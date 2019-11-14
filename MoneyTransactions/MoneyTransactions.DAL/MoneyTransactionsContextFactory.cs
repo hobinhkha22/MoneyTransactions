@@ -33,7 +33,7 @@ namespace MoneyTransactions.DAL
         {
             if (this.Context == null)
             {
-                this.Context = new MoneyTransactionsContext(ConfigurationManager.ConnectionStrings["HotelConnection"].ConnectionString);
+                this.Context = new MoneyTransactionsContext(ConfigurationManager.ConnectionStrings["MoneyTransactionConnectionString"].ConnectionString);
             }
             return Context;
         }

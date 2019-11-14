@@ -60,8 +60,8 @@
                 <tr>
                     <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
                     <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
-                    <td> @Html.ActionLink("Mua", "Details", "Account", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td> @Html.ActionLink("Mua", "Details", "Account", new { id = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                 </tr>
             </tbody>
         }
@@ -92,8 +92,8 @@
             <tr>
                 <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
                 <td>@Html.DisplayFor(modelItem => item.CreatedDate)</td>
-                <td>@Html.DisplayFor(modelItem => item.Account.Username)</td>
-                <td> @Html.ActionLink("Bán", "Details", "Account", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td> @Html.ActionLink("Bán", "Details", "Account", new { id = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
             </tr>
         </tbody>
     }

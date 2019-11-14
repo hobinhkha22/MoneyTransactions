@@ -59,7 +59,8 @@ namespace MoneyTransactions.DAL
             modelBuilder.Entity<Order>()
                 .HasRequired<Wallet>(r => r.Wallet)
                 .WithMany(e => e.Orders)
-                .HasForeignKey<Guid>(r => r.WalletID);
+                .HasForeignKey<Guid>(r => r.WalletID)
+                    .WillCascadeOnDelete(false);
 
             // Order - Order Detail
             modelBuilder.Entity<OrderDetail>()
@@ -71,7 +72,8 @@ namespace MoneyTransactions.DAL
             modelBuilder.Entity<OrderDetail>()
                 .HasRequired<Wallet>(r => r.Wallet)
                 .WithMany(e => e.OrderDetails)
-                .HasForeignKey<Guid>(r => r.WalletID);
+                .HasForeignKey<Guid>(r => r.WalletID)
+                    .WillCascadeOnDelete(false);
 
             // Cryptocurrency Store -  Wallet
             modelBuilder.Entity<Wallet>()
