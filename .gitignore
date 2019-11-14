@@ -17,10 +17,4 @@ MoneyTransactions/MoneyTransactions.Entities/bin/Debug/MoneyTransactions.Entitie
 MoneyTransactions/MoneyTransactions.Entities/bin/Debug/MoneyTransactions.Entities.pdb
 obj
 MoneyTransactions/MoneyTransactions.Entities/bin/Debug/EntityFramework.dll
-MoneyTransactions/packages/Microsoft.AspNet.WebApi.WebHost.5.2.7/lib/net45/System.Web.Http.WebHost.xml
-MoneyTransactions/packages/EntityFramework.6.3.0/.signature.p7s
-MoneyTransactions/packages/EntityFramework.6.3.0/EntityFramework.6.3.0.nupkg
-MoneyTransactions/packages/EntityFramework.6.3.0/build/EntityFramework.props
-MoneyTransactions/packages/EntityFramework.6.3.0/build/EntityFramework.targets
-MoneyTransactions/packages/
-MoneyTransactions/
+MoneyTransactions/MoneyTransactions.Entities/bin
