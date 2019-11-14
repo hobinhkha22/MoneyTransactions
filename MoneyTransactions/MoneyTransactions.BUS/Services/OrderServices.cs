@@ -1,6 +1,7 @@
-﻿using MoneyTransactions.BUS.Interface;
-using MoneyTransactions.Common;
+﻿using MoneyTransactions.Common;
 using MoneyTransactions.DAL;
+using MoneyTransactions.DAL.Implement;
+using MoneyTransactions.Entities;
 using NBitcoin;
 using System;
 using System.Collections.Generic;
@@ -11,23 +12,25 @@ using System.Threading.Tasks;
 
 namespace MoneyTransactions.BUS.Services
 {
-    public class OrderServices : IOrderServices
+    public class OrderServices
     {
-        private readonly MoneyTransactionsDataContext db;
+        private readonly OrderDataAccess orderDataAccess;
+        private readonly WalletDataAccess walletDataAccess;
         private WalletServices walletServices;
 
         public OrderServices()
         {
-            db = new MoneyTransactionsDataContext();
+            orderDataAccess = new OrderDataAccess();
+            walletDataAccess = new WalletDataAccess();
             walletServices = new WalletServices();
         }
 
         [Obsolete]
-        void IOrderServices.CreateSellTransaction(Guid accountID, string privateKeySeller, decimal amountWantToSell)
+        void CreateSellTransaction(Guid walletID, string privateKeySeller, decimal amountWantToSell)
         {
             BitcoinSecret SellerWallet;
 
-            var getPrivateKeySeller = db.Wallets.FirstOrDefault(p => p.PrivateKey == privateKeySeller);
+            var getPrivateKeySeller = walletDataAccess.FindWalletByPrivateKey(privateKeySeller);
             if (getPrivateKeySeller != null)
             {
                 SellerWallet = new BitcoinSecret(getPrivateKeySeller.PrivateKey);
@@ -49,14 +52,14 @@ namespace MoneyTransactions.BUS.Services
                 // tao mot transaction voi order luu vao db -> Done
                 Order newOrderForSeller = new Order();
                 newOrderForSeller.OrderID = Guid.NewGuid();
-                newOrderForSeller.AccountID = accountID;
+                newOrderForSeller.WalletID = walletID;
                 newOrderForSeller.Amount = amountWantToSell; // here
-                newOrderForSeller.AmountBought = 0;
-                newOrderForSeller.CreatedDate = DateTimeOffset.Now;
-                newOrderForSeller.ModifiedDate = DateTimeOffset.Now;
-                newOrderForSeller.OrderType = OrderCommon.OrderSell;
-                db.Orders.InsertOnSubmit(newOrderForSeller);
-                db.SubmitChanges(); // change data
+                newOrderForSeller.CreatedDate = DateTime.Now;
+                newOrderForSeller.ModifiedDate = DateTime.Now;
+
+
+                orderDataAccess.CreateOrder(newOrderForSeller);
+
             }
             else
             {
@@ -66,15 +69,15 @@ namespace MoneyTransactions.BUS.Services
 
         public List<Order> ShowRecentTransaction()
         {
-            return db.Orders.ToList();
+            return orderDataAccess.GetOrders();
         }
 
         [Obsolete]
         public void CreateBuyTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy)
         {
             // noi xay ra giao dich tai day
-            var getBuyer = db.Wallets.FirstOrDefault(b => b.AccountID == Buyer);
-            var getSeller = db.Wallets.FirstOrDefault(b => b.AccountID == Seller);
+            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
+            var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
 
             BitcoinSecret buyerWallet = new BitcoinSecret(getBuyer.PrivateKey);
             BitcoinSecret sellerWallet = new BitcoinSecret(getSeller.PrivateKey);
@@ -127,7 +130,7 @@ namespace MoneyTransactions.BUS.Services
                     getBuyer.BalanceAmount = getBuyer.BalanceAmount + getSeller.BalanceAmountTransaction;
                     getSeller.BalanceAmountTransaction = 0;
 
-                    db.SubmitChanges();
+                    walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
                 }
             }
         }

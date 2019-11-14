@@ -1,6 +1,4 @@
-﻿using MoneyTransactions.BUS.Interface;
-using MoneyTransactions.BUS.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,37 +6,40 @@ using System.Threading.Tasks;
 using MoneyTransactions.DAL;
 using MoneyTransactions.Common;
 using MoneyTransactions.Entities;
+using MoneyTransactions.DAL.Implement;
 
 namespace MoneyTransactions.BUS.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService
     {
-        private readonly MoneyTransactionsDataContext db;
+        private readonly AccountDataAccess accountDataAccess;
 
         public AccountService()
         {
-            db = new MoneyTransactionsDataContext();
+            accountDataAccess = new AccountDataAccess();
         }
 
         public void ChangePassword(string existedUsername, string oldPassword, string newPassword)
         {
             try
             {
-                var existedPassword = db.Accounts.FirstOrDefault(x => x.Username == existedUsername && x.Password == oldPassword);
+                var existedPassword = accountDataAccess.FindUserByUserName(existedUsername);
+
                 if (existedPassword == null)
                 {
                     throw new Exception(ExceptionMessageConstant.USERNOTEXIST);
                 }
                 else
                 {
-                    existedPassword.Password = newPassword;
-
-                    db.SubmitChanges();
+                    if (existedPassword.Password != oldPassword)
+                    {
+                        throw new Exception(ExceptionMessageConstant.PASSWORDNOTEXIST);
+                    }
+                    accountDataAccess.UpdatePassword(existedPassword.AccountID, newPassword);
                 }
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }
@@ -50,15 +51,13 @@ namespace MoneyTransactions.BUS.Services
                 Account account = new Account
                 {
                     AccountID = Guid.NewGuid(),
-                    Username = username,
+                    UserName = username,
                     Password = password,
                     Phone = string.Empty,
                     Email = string.Empty,
-                    Nickname = username
+                    NickName = username
                 };
-
-                db.Accounts.InsertOnSubmit(account);
-                db.SubmitChanges();
+                accountDataAccess.CreateAccount(account);
             }
             catch (Exception ex)
             {
@@ -66,20 +65,20 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public void CreateAccount(string username, string password, string phone = null, string email = null, string nickname = null)
+        public void CreateAccount(string username, string password, string phone = "", string email = "", string nickname = "")
         {
             try
             {
-                //Account account = new Account();
-                //account.AccountID = Guid.NewGuid();
-                //account.Username = username;
-                //account.Password = password;
-                //account.Phone = phone;
-                //account.Email = email;
-                //account.Nickname = nickname;
-
-                db.Accounts.InsertOnSubmit(account);
-                db.SubmitChanges();
+                Account account = new Account
+                {
+                    AccountID = Guid.NewGuid(),
+                    UserName = username,
+                    Password = password,
+                    Phone = phone,
+                    Email = email,
+                    NickName = nickname
+                };
+                accountDataAccess.CreateAccount(account);
             }
             catch (Exception ex)
             {
@@ -91,16 +90,7 @@ namespace MoneyTransactions.BUS.Services
         {
             try
             {
-                var listAccount = db.Accounts.Select(x => new Account()
-                {
-                    Email = x.Email,
-                    Nickname = x.Nickname,
-                    Password = x.Password,
-                    Username = x.Username,
-                    Phone = x.Phone
-                }).ToList();
-
-                return listAccount;
+                return accountDataAccess.GetAccounts();
             }
             catch (Exception ex)
             {
@@ -112,7 +102,7 @@ namespace MoneyTransactions.BUS.Services
         {
             try
             {
-                var existedAccount = db.Accounts.FirstOrDefault(x => x.Username == usernameExisted);
+                var existedAccount = accountDataAccess.FindUserByUserName(usernameExisted);
 
                 if (existedAccount == null)
                 {
@@ -120,11 +110,10 @@ namespace MoneyTransactions.BUS.Services
                 }
                 else
                 {
-                    existedAccount.Username = newPhone;
+                    existedAccount.Phone = newPhone;
                     existedAccount.Email = newEmail;
-                    existedAccount.Nickname = newNickname;
-
-                    db.SubmitChanges();
+                    existedAccount.NickName = newNickname;
+                    accountDataAccess.UpdateAccount(existedAccount.AccountID, existedAccount);
                 }
             }
             catch (Exception ex)
@@ -133,21 +122,14 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public Account FindUser(string username, string password)
+        public Account FindUser(string username)
         {
-            var findUser = db.Accounts.FirstOrDefault(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower());
-
-            if (findUser == null)
-            {
-                return null;
-            }
-            
-            return findUser;
+            return accountDataAccess.FindUserByUserName(username);
         }
 
-        public Account FindUserById(string id)
+        public Account FindUserById(Guid id)
         {
-            return db.Accounts.FirstOrDefault(a => a.AccountID == Guid.Parse(id));
+            return accountDataAccess.FindUserById(id);
         }
     }
 }

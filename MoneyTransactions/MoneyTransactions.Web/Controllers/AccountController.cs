@@ -1,6 +1,6 @@
-﻿using MoneyTransactions.BUS.Models;
-using MoneyTransactions.BUS.Services;
+﻿using MoneyTransactions.BUS.Services;
 using MoneyTransactions.DAL;
+using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -29,10 +29,10 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]        
         public ActionResult Details(string id)
         {
-            var getAcc = accountService.FindUserById(id);
+            var getAcc = accountService.FindUserById(Guid.Parse(id));
             if (getAcc != null)
             {
-                ViewBag.username = getAcc.Username;
+                ViewBag.username = getAcc.UserName;
                 return View(getAcc);
             }
             else
@@ -124,9 +124,8 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Account userModel)
         {
-            string username = userModel.Username;
-            string password = userModel.Password;
-            var usermodel = accountService.FindUser(username, password);
+            string username = userModel.UserName;
+            var usermodel = accountService.FindUser(username);
 
             if (usermodel == null)
             {
@@ -134,13 +133,13 @@ namespace MoneyTransactions.WEB.Controllers
             }
             else
             {
-                if (usermodel.Username.ToLower() == "admin" || usermodel.Username.ToUpperInvariant() == "admin@gmail.com")
+                if (usermodel.UserName.ToLower() == "admin" || usermodel.UserName.ToUpperInvariant() == "admin@gmail.com")
                 {
-                    Session["AccountLogged"] = usermodel.Username;
+                    Session["AccountLogged"] = usermodel.UserName;
                     return RedirectToAction("AdminPage", "Account");
                 }
 
-                Session["AccountLogged"] = usermodel.Username;
+                Session["AccountLogged"] = usermodel. UserName;
                 return RedirectToAction("Index", "Account");
             }
         }
@@ -183,10 +182,10 @@ namespace MoneyTransactions.WEB.Controllers
             accountService.CreateAccount(username, password, confirmPassword);
 
             // Create wallet after account created
-            var findCreatedAccount = accountService.FindUser(username, password);
+            var findCreatedAccount = accountService.FindUser(username);
             walletServices.CreateWallet(findCreatedAccount.AccountID);
 
-            Session["AccountLogged"] = findCreatedAccount.Username;
+            Session["AccountLogged"] = findCreatedAccount.UserName;
 
             return RedirectToAction("Index", "Account");
         }

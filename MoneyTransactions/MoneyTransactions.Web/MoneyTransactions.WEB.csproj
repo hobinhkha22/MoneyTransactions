@@ -2235,6 +2235,10 @@
       <Project>{3FCCD6AF-EB47-40D4-999B-1C3442D8852E}</Project>
       <Name>MoneyTransactions.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
+      <Project>{9CB3885F-BD17-4423-84D5-2AB2F26B9B4B}</Project>
+      <Name>MoneyTransactions.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

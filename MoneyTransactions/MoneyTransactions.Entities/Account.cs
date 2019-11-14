@@ -30,5 +30,10 @@ namespace MoneyTransactions.Entities
         public Guid RoleID { get; set; }
 
         public virtual Role Role { get; set; }
+
+        public virtual List<AccountBankDetail> AccountBankDetails { get; set; }
+
+        public virtual List<Wallet> Wallets { get; set; }
+
     }
 }
