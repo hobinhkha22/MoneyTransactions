@@ -67,6 +67,11 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
+        public Order FindOrderByWalletID(Guid accountID)
+        {
+            return orderDataAccess.FindOrderByWalletID(accountID);
+        }
+
         public List<Order> ShowRecentTransaction()
         {
             return orderDataAccess.GetOrders();
@@ -92,9 +97,11 @@ namespace MoneyTransactions.BUS.Services
                     Transaction buyerFunding = new Transaction()
                     {
                         Outputs =   {
-                            new TxOut(buyerSubtract.ToString(), buyerWallet.GetAddress())
+                            new TxOut(amountWantToBuy.ToString(), buyerWallet.GetAddress())
                         }
                     };
+
+                    getBuyer.BalanceAmount = buyerSubtract; // trich xong roi add phan con lai vao balanaceamount
 
                     Coin[] buyerCoins = buyerFunding
                                         .Outputs
@@ -108,12 +115,13 @@ namespace MoneyTransactions.BUS.Services
                     }
 
                     // construct transaction
+                    // chuyen cho nguoi ban
                     TransactionBuilder txBuilder = new TransactionBuilder();
                     var tx = txBuilder
                         .AddCoins(buyerCoins)
                         .AddKeys(buyerWallet.PrivateKey)
                         .Send(sellerWallet.GetAddress(), totalToSend)
-                        .SendFees("0.001")
+                        .SendFees("0.0001")
                         .SetChange(buyerWallet.GetAddress())
                         .BuildTransaction(true);
                     Assert(txBuilder.Verify(tx)); //check fully signed
@@ -134,6 +142,37 @@ namespace MoneyTransactions.BUS.Services
                 }
             }
         }
+
+        public void CreateBuyTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        {
+            // noi xay ra giao dich tai day
+            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
+            var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
+
+            if (getBuyer != null && getSeller != null)
+            {
+                // check balance amount enough to perform buy action
+                if (getBuyer.BalanceAmount > amountWantToBuy)
+                {
+                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
+                    getBuyer.BalanceAmount = buyerSubtract;
+
+                    // tru fee
+                    var amountSellerGet = amountWantToBuy - ExchangeRateConstant.Fees;
+                    getSeller.BalanceAmount = getSeller.BalanceAmount + amountSellerGet;
+
+                    walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
+
+                    // remove order
+                    var orderToRemove = orderDataAccess.FindOrderByWalletID(getSeller.WalletID); // find by walletId
+                    if (orderToRemove != null)
+                    {
+                        orderDataAccess.RemoveOrder(orderToRemove);
+                    }
+                }
+            }
+        }
+
         private void Assert(bool value)
         {
             if (!value)

@@ -85,6 +85,11 @@ namespace MoneyTransactions.BUS.Services
             walletDataAccess.CreateWalletForAllCrypto(wallets);
         }
 
+        public Wallet FindWalletById(Guid accountID)
+        {
+            return walletDataAccess.FindWalletByAccountID(accountID);
+        }
+
         /// <summary>
         /// Dictionary<string1, string2>
         /// 

@@ -29,7 +29,7 @@
 }
 
 .render-body-bottom {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 #remi-bid-ask-info {
@@ -321,4 +321,50 @@ body .text-sm-center {
 
 .remi-offer-item .remi-offer-item-price .offer-price .coin-currency, .remi-offer-item .remi-offer-item-price .offer-price .currency, .remi-offer-item .remi-offer-item-price .offer-price .slash {
     color: #5e5862;
+}
+
+
+.row-with-thick-left-border {
+    color: #49474a;
+    background-color: #f8f8fa;
+    border-radius: .2rem;
+    border-left: .3rem solid #d8d9de;
+}
+
+.flex-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.py-16 {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+}
+
+.px-24 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+}
+
+.row {
+    margin-left: -16px;
+    margin-right: -16px;
+}
+.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.mb-4 {
+    margin-bottom: 4px !important;
+}
+
+.col-xs-12s {
+    width: 100%;
+}
+.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }

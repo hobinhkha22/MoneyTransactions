@@ -22,17 +22,17 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Index()
         {
             //orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);            
-            return View(orderServices.ShowRecentTransaction().Take(5));
+            return View(orderServices.ShowRecentTransaction());
         }
 
         // GET: Account/Details/5
-        [HttpGet]        
-        public ActionResult Details(string id)
+        [HttpGet]
+        public ActionResult Details(string walletID)
         {
-            var getAcc = accountService.FindUserById(Guid.Parse(id));
+            var getAcc = orderServices.FindOrderByWalletID(Guid.Parse(walletID));
             if (getAcc != null)
             {
-                ViewBag.username = getAcc.UserName;
+                ViewBag.username = getAcc.Wallet.Account.UserName;
                 return View(getAcc);
             }
             else
@@ -125,7 +125,7 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Login(Account userModel)
         {
             string username = userModel.UserName;
-            var usermodel = accountService.FindUser(username);
+            var usermodel = accountService.FindUser(username, userModel.Password);
 
             if (usermodel == null)
             {
@@ -139,8 +139,9 @@ namespace MoneyTransactions.WEB.Controllers
                     return RedirectToAction("AdminPage", "Account");
                 }
 
-                Session["AccountLogged"] = usermodel. UserName;
-                return RedirectToAction("Index", "Account");
+                Session["AccountLogged"] = usermodel.UserName;
+                Session["getWalletID"] = usermodel.AccountID;
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -182,7 +183,7 @@ namespace MoneyTransactions.WEB.Controllers
             accountService.CreateAccount(username, password, confirmPassword);
 
             // Create wallet after account created
-            var findCreatedAccount = accountService.FindUser(username);
+            var findCreatedAccount = accountService.FindUser(username, password);
             walletServices.CreateWallet(findCreatedAccount.AccountID);
 
             Session["AccountLogged"] = findCreatedAccount.UserName;
@@ -200,6 +201,15 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult DepositToAddress()
         {
             return PartialView();
+        }
+
+        [HttpGet]
+        [Obsolete]
+        public ActionResult Buy(string sellerID, string buyerID, decimal amount)
+        {
+            orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

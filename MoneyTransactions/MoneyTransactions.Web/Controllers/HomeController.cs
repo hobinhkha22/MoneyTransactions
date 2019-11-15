@@ -18,9 +18,9 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Index()
         {
             // This is login
-            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";                       
+            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
 
-            return View(_orderServices.ShowRecentTransaction().Take(5));
+            return View(_orderServices.ShowRecentTransaction());
         }
 
         // GET: Home/Details/5

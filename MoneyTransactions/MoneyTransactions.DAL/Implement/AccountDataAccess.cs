@@ -15,6 +15,11 @@ namespace MoneyTransactions.DAL.Implement
             db = MoneyTransactionsContextFactory.Instance.GetOrCreateContext();
         }
 
+        public Account FindUser(string userName, string passWord)
+        {
+            return db.Accounts.FirstOrDefault(x => x.UserName == userName && x.Password == passWord);
+        }
+
         public Account FindUserByUserName(string userName)
         {
             return db.Accounts.FirstOrDefault(x => x.UserName == userName);

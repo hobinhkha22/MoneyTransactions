@@ -34,5 +34,23 @@ namespace MoneyTransactions.DAL.Implement
         {
             return db.Orders.ToList();
         }
+
+        public Order FindOrderByWalletID(Guid walletID)
+        {
+            return db.Orders.FirstOrDefault(x => x.WalletID == walletID);
+        }
+
+        public void RemoveOrder(Order order)
+        {
+            try
+            {
+                db.Orders.Remove(order);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

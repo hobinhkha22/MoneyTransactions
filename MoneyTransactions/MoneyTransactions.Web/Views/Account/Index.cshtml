@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MoneyTransactions.DAL.Order>
+﻿@model IEnumerable<MoneyTransactions.Entities.Order>
 
 <div class="col-sm-12 render-body-bottom">
     <div class="p-16 cta-box">
@@ -40,19 +40,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Account.Username)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Amount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AmountBought)
+                    @Html.DisplayFor(modelItem => item.Wallet.Account.UserName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedDate)
                 </td>
                 <td>
-                    @Html.ActionLink("Mua", "Buy", new { id = item.AccountID }, htmlAttributes: new { @class = "btn btn-info" })
+                    @Html.ActionLink("Mua", "Buy", new { id = item.Wallet.AccountID }, htmlAttributes: new { @class = "btn btn-info" })
                 </td>
             </tr>
         }
