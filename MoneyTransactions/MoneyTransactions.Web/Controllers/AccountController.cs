@@ -204,6 +204,17 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
+        public ActionResult MustLogin()
+        {
+            if (Session["getWalletID"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
         [Obsolete]
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
