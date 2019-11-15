@@ -8,7 +8,7 @@
     Thông tin order của <span style="color: red;">@ViewBag.username</span>
 </h2>
 
-<div class="container">   
+<div class="container">
 
     <div class="row table">
         <div class="col-xs-2">
@@ -40,9 +40,7 @@
     @{
         if (Session["getWalletID"] == null)
         {
-            <button class="btn btn-success">
-                @Html.ActionLink("Mua", "Buy", "Account", null, new { @class = "btn btn-success" })
-            </button>
+            @Html.ActionLink("Mua", "MustLogin", "Account", null, new { @class = "btn btn-success" })
         }
         else
         {
