@@ -140,10 +140,6 @@
     }
 
 
-/* Footer */
-footer {
-}
-
 .remi-footer {
     background-color: #19171c;
     padding: 53px 0 18px;
@@ -360,6 +356,7 @@ body .text-sm-center {
     margin-left: -16px;
     margin-right: -16px;
 }
+
 .px-0 {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -372,6 +369,7 @@ body .text-sm-center {
 .col-xs-12s {
     width: 100%;
 }
+
 .px-0 {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -382,6 +380,13 @@ body .text-sm-center {
     background-color: #27133a;
 }
 
-.page-heading {    
+.page-heading {
     position: relative;
 }
+
+.forfixedbody {
+    position: relative;
+    bottom: 0;
+    margin: 0 auto;    
+}
+

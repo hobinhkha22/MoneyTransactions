@@ -20,8 +20,6 @@
             console.log(textStatus);
         }
     });
-
-
 });
 
 function MoneyBitcoin() {
