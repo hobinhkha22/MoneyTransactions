@@ -1,14 +1,34 @@
-﻿$.ready(function () {
-    $(function () {
-        $("#bootnavbar").bootnavbar();
+﻿$(window).on('load', function () {
+    // 1. first load for sell and buy    
+
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/UpdateMoney',
+        type: 'get',
+        data: { moneyType: "Bitcoin" },
+        success: function (data) {
+            // your data could be a View or Json or what ever you returned in your action method 
+            // parse your data here            
+            $("#forSell").html(numberWithCommas(data));
+            // for buy substract some money            
+            data = data - 1321275;
+            $("#forBuy").html(numberWithCommas(data));
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
     });
+
+
 });
 
 function MoneyBitcoin() {
     // scenario
     // get action from controller to get db from there
     // and load here    
-    var bitcoina = document.getElementById("bitcoinalink").innerHTML;    
+    var bitcoina = document.getElementById("bitcoinalink").innerHTML;
 
     $.ajax({
         // edit to add steve's suggestion.
@@ -35,7 +55,7 @@ function MoneyEthereum() {
     // scenario
     // get action from controller to get db from there
     // and load here        
-    var ethereuma = document.getElementById("ethereumalink").innerHTML;    
+    var ethereuma = document.getElementById("ethereumalink").innerHTML;
 
     $.ajax({
         // edit to add steve's suggestion.
@@ -64,7 +84,7 @@ function MoneyRipple() {
     // scenario
     // get action from controller to get db from there
     // and load here       
-    
+
     var ripplea = document.getElementById("ripplealink").innerHTML;
 
     $.ajax({

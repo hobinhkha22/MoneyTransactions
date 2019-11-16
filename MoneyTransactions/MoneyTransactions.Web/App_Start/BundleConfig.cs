@@ -9,8 +9,7 @@ namespace MoneyTransactions.WEB
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/Layout.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,6 +26,10 @@ namespace MoneyTransactions.WEB
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/Layout.css"));
+
+            bundles.Add(new ScriptBundle("~/myscripts/myjs").Include(
+                "~/Scripts/Layout.js"
+                ));
         }
     }
 }
