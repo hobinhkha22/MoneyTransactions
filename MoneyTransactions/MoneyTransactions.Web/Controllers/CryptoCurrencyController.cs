@@ -7,21 +7,23 @@ using System.Web.Mvc;
 
 namespace MoneyTransactions.WEB.Controllers
 {
-    public class HomeController : Controller
+    public class CryptoCurrencyController : Controller
     {
-        private OrderServices _orderServices = new OrderServices();
-        private WalletServices _walletServices = new WalletServices();
+        private readonly AccountService accountService = new AccountService();
+        private readonly WalletServices walletServices = new WalletServices();
+        private readonly OrderServices orderServices = new OrderServices();
         private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
 
-        // GET: Home
-        [HttpGet]
-        [AllowAnonymous]
+        // GET: CryptoCurrency
         public ActionResult Index()
         {
-            // This is login
-            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
+            return View();
+        }
 
-            return View(_orderServices.ShowRecentTransaction());
+        // GET: CryptoCurrency/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
         }
 
         [HttpGet]
@@ -30,21 +32,13 @@ namespace MoneyTransactions.WEB.Controllers
             return Json(cryptocurrencyStoreServices.ShowFloorPrice(moneyType), JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Home/Details/5
-        [HttpGet]
-        public ActionResult Details(string id)
-        {
-            return View();
-        }
-
-        // GET: Home/Create
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: CryptoCurrency/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(FormCollection collection)
@@ -61,17 +55,16 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
-        // GET: Home/Edit/5
         [HttpGet]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: CryptoCurrency/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
@@ -85,17 +78,16 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
-        // GET: Home/Delete/5
         [HttpGet]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: CryptoCurrency/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, FormCollection collection)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {

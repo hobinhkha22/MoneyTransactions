@@ -6,6 +6,10 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
 
@@ -36,9 +40,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">My profile</a></li>
                                     <li><a class="dropdown-item" href="#">Setting</a></li>
-                                    @*<div class="dropdown-divider"></div>*@
                                     <li>@Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "dropdown-item" })</li>
-                                    @*<li><a class="dropdown-item" href="#">Logout</a></li>*@
                                 </ul>
                             </li>
                         }
@@ -48,76 +50,8 @@
         </div>
     </div>
 
-    <!-- Container -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-info" id="div-intro">
-                    <p>
-                        In order to further protect sellers from fraud attempt,
-                        starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
-                        and increase the limit on a daily basis for each account based on verification level.
-                        Please beware of this when you schedule to buy a large amount of coin on Demo.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-xs-12 container render-body-bottom" id="render-body">
-        <div class="row" id="render-body">
-
-            <div class="col-xs-12 container">
-                <!--Currency Dropdown -->
-                <div class="row" id="row-added">
-                    <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
-                        <div class="dropdown" id="dropdown-button">
-                            <button class="btn btn-primary dropdown-toggle" id="long-panel" type="button" data-toggle="dropdown">
-                                Bitcoin
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" id="dropdown-added">
-                                <li><a href="#">Bitcoin</a></li>
-                                <li><a href="#">Ethereum</a></li>
-                            </ul>
-                        </div>
-
-                        <div id="remi-bid-ask-info">
-                            <!-- Sell side-->
-                            <div class="col-xs-6" id="div-left-sell">
-                                <div class="ads-rate-panel-wrapper">
-                                    <div id="title" class="vertical-middle">Giá bán:</div>
-                                    <div id="remi-rate">
-                                        <span>
-                                            <span class="amount">191,467,996</span>
-                                            <span class="currency">VND</span>
-                                        </span>
-                                    </div>
-                                    <a class="btn btn-ask" href="#">Bán ngay</a>
-                                </div>
-                            </div>
-
-                            <!--Buy side-->
-                            <div class="col-xs-6" id="div-left-buy">
-                                <div class="ads-rate-panel-wrapper">
-                                    <div id="title" class="vertical-middle">Giá mua:</div>
-                                    <div id="remi-rate">
-                                        <span>
-                                            <span class="amount">188,484,283</span>
-                                            <span class="currency">VND</span>
-                                        </span>
-                                    </div>
-                                    <a class="btn btn-bid" href="#">Mua ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
+    <div>
         @RenderBody()
     </div>
 
@@ -211,10 +145,6 @@
         </div>
     </footer>
 
-
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

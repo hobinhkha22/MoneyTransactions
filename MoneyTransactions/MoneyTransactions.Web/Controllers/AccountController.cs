@@ -215,7 +215,12 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        [Obsolete]
+        public ActionResult CreateSellAd()
+        {
+            return View();
+        }
+
+        [HttpGet]        
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
             orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);

@@ -203,6 +203,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BankController.cs" />
+    <Compile Include="Controllers\CryptoCurrencyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TransasctionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2215,10 +2216,12 @@
     <Content Include="Views\Transasction\BuyDetails.cshtml" />
     <Content Include="Views\Transasction\CreateSell.cshtml" />
     <Content Include="Views\Transasction\CreateBuy.cshtml" />
+    <Content Include="Views\Account\CreateSellAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\CryptoCurrency\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

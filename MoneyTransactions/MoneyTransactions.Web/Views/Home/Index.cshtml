@@ -4,64 +4,179 @@
     ViewBag.Title = "Trang chủ";
 }
 
-<div class="col-sm-12 render-body-bottom">
-    <div class="p-16 cta-box">
-        <div class="gift-thumb">
-            <div class="icon-gift-alt">
+
+<!-- Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" id="div-intro">
+                <p>
+                    In order to further protect sellers from fraud attempt,
+                    starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
+                    and increase the limit on a daily basis for each account based on verification level.
+                    Please beware of this when you schedule to buy a large amount of coin on Demo.
+                </p>
             </div>
         </div>
-        <div class="cta-right-column">
-            <div class="cta-content">
-                <div class="cta-title">Mời bạn bè</div>
-                <span class="cta-details">
-                    <div class="short-description">
-                        <span>
-                            Nhận ngay <b>0.01 BTC (~ 2,100,000 VND)</b> cho mỗi một người
-                            được bạn giới thiệu tham gia Localhost.
-                        </span>
-                        <div class="block-10">Chia sẻ liên kết sau:</div>
-                        <div class="text-sm-center">
-                            @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class = "btn btn-primary btn-sm" })
+    </div>
+</div>
+
+
+<div class="col-xs-12 container render-body-bottom" id="render-body">
+    <div class="row" id="render-body">
+
+        <div class="col-xs-12 container">
+            <!--Currency Dropdown -->
+            <div class="row" id="row-added">
+                <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+                    <div class="dropdown" id="dropdown-button">
+                        <button class="btn btn-primary dropdown-toggle long-panel" id="" type="button" data-toggle="dropdown">
+                            Bitcoin
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" id="dropdown-added">
+                            <li><a id="bitcoinalink" onclick="MoneyBitcoin();">Bitcoin</a></li>
+                            <li><a id="ethereumalink" onclick="MoneyEthereum();">Ethereum</a></li>
+                            <li><a id="ripplealink" onclick="MoneyRipple();">Ripple</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="remi-bid-ask-info">
+                        <!-- Sell side-->
+                        <div class="col-xs-6" id="div-left-sell">
+                            <div class="ads-rate-panel-wrapper">
+                                <div id="title" class="vertical-middle">Giá bán:</div>
+                                <div id="remi-rate">
+                                    <span>
+                                        <span class="ask-rate" id="forSell">191,467,996</span>
+                                        <span class="currency">VND</span>
+                                    </span>
+                                </div>
+                                <a class="btn btn-ask" href="#">Bán ngay</a>
+                            </div>
+                        </div>
+
+                        <!--Buy side-->
+                        <div class="col-xs-6" id="div-left-buy">
+                            <div class="ads-rate-panel-wrapper">
+                                <div id="title" class="vertical-middle">Giá mua:</div>
+                                <div id="remi-rate">
+                                    <span>
+                                        <span class="bid-rate" id="forBuy">188,484,283</span>
+                                        <span class="currency">VND</span>
+                                    </span>
+                                </div>
+                                <a class="btn btn-bid" href="#">Mua ngay</a>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="col-sm-12 render-body-bottom">
+        <div class="p-16 cta-box">
+            <div class="gift-thumb">
+                <div class="icon-gift-alt">
+                </div>
+            </div>
+            <div class="cta-right-column">
+                <div class="cta-content">
+                    <div class="cta-title">Mời bạn bè</div>
+                    <span class="cta-details">
+                        <div class="short-description">
+                            <span>
+                                Nhận ngay <b>0.01 BTC (~ 2,100,000 VND)</b> cho mỗi một người
+                                được bạn giới thiệu tham gia Localhost.
+                            </span>
+                            <div class="block-10">Chia sẻ liên kết sau:</div>
+                            <div class="text-sm-center">
+                                @Html.ActionLink("Đăng nhập để lấy link giới thiệu", "Login", "Account", null, new { @class = "btn btn-primary btn-sm" })
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                <div class="cta-button-wrapper">
+                    <a href="#" class="btn btn-success cta-button">
+                        Tìm hiểu thêm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Ban muon mua bitcoin -->
+    <div class="sell-offers offer-list-section mb-24">
+        <div class="title-accent heading-03">
+            <div>
+                <span style="font-size: 25px;">
+                    Bạn muốn <span class="text-warning">mua</span> Bitcoin?
                 </span>
             </div>
-            <div class="cta-button-wrapper">
-                <a href="#" class="btn btn-success cta-button">
-                    Tìm hiểu thêm
-                </a>
+        </div>
+    </div>
+
+    <div class="render-body-bottom">
+        <table class="table" style="border: none">
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
+                        <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
+                        <td>@Html.DisplayName("204,020,231") VND</td>
+                        <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+
+        <div class="container-fluid">
+            <div class="row-with-thick-left-border row flex-row remi-want-better-price px-24 py-16">
+                <div class="col-xs-12s px-0 mb-4">
+                    <span>
+                        Muốn giá tốt hơn?
+                    </span>
+                </div>
+                <div class="col-xs-12s px-0">
+                    @Html.ActionLink("Tạo quảng cáo mua", "CreateSellAd", "Account", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Danh muc ban -->
+    <!-- Ban muon mua bitcoin -->
+    <div class="sell-offers offer-list-section mb-24">
+        <div class="title-accent heading-03">
+            <div>
+                <span style="font-size: 25px;">
+                    Bạn muốn <span class="text-success">bán</span> Bitcoin?
+                </span>
             </div>
         </div>
     </div>
-</div>
 
-
-<!-- Ban muon mua bitcoin -->
-<div class="sell-offers offer-list-section mb-24">
-    <div class="title-accent heading-03">
-        <div>
-            <span style="font-size: 25px;">
-                Bạn muốn <span class="text-warning">mua</span> Bitcoin?
-            </span>
-        </div>
-    </div>
-</div>
-
-<div class="render-body-bottom">
-    <table class="table" style="border: none">
+    <table class="table">
         @foreach (var item in Model)
         {
             <tbody>
                 <tr>
-                    <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
+                    <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
                     <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                     <td>@Html.DisplayName("204,020,231") VND</td>
-                    <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                    <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                 </tr>
             </tbody>
         }
     </table>
-
 
     <div class="container-fluid">
         <div class="row-with-thick-left-border row flex-row remi-want-better-price px-24 py-16">
@@ -71,53 +186,9 @@
                 </span>
             </div>
             <div class="col-xs-12s px-0">
-                <button class="btn btn-success">
-                    Tạo quảng cáo mua
-                </button>
+                @Html.ActionLink("Tạo quảng cáo bán", "CreateSellAd", "Account", null, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>
 
 </div>
-
-<!-- Danh muc ban -->
-<!-- Ban muon mua bitcoin -->
-<div class="sell-offers offer-list-section mb-24">
-    <div class="title-accent heading-03">
-        <div>
-            <span style="font-size: 25px;">
-                Bạn muốn <span class="text-success">bán</span> Bitcoin?
-            </span>
-        </div>
-    </div>
-</div>
-
-<table class="table">
-    @foreach (var item in Model)
-    {
-        <tbody>
-            <tr>
-                <th scope="row">@Html.DisplayFor(modelItem => item.Amount)</th>
-                <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                <td>@Html.DisplayName("204,020,231") VND</td>
-                <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
-            </tr>
-        </tbody>
-    }
-</table>
-
-<div class="container-fluid">
-    <div class="row-with-thick-left-border row flex-row remi-want-better-price px-24 py-16">
-        <div class="col-xs-12s px-0 mb-4">
-            <span>
-                Muốn giá tốt hơn?
-            </span>
-        </div>
-        <div class="col-xs-12s px-0">
-            <button class="btn btn-danger">
-                Tạo quảng cáo bán
-            </button>
-        </div>
-    </div>
-</div>
-
