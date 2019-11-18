@@ -132,7 +132,7 @@
                     </span>
                 </div>
                 <div class="col-xs-12s px-0">
-                    @Html.ActionLink("Tạo quảng cáo mua", "CreateSellAd", "Account", null, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Tạo quảng cáo mua", "CreateSellAd", "Account", new { sellOrBuy = "buy" }, new { @class = "btn btn-success" })
                 </div>
             </div>
         </div>
@@ -173,7 +173,7 @@
                 </span>
             </div>
             <div class="col-xs-12s px-0">
-                @Html.ActionLink("Tạo quảng cáo bán", "CreateSellAd", "Account", null, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Tạo quảng cáo bán", "CreateSellAd", "Account", new { sellOrBuy = "sell" }, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>

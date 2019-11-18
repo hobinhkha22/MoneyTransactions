@@ -377,16 +377,87 @@ body .text-sm-center {
 
 .remi-heading {
     border: none;
-    background-color: #27133a;
+    background: #27133a;    
 }
+
+.qcmoi {
+    color: white;
+}
+
 
 .page-heading {
     position: relative;
+    padding: 30px 0;
+    font-size: 25px;
 }
 
 .forfixedbody {
     position: relative;
     bottom: 0;
-    margin: 0 auto;    
+    margin: 0 auto;
 }
 
+.alert-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.main {
+    overflow: hidden;
+    position: relative;
+}
+
+.page-content {
+    min-height: 92vh;
+    padding-top: 0 !important;
+}
+
+.box-wrapper {
+    border: 1px solid #dcdcdc;
+    background: #fff;
+    text-align: center;
+}
+
+
+    .box-wrapper .box-head {
+        background: #2f2f2f;
+        line-height: 40px;
+        color: #fff;
+        position: relative;
+        border: 1px solid #3f3f3f;
+        font-size: 16px;
+    }
+
+
+    .box-wrapper .box-body {
+        padding: 20px;
+    }
+
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+    .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .btn-group > .btn:first-child {
+        margin-left: 0;
+    }
+
+
+
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+
+.text-left {
+    text-align: left;
+}

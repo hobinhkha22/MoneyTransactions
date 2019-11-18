@@ -4,14 +4,173 @@
 }
 
 
-<section class="page-heading remi-heading">
+<div class="page-heading remi-heading">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="title"><strong>Tạo quảng cáo mới</strong></div>
+                <div class="title qcmoi"><strong>Tạo quảng cáo mới</strong></div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<div>hello world</div>
+
+<div class="container alert-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="position-stablizer"></div>
+            <div></div>
+            <div class="position-stablizer"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <section class="page-content offer-create-page" style="">
+        <div class="container" id="create_offer">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <div class="box-wrapper">
+                            <div class="box-head">
+                                <div data-toggle="buttons" class="btn-group btn-group-sm">
+                                    <label type="button"
+                                           class="btn btn-primary active">
+                                        <input name="mode" type="radio"
+                                               autocomplete="off" value="basic" checked="">Cơ bản
+                                    </label><label type="button" class="offer-mode-detailed btn btn-default">
+                                        <input name="mode"
+                                               type="radio" autocomplete="off" value="detailed">Chi tiết
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="box-body text-left">
+                                <form class="form" name="form">
+                                    <div class="offer-details">
+                                        <h4>Tôi muốn</h4>
+                                        <div class="form-group offer_type">
+                                            <div data-toggle="buttons" class="btn-group">
+                                                @*<label type="button" class="offer-type-buy btn btn-success active"></label>*@
+                                                <input type="button" class="offer-type-buy btn btn-success active" title="Buy" value="Mua Bitcoin" onclick="location.href='@Url.Action("CreateSellAdPost", "Account", new { sellOrBuy = "buy", isAd="buy" })'" />
+                                                @*@Html.ActionLink("Mua Bitcoin", "CreateSellAd", "Account", new { sellOrBuy = "buy" }, new { @class = "offer-type-buy btn btn-success active", @type = "button" })*@
+                                                @*<label type="button" class="offer-type-sell btn btn-default"></label>*@
+                                                @*<input name="offer_type" type="radio" autocomplete="off" value="sell">*@
+                                                <input type="button" class="offer-type-buy btn btn-success active" title="Sell" value="Bán Bitcoin" onclick="location.href='@Url.Action("CreateSellAdPost", "Account", new { sellOrBuy = "sell", isAd = "sell" })'" />
+                                                @*@Html.ActionLink("Bán Bitcoin", "CreateSellAd", "Account", new { sellOrBuy = "sell" }, new { @class = "offer-type-buy btn btn-success active", @type = "button" })*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @{
+                                        if (ViewBag.isAd == "sell")
+                                        {
+                                            @ViewBag.CreateSell;
+                                        }
+                                        else if (ViewBag.isAd == "buy")
+                                        {
+                                            @ViewBag.CreateBuy;
+                                        }
+                                    }
+
+                                    <div class="offer-details payment-section">
+                                        <h4>Thông tin thanh toán</h4>
+                                        <div class="offer-extra-fields">
+                                            <div class="form-group payment_method">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="row">
+                                                            <div class="col-sm-5 col-xs-7">
+                                                                <label>
+                                                                    Phương thức thanh toán
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-4 text-right col-xs-5 value">
+                                                                <strong>Chuyển khoản ngân hàng</strong>
+                                                            </div>
+                                                            <div class="col-sm-3 text-left col-xs-12 text-xs-right">
+                                                                <a class="btn-change">Thay đổi</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5"><span class="explanation"></span></div>
+                                                </div>
+                                            </div>
+                                            <div class="offer-details">
+                                                <div class="local-bank-payment-details">
+                                                    <div class="form-group bank_name has-feedback">
+                                                        <label>
+                                                            Tên ngân hàng
+                                                        </label>
+                                                        <div class="row">
+                                                            <div class="col-sm-7">
+                                                                <div class="remi-colorized-field has-success">
+                                                                    <select class="ui-select-container form-control"
+                                                                            id="bank_name" name="payment_details.bank_name">
+                                                                        <option></option>
+                                                                        <option value="ACB (Ngân hàng Á Châu)">
+                                                                            ACB (Ngân
+                                                                            hàng Á Châu)
+                                                                        </option>
+                                                                        <option value="Vietinbank">Vietinbank</option>
+                                                                        <option value="Agribank">Agribank</option>
+                                                                        <option value="Sacombank">Sacombank</option>
+                                                                        <option value="NamABank">NamABank</option>
+                                                                        <option value="Vietcombank">Vietcombank</option>
+                                                                        <option value="Eximbank">Eximbank</option>
+                                                                        <option value="BIDV">BIDV</option>
+                                                                        <option value="DongA Bank">DongA Bank</option>
+                                                                        <option value="Maritime Bank">
+                                                                            Maritime Bank
+                                                                        </option>
+                                                                        <option value="Techcombank">Techcombank</option>
+                                                                        <option value="VPBank">VPBank</option>
+                                                                        <option value="PVcom Bank">PVcom Bank</option>
+                                                                        <option value="SHBank">SHBank</option>
+                                                                        <option value="HDBank">HDBank</option>
+                                                                        <option value="LienVietPostBank">
+                                                                            LienVietPostBank
+                                                                        </option>
+                                                                        <option value="TP Bank">TP Bank</option>
+                                                                        <option value="SeABank">SeABank</option>
+                                                                        <option value="ABBank">ABBank</option>
+                                                                        <option value="BacABank">BacABank</option>
+                                                                        <option value="VIBBank">VIBBank</option>
+                                                                        <option value="Thẻ ATM (Smartlink)">
+                                                                            Thẻ ATM
+                                                                            (Smartlink)
+                                                                        </option>
+                                                                        <option value="MB (Ngân hàng quân đội)">
+                                                                            MB (Ngân
+                                                                            hàng quân đội)
+                                                                        </option>
+                                                                        <option value="HSBC">HSBC</option>
+                                                                        <option value="ViettelPay">ViettelPay</option>
+                                                                    </select>
+                                                                    <div></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit"
+                                                class="btn-save-offer btn btn-primary">
+                                            Tạo
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

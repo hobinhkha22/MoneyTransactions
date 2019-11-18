@@ -215,12 +215,41 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateSellAd()
+        public ActionResult CreateSellAd(string sellOrBuy, string isAd)
         {
+            if (sellOrBuy == "sell")
+            {
+                ViewBag.isAd = isAd;
+                ViewBag.CreateSell = PartialView("CreateSellMoney");
+
+            }
+            else // buy
+            {
+                ViewBag.isAd = isAd;
+                ViewBag.CreateSell = PartialView("CreateBuyMoney");
+            }
+
             return View();
         }
 
-        [HttpGet]        
+        [HttpGet]
+        public ActionResult CreateSellAdPost(string sellOrBuy, string isAd)
+        {
+            if (sellOrBuy == "sell")
+            {
+                ViewBag.isAd = isAd;
+                ViewBag.CreateSell = PartialView("CreateSellMoney").ToString();
+            }
+            else // buy
+            {
+                ViewBag.isAd = isAd;
+                ViewBag.CreateBuy = PartialView("CreateBuyMoney").ToString();
+            }
+
+            return RedirectToAction("CreateSellAd", "Account", new { isAd = isAd });
+        }
+
+        [HttpGet]
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
             orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
