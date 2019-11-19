@@ -13,7 +13,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" id="fix-color">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Demo", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Demo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
 
             <div class="navbar-collapse collapse">
@@ -64,101 +64,101 @@
         </div>
     </div>
 
-    <div>
+    <div style="padding-bottom:50px;">
         @RenderBody()
+
+
+        <footer id="footer" class="remi-footer col-xs-12 container forfixedbody">
+            <div class="container">
+                <div class="col-md-3 col-xs-12">
+                    <div class="remi-logo-container">
+                        <div class="remi-logo-container remi-logo-img">
+                            <img src="#" alt="Demo's logo" />
+                        </div>
+                    </div>
+                    <div class="remi-footer-company-info">
+                        © 2014–2019, DEMO
+                        <br />
+                        <span>All rights reserved.</span>
+                        <br />
+                        <span>Demo on stream</span>
+                        <br />
+                        <span>Website currency</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <h5 class="">Về chúng tôi</h5>
+                    <ul>
+                        <li><a href="#">Về Chúng Tôi</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Giao dịch đảm bảo</a></li>
+                        <li><a href="#">Truyền thông</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <h5 class="remi-footer-title">Liên hệ</h5>
+                    <ul>
+                        <li>
+                            Email: <a href="#" target="_blank" rel="noopener noreferrer" class="remi-footer-email">mail@example.com</a>
+                        </li>
+                        <li>
+                            <span class="remi-link">Hỗ trợ trực tuyến</span>
+                        </li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">Liên hệ</a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer">Blog</a></li>
+                        <li>Số điện thoại gọi đi của chúng tôi là: +8888 888 888</li>
+                    </ul><hr>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <h5 class="remi-footer-title">Mạng xã hội</h5>
+                    <div class="row remi-footer-social">
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>
+                                    <a target="_blank" rel="noopener noreferrer" to="https://www.facebook.com/" href="#">
+                                        <div class="icon-facebook-squared svg-icon icon-white mr-8">
+                                            @*<svg><use xlink:href="#facebook-squared"></use></svg>*@
+                                        </div>
+                                        <span>Facebook</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                        <div class="icon-twitter-squared svg-icon icon-white mr-8">
+                                            @*<svg><use xlink:href="#twitter-squared"></use></svg>*@
+                                        </div>
+                                        <span>Twitter</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6">
+                            <ul>
+                                <li>
+                                    <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                        <div class="icon-linkedin-squared svg-icon icon-white mr-8">
+                                            @*<svg><use xlink:href="#linkedin-squared"></use></svg>*@
+                                        </div>
+                                        <span>LinkedIn</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" rel="noopener noreferrer" to="#" href="#">
+                                        <div class="icon-telegram svg-icon icon-white mr-8">
+                                            @*<svg><use xlink:href="#telegram"></use></svg>*@
+                                        </div>
+                                        <span>Telegram</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
     </div>
-
-    <footer id="footer" class="remi-footer col-xs-12 container forfixedbody">
-        <div class="container">
-            <div class="col-md-3 col-xs-12">
-                <div class="remi-logo-container">
-                    <div class="remi-logo-container remi-logo-img">
-                        <img src="#" alt="Demo's logo" />
-                    </div>
-                </div>
-                <div class="remi-footer-company-info">
-                    © 2014–2019, DEMO
-                    <br />
-                    <span>All rights reserved.</span>
-                    <br />
-                    <span>Demo on stream</span>
-                    <br />
-                    <span>Website currency</span>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <h5 class="">Về chúng tôi</h5>
-                <ul>
-                    <li><a href="#">Về Chúng Tôi</a></li>
-                    <li><a href="#">Tuyển dụng</a></li>
-                    <li><a href="#">Giao dịch đảm bảo</a></li>
-                    <li><a href="#">Truyền thông</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <h5 class="remi-footer-title">Liên hệ</h5>
-                <ul>
-                    <li>
-                        Email: <a href="#" target="_blank" rel="noopener noreferrer" class="remi-footer-email">mail@example.com</a>
-                    </li>
-                    <li>
-                        <span class="remi-link">Hỗ trợ trực tuyến</span>
-                    </li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Liên hệ</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Blog</a></li>
-                    <li>Số điện thoại gọi đi của chúng tôi là: +8888 888 888</li>
-                </ul><hr>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <h5 class="remi-footer-title">Mạng xã hội</h5>
-                <div class="row remi-footer-social">
-                    <div class="col-xs-6">
-                        <ul>
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" to="https://www.facebook.com/" href="#">
-                                    <div class="icon-facebook-squared svg-icon icon-white mr-8">
-                                        @*<svg><use xlink:href="#facebook-squared"></use></svg>*@
-                                    </div>
-                                    <span>Facebook</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" to="#" href="#">
-                                    <div class="icon-twitter-squared svg-icon icon-white mr-8">
-                                        @*<svg><use xlink:href="#twitter-squared"></use></svg>*@
-                                    </div>
-                                    <span>Twitter</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-6">
-                        <ul>
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" to="#" href="#">
-                                    <div class="icon-linkedin-squared svg-icon icon-white mr-8">
-                                        @*<svg><use xlink:href="#linkedin-squared"></use></svg>*@
-                                    </div>
-                                    <span>LinkedIn</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" rel="noopener noreferrer" to="#" href="#">
-                                    <div class="icon-telegram svg-icon icon-white mr-8">
-                                        @*<svg><use xlink:href="#telegram"></use></svg>*@
-                                    </div>
-                                    <span>Telegram</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/myscripts/myjs")

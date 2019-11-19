@@ -2217,8 +2217,7 @@
     <Content Include="Views\Transasction\CreateSell.cshtml" />
     <Content Include="Views\Transasction\CreateBuy.cshtml" />
     <Content Include="Views\Account\CreateSellAd.cshtml" />
-    <Content Include="Views\Shared\CreateSellMoney.cshtml" />
-    <Content Include="Views\Shared\CreateBuyMoney.cshtml" />
+    <Content Include="Views\Account\CreateBuyAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

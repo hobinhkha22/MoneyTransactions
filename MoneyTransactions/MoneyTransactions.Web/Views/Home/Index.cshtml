@@ -7,8 +7,6 @@
 
 
 
-
-
 <div class="col-xs-12 container render-body-bottom" id="render-body">
     <div class="row" id="render-body">
 
@@ -102,7 +100,7 @@
         <div class="title-accent heading-03">
             <div>
                 <span style="font-size: 25px;">
-                    Bạn muốn <span class="text-warning">mua</span> Bitcoin?
+                    Bạn muốn <span class="text-success">mua</span> Bitcoin?
                 </span>
             </div>
         </div>
@@ -132,7 +130,7 @@
                     </span>
                 </div>
                 <div class="col-xs-12s px-0">
-                    @Html.ActionLink("Tạo quảng cáo mua", "CreateSellAd", "Account", new { sellOrBuy = "buy" }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Tạo quảng cáo mua", "CreateBuyAd", "Account", null, new { @class = "btn btn-success" })
                 </div>
             </div>
         </div>
@@ -145,7 +143,7 @@
         <div class="title-accent heading-03">
             <div>
                 <span style="font-size: 25px;">
-                    Bạn muốn <span class="text-success">bán</span> Bitcoin?
+                    Bạn muốn <span class="text-danger">bán</span> Bitcoin?
                 </span>
             </div>
         </div>
@@ -173,7 +171,7 @@
                 </span>
             </div>
             <div class="col-xs-12s px-0">
-                @Html.ActionLink("Tạo quảng cáo bán", "CreateSellAd", "Account", new { sellOrBuy = "sell" }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Tạo quảng cáo bán", "CreateSellAd", "Account", null, new { @class = "btn btn-danger" })
             </div>
         </div>
     </div>

@@ -392,9 +392,9 @@ body .text-sm-center {
 }
 
 .forfixedbody {
-    position: relative;
-    bottom: 0;
-    margin: 0 auto;
+    position: absolute;
+    /*bottom: 0;*/
+    /*margin: 0 auto;*/
 }
 
 .alert-container {
@@ -461,3 +461,26 @@ form {
 .text-left {
     text-align: left;
 }
+
+.panel.offer-details {
+    border: 1px solid #dcdcdc;
+    margin-top: 40px;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff; 
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.otherss {
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+    .panel.offer-details .panel-heading {
+        background: #2f2f2f;
+        color: #fff;
+    }

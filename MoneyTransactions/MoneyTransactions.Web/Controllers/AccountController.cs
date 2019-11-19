@@ -21,8 +21,14 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //orderServices.CreateTransaction(new Guid(), 0.5m, 0.3m);            
-            return View(orderServices.ShowRecentTransaction());
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View(orderServices.ShowRecentTransaction());
+            }
         }
 
         // GET: Account/Details/5
@@ -215,38 +221,15 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateSellAd(string sellOrBuy, string isAd)
+        public ActionResult CreateSellAd()
         {
-            if (sellOrBuy == "sell")
-            {
-                ViewBag.isAd = isAd;
-                ViewBag.CreateSell = PartialView("CreateSellMoney");
-
-            }
-            else // buy
-            {
-                ViewBag.isAd = isAd;
-                ViewBag.CreateSell = PartialView("CreateBuyMoney");
-            }
-
             return View();
         }
 
         [HttpGet]
-        public ActionResult CreateSellAdPost(string sellOrBuy, string isAd)
+        public ActionResult CreateBuyAd()
         {
-            if (sellOrBuy == "sell")
-            {
-                ViewBag.isAd = isAd;
-                ViewBag.CreateSell = PartialView("CreateSellMoney").ToString();
-            }
-            else // buy
-            {
-                ViewBag.isAd = isAd;
-                ViewBag.CreateBuy = PartialView("CreateBuyMoney").ToString();
-            }
-
-            return RedirectToAction("CreateSellAd", "Account", new { isAd = isAd });
+            return View();
         }
 
         [HttpGet]
