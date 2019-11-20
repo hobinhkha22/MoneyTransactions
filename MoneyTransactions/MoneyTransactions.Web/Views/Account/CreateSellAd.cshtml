@@ -18,143 +18,117 @@
 
 <div class="container">
     <div class="box-body text-left" style="padding-top: 30px; padding-bottom: 30px;">
-        <form class="form" name="form">            
+        <form class="form" name="form">
             <div class="form-group coin-selector-wrapper">
                 <label>Change coin</label>
                 <div class="row">
                     <div class="col-sm-7">
                         <select class="form-control coin-selector">
                             <option value="btc" class="btc">Bitcoin</option>
-                            <option value="eth" class="eth">Ethereum</option>
-                            <option value="usdt" class="usdt">Tether USDT</option>
-                            <option value="bch" class="bch">Bitcoin Cash</option>
-                            <option value="ltc" class="ltc">Litecoin</option>
+                            <option value="eth" class="eth">Ethereum</option>                            
                             <option value="xrp" class="xrp">Ripple</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="offer-details">
-                <h4>Giá</h4>
-                <div class="offer-extra-fields">
-                    <div class="form-group price">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-sm-5 col-xs-7"><label>Giá bitUSD</label></div>
-                                    <div class="col-sm-4 text-right col-xs-5 value">
-                                        <strong>23,229.00 VND / bitUSD</strong>
-                                    </div>
-                                    <div class="col-sm-3 text-left col-xs-12 text-xs-right">
-                                        <a class="btn-change">
-                                            Thay
-                                            đổi
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5"><span class="explanation">Giá 1 bitUSD theo VND</span></div>
-                        </div>
-                    </div>
-                    <div class="form-group" data-ng-if="$root.coin_currency != 'usdt'">
-                        <div class="form-group price-for-maker">
+            @*<hr>
+                <div class="offer-details">
+                    <h4>Giá</h4>
+                    <div class="offer-extra-fields">
+                        <div class="form-group price">
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="row">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <label><span>Giá Bitcoin bạn thực nhận</span></label>
+                                        <div class="col-sm-5 col-xs-7"><label>Giá bitUSD</label></div>
+                                        <div class="col-sm-4 text-right col-xs-5 value">
+                                            <strong>23,229.00 VND / bitUSD</strong>
                                         </div>
-                                        <div class="col-sm-4 text-right col-xs-6 text-xs-right">
-                                            <strong>
-                                                188,162,565 /
-                                                BTC
-                                            </strong>
+                                        <div class="col-sm-3 text-left col-xs-12 text-xs-right">
+                                            <a class="btn-change">
+                                                Thay
+                                                đổi
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <span class="explanation">
-                                        <span>
-                                            Đây là giá tương ứng với tỉ giá
-                                            Bitstamp BTC hiện tại (<strong class="text-primary">8100.33</strong>). Giá sẽ
-                                            biến động khi tỉ giá Bitstamp BTC thay đổi.
+                                <div class="col-md-5"><span class="explanation">Giá 1 bitUSD theo VND</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group" data-ng-if="$root.coin_currency != 'usdt'">
+                            <div class="form-group price-for-maker">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <div class="col-sm-5 col-xs-6">
+                                                <label><span>Giá Bitcoin bạn thực nhận</span></label>
+                                            </div>
+                                            <div class="col-sm-4 text-right col-xs-6 text-xs-right">
+                                                <strong>
+                                                    188,162,565 /
+                                                    BTC
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <span class="explanation">
+                                            <span>
+                                                Đây là giá tương ứng với tỉ giá
+                                                Bitstamp BTC hiện tại (<strong class="text-primary">8100.33</strong>). Giá sẽ
+                                                biến động khi tỉ giá Bitstamp BTC thay đổi.
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
             <hr>
             <div class="offer-details payment-section">
-                <h4>Thông tin thanh toán</h4>
+                @*<h4>Giá</h4>*@
                 <div class="offer-extra-fields">
-                    <div class="form-group payment_method">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="row">
-                                    <div class="col-sm-5 col-xs-7"><label>Phương thức thanh toán</label></div>
-                                    <div class="col-sm-4 text-right col-xs-5 value">
-                                        <strong>Chuyển khoản ngân hàng</strong>
-                                    </div>
-                                    <div class="col-sm-3 text-left col-xs-12 text-xs-right">
-                                        <a class="btn-change">
-                                            Thay
-                                            đổi
-                                        </a>
+                    @*<div class="form-group payment_method">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-sm-5 col-xs-7">
+                                            <label>Giá</label>
+                                        </div>
+                                        <div class="col-sm-4 text-right col-xs-5 value">
+                                            <strong>Chuyển khoản ngân hàng</strong>
+                                        </div>
+                                        <div class="col-sm-3 text-left col-xs-12 text-xs-right">
+                                            <a class="btn-change">
+                                                Thay đổi
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-5"><span class="explanation"></span></div>
                             </div>
-                            <div class="col-md-5"><span class="explanation"></span></div>
-                        </div>
-                    </div>
+                        </div>*@
                     <div class="offer-details">
                         <div class="local-bank-payment-details">
                             <div class="form-group bank_name has-feedback">
-                                <label>Tên ngân hàng</label>
+                                <label>Số lượng bán</label>
                                 <div class="row">
                                     <div class="col-sm-7">
                                         <div class="remi-colorized-field has-success">
-                                            <select class="ui-select-container form-control" id="bank_name"
-                                                    name="payment_details.bank_name">
-                                                <option></option>
-                                                <option value="ACB (Ngân hàng Á Châu)">ACB (Ngân hàng Á Châu)</option>
-                                                <option value="Vietinbank">Vietinbank</option>
-                                                <option value="Agribank">Agribank</option>
-                                                <option value="Sacombank">Sacombank</option>
-                                                <option value="NamABank">NamABank</option>
-                                                <option value="Vietcombank">Vietcombank</option>
-                                                <option value="Eximbank">Eximbank</option>
-                                                <option value="BIDV">BIDV</option>
-                                                <option value="DongA Bank">DongA Bank</option>
-                                                <option value="Maritime Bank">Maritime Bank</option>
-                                                <option value="Techcombank">Techcombank</option>
-                                                <option value="VPBank">VPBank</option>
-                                                <option value="PVcom Bank">PVcom Bank</option>
-                                                <option value="SHBank">SHBank</option>
-                                                <option value="HDBank">HDBank</option>
-                                                <option value="LienVietPostBank">LienVietPostBank</option>
-                                                <option value="TP Bank">TP Bank</option>
-                                                <option value="SeABank">SeABank</option>
-                                                <option value="ABBank">ABBank</option>
-                                                <option value="BacABank">BacABank</option>
-                                                <option value="VIBBank">VIBBank</option>
-                                                <option value="Thẻ ATM (Smartlink)">Thẻ ATM (Smartlink)</option>
-                                                <option value="MB (Ngân hàng quân đội)">MB (Ngân hàng quân đội)</option>
-                                                <option value="HSBC">HSBC</option>
-                                                <option value="ViettelPay">ViettelPay</option>
-                                            </select>
-                                            <div></div>
+                                            <input class="form-control"
+                                                   id="bank_account_number" name="payment_details.bank_account_number"
+                                                   value="">
+                                            
+                                            <div style="padding-top: 5px;">Đơn vị: BTC</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-5"></div>
                                 </div>
                             </div>
                             <div>
+
                                 <div class="form-group bank_account_number has-feedback">
-                                    <label>Số tài khoản</label>
+                                    <label>Giá tiền</label>
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="remi-colorized-field undefined">
@@ -167,8 +141,24 @@
                                         <div class="col-sm-5"></div>
                                     </div>
                                 </div>
+
+                                <div class="form-group bank_account_number has-feedback">
+                                    <label>Địa chỉ ví</label>
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <div class="remi-colorized-field undefined">
+                                                <input class="form-control"
+                                                       id="bank_account_number" name="payment_details.bank_account_number"
+                                                       value=""><span></span>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5"></div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group bank_account_name has-feedback">
-                                    <label>Tên tài khoản</label>
+                                    <label>Tên tài khoản</label> <!-- the user will show in here -->
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="remi-colorized-field undefined">

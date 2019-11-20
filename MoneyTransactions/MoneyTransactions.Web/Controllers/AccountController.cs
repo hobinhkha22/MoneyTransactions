@@ -226,8 +226,22 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateSellAd(Order order)
+        {
+            return View();
+        }
+
         [HttpGet]
         public ActionResult CreateBuyAd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBuyAd(Order order)
         {
             return View();
         }

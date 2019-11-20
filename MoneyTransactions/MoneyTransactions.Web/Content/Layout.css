@@ -377,7 +377,7 @@ body .text-sm-center {
 
 .remi-heading {
     border: none;
-    background: #27133a;    
+    background: #27133a;
 }
 
 .qcmoi {
@@ -393,8 +393,13 @@ body .text-sm-center {
 
 .forfixedbody {
     position: absolute;
+    margin-top: 80px;
     /*bottom: 0;*/
     /*margin: 0 auto;*/
+}
+
+.marginbody {
+    margin-top: 90px;
 }
 
 .alert-container {
@@ -469,7 +474,7 @@ form {
 
 .panel {
     margin-bottom: 20px;
-    background-color: #fff; 
+    background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
@@ -480,7 +485,7 @@ form {
     margin: 0 auto;
 }
 
-    .panel.offer-details .panel-heading {
-        background: #2f2f2f;
-        color: #fff;
-    }
+.panel.offer-details .panel-heading {
+    background: #2f2f2f;
+    color: #fff;
+}
