@@ -1,10 +1,12 @@
 ﻿using MoneyTransactions.BUS.Services;
+using MoneyTransactions.Common;
 using MoneyTransactions.DAL;
 using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -16,6 +18,7 @@ namespace MoneyTransactions.WEB.Controllers
         private readonly AccountService accountService = new AccountService();
         private readonly WalletServices walletServices = new WalletServices();
         private readonly OrderServices orderServices = new OrderServices();
+        private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
 
         // GET: Account
         [HttpGet]
@@ -221,15 +224,44 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateSellAd()
+        public ActionResult CreateSellAd(string getMoneyType)
         {
+            var getFloorPrice = cryptocurrencyStoreServices.ShowFloorPrice(getMoneyType);
+            var moneyConverted = Convert.ToDecimal(getFloorPrice.ToString()).ToString("#,##");
+
+            ViewBag.getMoney = moneyConverted;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateSellAd(Order order)
+        public ActionResult CreateSellAd(FormCollection order)
         {
+            var orderDb = new Order();
+
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (order != null)
+            {
+                if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower())
+                {
+                    orderDb.Amount = decimal.Parse(order["giatriquydoi"].ToString()) * decimal.Parse(order["amount"].ToString());
+                }
+                //var getprice = cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon);
+                // handle order sell
+                orderDb.OrderID = Guid.NewGuid();
+                orderDb.CreatedDate = DateTime.Now;
+                orderDb.OrderType = OrderCommon.OrderSell;
+                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { WalletID = Guid.Parse(order["diachivi"]), Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
+                orderDb.OrderType = OrderCommon.OrderSell;
+
+                return RedirectToAction("Index", "Account");
+            }
+
+            ViewBag.errorMessage = "Không thể tạo được giao dịch. Vui lòng thử lại";
             return View();
         }
 

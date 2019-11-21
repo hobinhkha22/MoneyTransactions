@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace MoneyTransactions.Entities
         [Key]
         public Guid OrderID { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString ="{0:N5}", ApplyFormatInEditMode = true)]        
         public decimal Amount { get; set; }
         [Required]
         public decimal Price { get; set; }

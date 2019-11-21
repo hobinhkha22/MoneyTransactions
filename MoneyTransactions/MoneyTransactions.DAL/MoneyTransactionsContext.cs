@@ -28,7 +28,7 @@ namespace MoneyTransactions.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);            
 
             // Create Relationship between class
             // Account - Role
@@ -75,11 +75,15 @@ namespace MoneyTransactions.DAL
                 .HasForeignKey<Guid>(r => r.WalletID)
                     .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Order>().Property(x => x.Amount).HasPrecision(18, 5);
+            modelBuilder.Entity<Order>().Property(x => x.Price).HasPrecision(18, 5);
+            modelBuilder.Entity<OrderDetail>().Property(x => x.Amount).HasPrecision(18, 5);
+
             // Cryptocurrency Store -  Wallet
             modelBuilder.Entity<Wallet>()
                 .HasRequired<CryptocurrencyStore>(r => r.CryptocurrencyStore)
                 .WithMany(e => e.Wallets)
-                .HasForeignKey<Guid>(r => r.CryptocurrencyStoreID);
+                .HasForeignKey<Guid>(r => r.CryptocurrencyStoreID);            
 
         }
     }

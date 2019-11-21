@@ -105,7 +105,56 @@ function MoneyRipple() {
     });
 }
 
+function GetMoneyForCreateSellAd() {
+
+    var e = document.getElementById("select_coin");
+    var strUser = e.options[e.selectedIndex].value;
+
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/UpdateMoney',
+        type: 'get',
+        data: { moneyType: strUser },
+        success: function (data) {
+            // filled data
+            var coin = document.getElementById("sell_price_ad");
+            coin.value = numberWithCommas(data);
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+}
+
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function Selladselectedcoin(your_coin) {
+    // scenairio
+    // select: bitcoin -> show money of bitcoin
+    // select : ethereum -> show money of ehthereum
+
+    var selectBox = document.getElementById("select_coin");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/UpdateMoney',
+        type: 'get',
+        data: { moneyType: selectedValue.toString() },
+        success: function (data) {
+            // filled data
+            var coin = document.getElementById("sell_price_ad");
+            coin.value = numberWithCommas(data);
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
 }
