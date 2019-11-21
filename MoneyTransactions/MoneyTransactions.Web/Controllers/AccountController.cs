@@ -226,6 +226,11 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult CreateSellAd(string getMoneyType)
         {
+            if (Session["AccountLogged"] != null)
+            {
+                ViewBag.AccountTradeName = Session["AccountLogged"].ToString();
+            }
+
             var getFloorPrice = cryptocurrencyStoreServices.ShowFloorPrice(getMoneyType);
             var moneyConverted = Convert.ToDecimal(getFloorPrice.ToString()).ToString("#,##");
 
@@ -268,6 +273,11 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult CreateBuyAd(string getMoneyType)
         {
+            if (Session["AccountLogged"] != null)
+            {
+                ViewBag.AccountTradeNameBuy = Session["AccountLogged"].ToString();
+            }
+
             var getFloorPrice = cryptocurrencyStoreServices.ShowFloorPrice(getMoneyType);
             var moneyConverted = Convert.ToDecimal(getFloorPrice.ToString()).ToString("#,##");
 
