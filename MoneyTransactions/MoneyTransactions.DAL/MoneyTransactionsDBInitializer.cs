@@ -58,9 +58,9 @@ namespace MoneyTransactions.DAL
             context.AccountBankDetails.Add(new Entities.AccountBankDetail { AccountBankDetailID = Guid.Parse("45dc9b2e-16c2-43bb-8c24-eabd30432509"), AccountID = Guid.Parse("7617F09B-6ED4-40ED-8BB1-FEC58D866233"), AccountNumber = "1159609210", BankID = Guid.Parse("E0EBCBC9-C1F0-4EE6-BA7D-F3B9279E0BFD"), CardNumber = "4543729236541660", ExpiredDate = DateTime.Parse("2028-12-25 11:30:30.12345") });
 
             // Cryptocurrency
-            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("1dfecc5c-87fb-4c54-8375-000c4ceafe73"), MoneyType = "ETH", Description = "", FloorPrice = 4356389 });
-            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("9c5e0dd2-840a-42d9-bd31-0a7c31194ec8"), MoneyType = "BTC", Description = "", FloorPrice = 204029250 });
-            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("bcc2b73f-b219-43ce-bb6b-20621d2f1573"), MoneyType = "XRP", Description = "", FloorPrice = 6356 });
+            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("1dfecc5c-87fb-4c54-8375-000c4ceafe73"), MoneyType = "ETH", Description = "Ethereum", FloorPrice = 4356389 });
+            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("9c5e0dd2-840a-42d9-bd31-0a7c31194ec8"), MoneyType = "BTC", Description = "Bitcoin", FloorPrice = 204029250 });
+            context.CryptocurrencyStores.Add(new Entities.CryptocurrencyStore { CryptocurrencyStoreID = Guid.Parse("bcc2b73f-b219-43ce-bb6b-20621d2f1573"), MoneyType = "XRP", Description = "Ripple", FloorPrice = 6356 });
 
 
 
