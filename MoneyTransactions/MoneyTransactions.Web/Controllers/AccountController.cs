@@ -266,15 +266,44 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateBuyAd()
+        public ActionResult CreateBuyAd(string getMoneyType)
         {
+            var getFloorPrice = cryptocurrencyStoreServices.ShowFloorPrice(getMoneyType);
+            var moneyConverted = Convert.ToDecimal(getFloorPrice.ToString()).ToString("#,##");
+
+            ViewBag.getMoney = moneyConverted;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBuyAd(Order order)
+        public ActionResult CreateBuyAd(FormCollection order)
         {
+            var orderDb = new Order();
+
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            if (order != null)
+            {
+                if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower())
+                {
+                    orderDb.Amount = decimal.Parse(order["giatriquydoi"].ToString()) * decimal.Parse(order["amount"].ToString());
+                }
+                //var getprice = cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon);
+                // handle order sell
+                orderDb.OrderID = Guid.NewGuid();
+                orderDb.CreatedDate = DateTime.Now;
+                orderDb.OrderType = OrderCommon.OrderBuy;
+                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { WalletID = Guid.Parse(order["diachivi"]), Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
+                orderDb.OrderType = OrderCommon.OrderBuy;
+
+                return RedirectToAction("Index", "Account");
+            }
+
+            ViewBag.errorMessage = "Không thể tạo được giao dịch. Vui lòng thử lại";
             return View();
         }
 

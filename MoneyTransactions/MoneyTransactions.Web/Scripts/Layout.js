@@ -150,6 +150,7 @@ function Selladselectedcoin(your_coin) {
         success: function (data) {
             // filled data
             var coin = document.getElementById("sell_price_ad");
+            $("#showcoin").html(selectedValue.toString().toUpperCase());
             coin.value = numberWithCommas(data);
         },
         error: function (response, textStatus) {
