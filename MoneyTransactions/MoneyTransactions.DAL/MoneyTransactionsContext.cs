@@ -74,16 +74,20 @@ namespace MoneyTransactions.DAL
                 .WithMany(e => e.OrderDetails)
                 .HasForeignKey<Guid>(r => r.WalletID)
                     .WillCascadeOnDelete(false);
+            
+            // Cryptocurrency Store -  Wallet
+            modelBuilder.Entity<Wallet>()
+                .HasRequired<CryptocurrencyStore>(r => r.CryptocurrencyStore)
+                .WithMany(e => e.Wallets)
+                .HasForeignKey<Guid>(r => r.CryptocurrencyStoreID);
 
             modelBuilder.Entity<Order>().Property(x => x.Amount).HasPrecision(18, 5);
             modelBuilder.Entity<Order>().Property(x => x.Price).HasPrecision(18, 5);
             modelBuilder.Entity<OrderDetail>().Property(x => x.Amount).HasPrecision(18, 5);
 
-            // Cryptocurrency Store -  Wallet
-            modelBuilder.Entity<Wallet>()
-                .HasRequired<CryptocurrencyStore>(r => r.CryptocurrencyStore)
-                .WithMany(e => e.Wallets)
-                .HasForeignKey<Guid>(r => r.CryptocurrencyStoreID);            
+            modelBuilder.Entity<CryptocurrencyStore>().Property(x => x.FloorPrice).HasPrecision(18, 5);
+            modelBuilder.Entity<Wallet>().Property(x => x.BalanceAmount).HasPrecision(18, 5);
+            modelBuilder.Entity<Wallet>().Property(x => x.BalanceAmountTransaction).HasPrecision(18, 5);
 
         }
     }
