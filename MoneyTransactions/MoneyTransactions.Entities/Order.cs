@@ -21,6 +21,8 @@ namespace MoneyTransactions.Entities
         [Required]
         public Guid WalletID { get; set; }
 
+        public string OrderType { get; set; }
+
         public virtual Wallet Wallet { get; set; }
 
         public virtual List<OrderDetail> OrderDetails { get; set; }

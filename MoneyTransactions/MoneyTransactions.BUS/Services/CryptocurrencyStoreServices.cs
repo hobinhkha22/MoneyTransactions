@@ -19,22 +19,19 @@ namespace MoneyTransactions.BUS.Services
 
         public decimal ShowFloorPrice(string moneyType)
         {
-            if (moneyType.ToLower() == CryptoCurrencyCommon.BitcointDescription.ToLower())
+            if (moneyType.ToLower() == CryptoCurrencyCommon.BitcointDescription.ToLower() || moneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower())
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Bitcoin).FloorPrice;
             }
-            else if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower())
+            else if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower() || moneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower())
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ethereum).FloorPrice;
             }
-            else if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
+            else
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ripple).FloorPrice;
             }
-            else
-            {
-                return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.VietnamDong).FloorPrice;
-            }
+            //  if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
         }
     }
 }
