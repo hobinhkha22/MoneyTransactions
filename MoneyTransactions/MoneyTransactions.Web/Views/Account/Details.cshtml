@@ -16,8 +16,19 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th width="40%">@Html.DisplayName("Mua từ:")</th>
-                    <th><a href="#"><u>@Html.DisplayFor(model => model.Wallet.Account.UserName)</u></a></th>
+                    <th style="text-align: center;" width="40%">@Html.DisplayName("Mua từ:")</th>
+                    <th style="text-align: center;">
+                        @*<a href="#">
+                            <u>@Html.DisplayFor(model => model.Wallet.Account.UserName)</u>
+                        </a>*@
+                        <strong class="offer-price text-success">
+                            <span>
+                                <span>
+                                    @Html.DisplayFor(model => model.Wallet.Account.UserName)
+                                </span>
+                            </span>                            
+                        </strong>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +40,9 @@
                                 <span>
                                     @Html.DisplayFor(model => model.Amount)
                                 </span>
-                            </span><span class="slash">/</span><span class="coin-currency text-btc-color">BTC</span>
+                            </span>
+                            <span class="slash">/</span>
+                            <span class="coin-currency text-btc-color">BTC</span>
                         </strong>
                     </td>
                 </tr>
@@ -37,7 +50,8 @@
                     <td>@Html.DisplayName("Địa chỉ ví")</td>
                     <td>
                         <strong class="offer-price text-success">
-                            <span class="slash">/</span><span class="coin-currency text-btc-color">@Html.DisplayFor(model => model.Wallet.WalletAddress)</span>
+                            <span class="slash">/</span>
+                            <span class="coin-currency text-btc-color">@Html.DisplayFor(model => model.Wallet.WalletAddress)</span>
                         </strong>
                     </td>
                 </tr>

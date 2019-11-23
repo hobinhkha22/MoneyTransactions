@@ -27,7 +27,7 @@
                     <label>Change coin</label>
                     <div class="row">
                         <div class="col-sm-7">
-                            <select class="form-control coin-selector" id="select_coin" onchange="Selladselectedcoin(document.getElementById('rippleselected').value);">
+                            <select class="form-control coin-selector" id="select_buy_coin" name="selected_bitcoin" onchange="BuyAdSelectedCoin();">
                                 <option value="btc" id="bitcointselected" class="btc">Bitcoin</option>
                                 <option value="eth" id="ethereumselected" class="eth">Ethereum</option>
                                 <option value="xrp" id="rippleselected" class="xrp">Ripple</option>
@@ -135,11 +135,11 @@
                                     <div class="row">
                                         <div class="col-sm-7">
                                             <div class="remi-colorized-field has-success">
-                                                @*<input class="form-control"
-                                                    id="bank_account_number" name="payment_details.bank_account_number"
-                                                    value="">*@
-                                                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @name = "amount" } })
-                                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                                <input class="form-control"
+                                                    id="buyshowcoin" name="amount"
+                                                    value="">
+                                                @*@Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @name = "amount" } })
+                                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })*@
                                                 <div style="padding-top: 5px;">Đơn vị: <span id="showcoin">BTC</span></div>
                                             </div>
                                         </div>
@@ -153,9 +153,9 @@
                                         <div class="row">
                                             <div class="col-sm-7">
                                                 <div class="remi-colorized-field undefined">
-                                                    <input class="form-control"
-                                                           id="bank_account_number" name="diachivi"
-                                                           value=""><span></span>
+                                                    <input class="form-control" readonly="readonly"
+                                                           id="diachivimoneybuy" name="diachivi"
+                                                           value="@ViewBag.GetDiaChiViMua"><span></span>
                                                     <div></div>
                                                 </div>
                                             </div>

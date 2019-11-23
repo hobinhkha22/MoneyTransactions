@@ -258,11 +258,9 @@ namespace MoneyTransactions.WEB.Controllers
 
             if (order != null)
             {
-                if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower())
-                {
-                    orderDb.Price = decimal.Parse(order["giatriquydoi"].ToString());
-                    orderDb.Amount = decimal.Parse(order["amount"].ToString());
-                }
+                orderDb.Price = decimal.Parse(order["giatriquydoi"].ToString());
+                orderDb.Amount = decimal.Parse(order["amount"].ToString());
+
 
                 var getWallet = walletServices.FindWalletByWalletAddress(order["diachivi"].ToString());
                 // handle order sell
@@ -270,8 +268,7 @@ namespace MoneyTransactions.WEB.Controllers
                 orderDb.CreatedDate = DateTime.Now;
                 orderDb.ModifiedDate = DateTime.Now;
                 orderDb.OrderType = OrderCommon.OrderSell;
-                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { OrderDetailID = Guid.NewGuid(), OrderID = orderDb.OrderID, WalletID = getWallet.WalletID, Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
-                orderDb.OrderType = OrderCommon.OrderSell;
+                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { OrderDetailID = Guid.NewGuid(), OrderID = orderDb.OrderID, WalletID = getWallet.WalletID, Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };                
                 orderDb.WalletID = getWallet.WalletID;
 
                 // tru phan tien da dang ban
@@ -293,6 +290,13 @@ namespace MoneyTransactions.WEB.Controllers
             if (Session["AccountLogged"] != null)
             {
                 ViewBag.AccountTradeNameBuy = Session["AccountLogged"].ToString();
+
+                var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+                if (getUser != null)
+                {
+                    var getWalletByMoneyType = walletServices.FindWalletByAccountIdAndMoneyType(getUser.AccountID, getMoneyType);
+                    ViewBag.GetDiaChiViMua = getWalletByMoneyType.WalletAddress.ToString();
+                }
             }
 
             var getFloorPrice = cryptocurrencyStoreServices.ShowFloorPrice(getMoneyType);
@@ -315,17 +319,26 @@ namespace MoneyTransactions.WEB.Controllers
 
             if (order != null)
             {
-                if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower())
-                {
-                    orderDb.Amount = decimal.Parse(order["giatriquydoi"].ToString()) * decimal.Parse(order["amount"].ToString());
-                }
-                //var getprice = cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon);
+
+                orderDb.Price = decimal.Parse(order["giatriquydoi"].ToString());
+                orderDb.Amount = decimal.Parse(order["amount"].ToString());
+
+
+                var getWallet = walletServices.FindWalletByWalletAddress(order["diachivi"].ToString());
                 // handle order sell
                 orderDb.OrderID = Guid.NewGuid();
                 orderDb.CreatedDate = DateTime.Now;
+                orderDb.ModifiedDate = DateTime.Now;
                 orderDb.OrderType = OrderCommon.OrderBuy;
-                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { WalletID = Guid.Parse(order["diachivi"]), Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
-                orderDb.OrderType = OrderCommon.OrderBuy;
+                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { OrderDetailID = Guid.NewGuid(), OrderID = orderDb.OrderID, WalletID = getWallet.WalletID, Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
+                orderDb.WalletID = getWallet.WalletID;
+
+                // tru phan tien da dang ban
+                getWallet.BalanceAmount = getWallet.BalanceAmount - orderDb.Amount;
+                orderDb.Price = orderDb.Amount; // luong sell/buy se save tai price
+
+                orderServices.CreateOrderTransaction(orderDb); // dang order
+
 
                 return RedirectToAction("Index", "Home");
             }

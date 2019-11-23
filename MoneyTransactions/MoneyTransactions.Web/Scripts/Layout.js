@@ -180,3 +180,50 @@ function Selladselectedcoin(your_coin) {
         }
     });
 }
+
+
+function BuyAdSelectedCoin() {
+    // scenairio
+    // select: bitcoin -> show money of bitcoin
+    // select : ethereum -> show money of ehthereum
+
+    var selectBox = document.getElementById("select_buy_coin");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/UpdateMoney',
+        type: 'get',
+        data: { moneyType: selectedValue.toString() },
+        success: function (data) {
+            // filled data
+            var coin = document.getElementById("buy_price_ad");
+            $("#buyshowcoin").html(selectedValue.toString().toUpperCase());
+            coin.value = numberWithCommas(data);
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+
+    // find wallet and fill data
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/FindWallet',
+        type: 'get',
+        data: { moneyType: selectedValue },
+        success: function (data) {
+            // fill bitcoin address
+            var coinaddress = document.getElementById("diachivimoneybuy");
+            coinaddress.value = data;
+
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+}
