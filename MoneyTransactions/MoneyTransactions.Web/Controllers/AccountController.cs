@@ -276,7 +276,7 @@ namespace MoneyTransactions.WEB.Controllers
 
                 // tru phan tien da dang ban
                 getWallet.BalanceAmount = getWallet.BalanceAmount - orderDb.Amount;
-                
+                orderDb.Price = orderDb.Amount; // luong sell/buy se save tai price
 
                 orderServices.CreateOrderTransaction(orderDb); // dang order
 

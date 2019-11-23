@@ -110,14 +110,14 @@
         <table class="table" style="border: none">
             @foreach (var item in Model)
             {
-                if (item.OrderType == MoneyTransactions.Common.OrderCommon.OrderSell)
+                if (item.OrderType == MoneyTransactions.Common.OrderCommon.OrderBuy)
                 {
                     <tbody>
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td>@Html.DisplayName("204,020,231") VND</td>
-                            <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                            <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }
@@ -156,14 +156,14 @@
         <table class="table" style="border: none">
             @foreach (var item in Model)
             {
-                if (item.OrderType == MoneyTransactions.Common.OrderCommon.OrderBuy)
+                if (item.OrderType == MoneyTransactions.Common.OrderCommon.OrderSell)
                 {
                     <tbody>
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td>@Html.DisplayName("204,020,231") VND</td>
-                            <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                            <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }
