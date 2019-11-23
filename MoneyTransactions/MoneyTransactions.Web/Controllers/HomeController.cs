@@ -9,6 +9,7 @@ namespace MoneyTransactions.WEB.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AccountService accountService = new AccountService();
         private OrderServices _orderServices = new OrderServices();
         private WalletServices _walletServices = new WalletServices();
         private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
@@ -28,6 +29,23 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult UpdateMoney(string moneyType)
         {
             return Json(cryptocurrencyStoreServices.ShowFloorPrice(moneyType), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult FindWallet(string moneyType)
+        {
+            if (Session["AccountLogged"] != null)
+            {
+                var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+                if (getUser != null)
+                {
+                    var WalletByTwoConditions = _walletServices.FindWalletByAccountIdAndMoneyType(getUser.AccountID, moneyType);
+                    return Json(WalletByTwoConditions.WalletAddress, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         // GET: Home/Details/5

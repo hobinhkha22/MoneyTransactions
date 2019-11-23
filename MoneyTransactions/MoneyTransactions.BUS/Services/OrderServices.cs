@@ -173,6 +173,14 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
+        public void CreateOrderTransaction(Order order)
+        {
+            if (order != null)
+            {
+                orderDataAccess.CreateOrder(order);
+            }
+        }
+
         private void Assert(bool value)
         {
             if (!value)

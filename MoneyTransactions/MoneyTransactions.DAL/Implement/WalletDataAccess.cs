@@ -1,4 +1,5 @@
-﻿using MoneyTransactions.Entities;
+﻿using MoneyTransactions.Common;
+using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,6 +20,54 @@ namespace MoneyTransactions.DAL.Implement
         public Wallet FindWalletByPrivateKey(string privateKey)
         {
             return db.Wallets.FirstOrDefault(x => x.PrivateKey == privateKey);
+        }
+
+        public Wallet FindWalletByWalletAddress(string walletAddress)
+        {
+            return db.Wallets.FirstOrDefault(w => w.WalletAddress == walletAddress);
+        }
+
+        public Wallet FindWalletByAccountAndMoneyType(Guid AccountID, string moneyType)
+        {
+            var get = new Wallet();
+
+            // bitcoin
+            if (moneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower())
+            {
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());                
+            }
+
+            if (moneyType.ToLower() == CryptoCurrencyCommon.BitcointDescription.ToLower())
+            {
+                var change = CryptoCurrencyCommon.Bitcoin.ToLower();
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+            }
+
+            // ethereum
+            if (moneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower())
+            {
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
+            }
+
+            if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower())
+            {
+                var change = CryptoCurrencyCommon.Ethereum.ToLower();
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+            }
+
+            // ripple
+            if (moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
+            {
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());                
+            }
+
+            if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
+            {
+                var change = CryptoCurrencyCommon.Ripple.ToLower();
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+            }
+
+            return get;
         }
 
         public Wallet FindWalletByAccountID(Guid accountID)

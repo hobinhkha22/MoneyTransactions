@@ -82,6 +82,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyTransactions.Common\MoneyTransactions.Common.csproj">
+      <Project>{57683F5A-9F9E-4197-B0CF-DF86A49F4D4E}</Project>
+      <Name>MoneyTransactions.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyTransactions.Entities\MoneyTransactions.Entities.csproj">
       <Project>{9cb3885f-bd17-4423-84d5-2ab2f26b9b4b}</Project>
       <Name>MoneyTransactions.Entities</Name>

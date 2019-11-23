@@ -120,14 +120,16 @@ function GetMoneyForCreateSellAd() {
             // filled data
             var coin = document.getElementById("sell_price_ad");
             coin.value = numberWithCommas(data);
+
         },
         error: function (response, textStatus) {
             console.log(response);
             console.log(textStatus);
         }
-    });
+    });  
+    
+ 
 }
-
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -152,6 +154,25 @@ function Selladselectedcoin(your_coin) {
             var coin = document.getElementById("sell_price_ad");
             $("#showcoin").html(selectedValue.toString().toUpperCase());
             coin.value = numberWithCommas(data);
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+
+    // find wallet and fill data
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/FindWallet',
+        type: 'get',
+        data: { moneyType: selectedValue },
+        success: function (data) {
+            // fill bitcoin address
+            var coinaddress = document.getElementById("diachivimoney");
+            coinaddress.value = data;
+
         },
         error: function (response, textStatus) {
             console.log(response);

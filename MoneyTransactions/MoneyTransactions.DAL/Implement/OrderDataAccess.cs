@@ -24,8 +24,9 @@ namespace MoneyTransactions.DAL.Implement
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.InnerException.Message);
                 return false;
             }
         }

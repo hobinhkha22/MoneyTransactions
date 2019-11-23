@@ -85,6 +85,11 @@ namespace MoneyTransactions.BUS.Services
             walletDataAccess.CreateWalletForAllCrypto(wallets);
         }
 
+        public Wallet FindWalletByWalletAddress(string walletAddress)
+        {
+            return walletDataAccess.FindWalletByWalletAddress(walletAddress);
+        }
+
         public Wallet FindWalletById(Guid accountID)
         {
             return walletDataAccess.FindWalletByAccountID(accountID);
@@ -110,6 +115,11 @@ namespace MoneyTransactions.BUS.Services
             dic.Add(privateKey.ToString(Network.Main), address.ToString());
 
             return dic;
+        }
+
+        public Wallet FindWalletByAccountIdAndMoneyType(Guid accountID, string moneyType)
+        {
+            return walletDataAccess.FindWalletByAccountAndMoneyType(accountID, moneyType);
         }
 
         public bool UpdateWallet()

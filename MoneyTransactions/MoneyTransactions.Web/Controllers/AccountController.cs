@@ -197,7 +197,7 @@ namespace MoneyTransactions.WEB.Controllers
 
             Session["AccountLogged"] = findCreatedAccount.UserName;
 
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -228,6 +228,13 @@ namespace MoneyTransactions.WEB.Controllers
         {
             if (Session["AccountLogged"] != null)
             {
+                var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+                if (getUser != null)
+                {
+                    var getWalletByMoneyType = walletServices.FindWalletByAccountIdAndMoneyType(getUser.AccountID, getMoneyType);
+                    ViewBag.GetDiaChiVi = getWalletByMoneyType.WalletAddress.ToString();
+                }
+
                 ViewBag.AccountTradeName = Session["AccountLogged"].ToString();
             }
 
@@ -253,17 +260,27 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower())
                 {
-                    orderDb.Amount = decimal.Parse(order["giatriquydoi"].ToString()) * decimal.Parse(order["amount"].ToString());
+                    orderDb.Price = decimal.Parse(order["giatriquydoi"].ToString());
+                    orderDb.Amount = decimal.Parse(order["amount"].ToString());
                 }
-                //var getprice = cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon);
+
+                var getWallet = walletServices.FindWalletByWalletAddress(order["diachivi"].ToString());
                 // handle order sell
                 orderDb.OrderID = Guid.NewGuid();
                 orderDb.CreatedDate = DateTime.Now;
+                orderDb.ModifiedDate = DateTime.Now;
                 orderDb.OrderType = OrderCommon.OrderSell;
-                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { WalletID = Guid.Parse(order["diachivi"]), Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
+                orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { OrderDetailID = Guid.NewGuid(), OrderID = orderDb.OrderID, WalletID = getWallet.WalletID, Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
                 orderDb.OrderType = OrderCommon.OrderSell;
+                orderDb.WalletID = getWallet.WalletID;
 
-                return RedirectToAction("Index", "Account");
+                // tru phan tien da dang ban
+                getWallet.BalanceAmount = getWallet.BalanceAmount - orderDb.Amount;
+                
+
+                orderServices.CreateOrderTransaction(orderDb); // dang order
+
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.errorMessage = "Không thể tạo được giao dịch. Vui lòng thử lại";
@@ -310,7 +327,7 @@ namespace MoneyTransactions.WEB.Controllers
                 orderDb.OrderDetails = new List<OrderDetail>() { new OrderDetail() { WalletID = Guid.Parse(order["diachivi"]), Amount = orderDb.Amount, CreatedDate = orderDb.CreatedDate } };
                 orderDb.OrderType = OrderCommon.OrderBuy;
 
-                return RedirectToAction("Index", "Account");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.errorMessage = "Không thể tạo được giao dịch. Vui lòng thử lại";
