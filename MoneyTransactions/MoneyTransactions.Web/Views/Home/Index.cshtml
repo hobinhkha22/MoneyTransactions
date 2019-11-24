@@ -117,7 +117,7 @@
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td>@Html.DisplayName("204,020,231") VND</td>
-                            <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                            <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }
@@ -163,7 +163,7 @@
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td>@Html.DisplayName("204,020,231") VND</td>
-                            <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
+                            <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }

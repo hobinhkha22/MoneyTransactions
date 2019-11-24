@@ -428,5 +428,11 @@ namespace MoneyTransactions.WEB.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult Sell(string sellerID, string buyerID, decimal amount)
+        {
+            return View();
+        }
     }
 }

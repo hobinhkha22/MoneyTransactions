@@ -113,9 +113,9 @@
     color: #e8e8e8;
 }
 
-.vertical-middle {
+.vertical-middless {
     vertical-align: middle;
-    color: #fff;
+    color: black;
 }
 
 #remi-rate {
@@ -488,4 +488,46 @@ form {
 .panel.offer-details .panel-heading {
     background: #2f2f2f;
     color: #fff;
+}
+
+.site-wrapper .main {
+    min-height: 500px;
+}
+
+.main {
+    overflow: hidden;
+    position: relative;
+}
+
+.panel.panel-default .panel-heading {
+    border-color: #ebecf0;
+    background-color: #ebecf0;
+}
+
+.panel .panel-heading {
+    color: #49474a;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.panel-group .panel.collapsed .panel-title > a:hover {
+    background: #ececec;
+    text-decoration: none;
+}
+
+.panel-group .panel-title > a {
+    display: block;
+    padding: 14px 20px 14px 40px;
+    transition: .2s;
+    position: relative;
+}
+
+.panel-group .panel-title {
+    font-size: 13px;
+    font-family: Open Sans,sans-serif;
+    line-height: 1.5em;
+    text-transform: none;
+    padding: 0;
 }

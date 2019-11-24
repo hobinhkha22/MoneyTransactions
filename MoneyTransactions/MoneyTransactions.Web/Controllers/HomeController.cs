@@ -1,4 +1,5 @@
 ﻿using MoneyTransactions.BUS.Services;
+using MoneyTransactions.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,6 +126,43 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 return View();
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult MyProfile()
+        {
+            if (Session["AccountLogged"] != null)
+            {
+                var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+                if (getUser != null)
+                {
+                    //var getWallet = _walletServices.FindWalletByAccountIdAndMoneyType(getUser.AccountID, CryptoCurrencyCommon.Bitcoin.ToString());
+                    var getListWallet = _walletServices.ListWalletByAccountID(getUser.AccountID);
+
+                    ViewBag.YourBTC = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower().ToString()).BalanceAmount;
+                    ViewBag.YourETH = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower().ToString()).BalanceAmount;
+                    ViewBag.YourXRP = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower().ToString()).BalanceAmount;
+
+                    // Wallet Address
+                    //ViewBag.WalletAddressBTC = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower().ToString()).WalletAddress;
+                    //ViewBag.WalletAddressETH = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower().ToString()).WalletAddress;                    
+                    //ViewBag.WalletAddressXRP = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower().ToString()).WalletAddress;
+
+                    // get username
+                    ViewBag.UserName = getUser.UserName;
+                    ViewBag.Email = getUser.Email;
+                    ViewBag.Phone = getUser.Phone;                    
+                }
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Setting()
+        {
+            return View();
         }
     }
 }

@@ -126,5 +126,10 @@ namespace MoneyTransactions.BUS.Services
         {
             throw new NotImplementedException();
         }
+
+        public List<Wallet> ListWalletByAccountID(Guid accountID)
+        {
+            return walletDataAccess.GetListWalletByAccountID(accountID);
+        }
     }
 }

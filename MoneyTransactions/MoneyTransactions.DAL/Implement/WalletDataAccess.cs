@@ -34,13 +34,13 @@ namespace MoneyTransactions.DAL.Implement
             // bitcoin
             if (moneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower())
             {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());                
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
             }
 
             if (moneyType.ToLower() == CryptoCurrencyCommon.BitcointDescription.ToLower())
             {
                 var change = CryptoCurrencyCommon.Bitcoin.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
             }
 
             // ethereum
@@ -52,19 +52,19 @@ namespace MoneyTransactions.DAL.Implement
             if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower())
             {
                 var change = CryptoCurrencyCommon.Ethereum.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
             }
 
             // ripple
             if (moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
             {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());                
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
             }
 
             if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
             {
                 var change = CryptoCurrencyCommon.Ripple.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);                
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
             }
 
             return get;
@@ -92,11 +92,10 @@ namespace MoneyTransactions.DAL.Implement
 
                     walletSeller.BalanceAmount = seller.BalanceAmount;
                     walletSeller.BalanceAmountTransaction = seller.BalanceAmountTransaction;
-                    db.SaveChanges();
 
                     walletBuyer.BalanceAmount = buyer.BalanceAmount;
-                    db.SaveChanges();
 
+                    db.SaveChanges();
                     transaction.Commit();
                     return true;
                 }
@@ -120,6 +119,11 @@ namespace MoneyTransactions.DAL.Implement
             {
                 return false;
             }
+        }
+
+        public List<Wallet> GetListWalletByAccountID(Guid AccountID)
+        {
+            return db.Wallets.Where(w => w.AccountID == AccountID).ToList();
         }
     }
 }

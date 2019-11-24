@@ -2218,6 +2218,8 @@
     <Content Include="Views\Transasction\CreateBuy.cshtml" />
     <Content Include="Views\Account\CreateSellAd.cshtml" />
     <Content Include="Views\Account\CreateBuyAd.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\Home\Setting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

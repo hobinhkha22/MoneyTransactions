@@ -159,7 +159,37 @@ namespace MoneyTransactions.BUS.Services
 
                     // tru fee
                     var amountSellerGet = amountWantToBuy - ExchangeRateConstant.Fees;
-                    getSeller.BalanceAmount = getSeller.BalanceAmount + amountSellerGet;
+                    getSeller.BalanceAmount += amountSellerGet;
+
+                    walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
+
+                    // remove order
+                    var orderToRemove = orderDataAccess.FindOrderByWalletID(getSeller.WalletID); // find by walletId
+                    if (orderToRemove != null)
+                    {
+                        orderDataAccess.RemoveOrder(orderToRemove);
+                    }
+                }
+            }
+        }
+
+        public void CreateSellTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        {
+            // noi xay ra giao dich tai day
+            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer); // get wallet buyer
+            var getSeller = walletDataAccess.FindWalletByAccountID(Seller); // get wallet seller
+
+            if (getBuyer != null && getSeller != null)
+            {
+                // check balance amount enough to perform buy action
+                if (getBuyer.BalanceAmount > amountWantToBuy)
+                {
+                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
+                    getBuyer.BalanceAmount = buyerSubtract;
+
+                    // tru fee
+                    var amountSellerGet = amountWantToBuy - ExchangeRateConstant.Fees;
+                    getSeller.BalanceAmount += amountSellerGet;
 
                     walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
 

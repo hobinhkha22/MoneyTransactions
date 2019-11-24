@@ -19,14 +19,14 @@
                     <th style="text-align: center;" width="40%">@Html.DisplayName("Mua từ:")</th>
                     <th style="text-align: center;">
                         @*<a href="#">
-                            <u>@Html.DisplayFor(model => model.Wallet.Account.UserName)</u>
-                        </a>*@
+                                <u>@Html.DisplayFor(model => model.Wallet.Account.UserName)</u>
+                            </a>*@
                         <strong class="offer-price text-success">
                             <span>
                                 <span>
                                     @Html.DisplayFor(model => model.Wallet.Account.UserName)
                                 </span>
-                            </span>                            
+                            </span>
                         </strong>
                     </th>
                 </tr>
@@ -49,8 +49,7 @@
                 <tr>
                     <td>@Html.DisplayName("Địa chỉ ví")</td>
                     <td>
-                        <strong class="offer-price text-success">
-                            <span class="slash">/</span>
+                        <strong class="offer-price text-success">                            
                             <span class="coin-currency text-btc-color">@Html.DisplayFor(model => model.Wallet.WalletAddress)</span>
                         </strong>
                     </td>
@@ -72,11 +71,13 @@
             }
             else
             {
-                <button class="btn btn-success">
-                    @Html.ActionLink("Mua", "Buy", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
-                </button>
+                @Html.ActionLink("Mua", "Buy", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
             }
         }
+
+        <br />
+        <br />
+        <br />
         <p>
             @Html.ActionLink("Back to List", "Index", "Home")
         </p>
