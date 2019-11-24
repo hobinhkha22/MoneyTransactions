@@ -28,9 +28,9 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <select class="form-control coin-selector" name="selected_bitcoin" id="select_coin" onchange="Selladselectedcoin(document.getElementById('rippleselected').value);">
-                                <option value="btc" class="btc" id="bitcointselected">Bitcoin</option>
-                                <option value="eth" class="eth" id="ethereumselected">Ethereum</option>
-                                <option value="xrp" class="xrp" id="rippleselected">Ripple</option>
+                                <option selected="@ViewBag.isSelected" value="btc" class="btc" id="bitcointselected">Bitcoin</option>
+                                <option selected="@ViewBag.isSelected" value="eth" class="eth" id="ethereumselected">Ethereum</option>
+                                <option selected="@ViewBag.isSelected" value="xrp" class="xrp" id="rippleselected">Ripple</option>
                             </select>
                         </div>
                     </div>

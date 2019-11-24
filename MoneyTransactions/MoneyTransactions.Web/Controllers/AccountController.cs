@@ -249,13 +249,49 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateSellAd(FormCollection order)
         {
-            var orderDb = new Order();
-
             if (Session["AccountLogged"] == null)
             {
                 return RedirectToAction("Login", "Account");
             }
 
+            var getUserWallet = walletServices.FindWalletByWalletAddress(order["diachivi"].ToString());
+            if (getUserWallet != null)
+            {
+                // check dieu kien dang mua
+                if (getUserWallet.BalanceAmount <= decimal.Parse(order["amount"].ToString()))
+                {
+                    ViewBag.errorMessage = "Tài khoản không đủ lượng coin giao dịch.";
+
+                    // fix the accountname
+                    ViewBag.AccountTradeName = getUserWallet.Account.UserName;
+
+                    // fix walletaddress
+                    ViewBag.GetDiaChiVi = getUserWallet.WalletAddress;
+
+                    // fix the selected coin
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower()) // for bitcoin
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Ethereum.ToLower()) // for ethereum
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Ripple.ToLower()) // for ripple
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    // fix the value money changed
+                    ViewBag.getMoney = Convert.ToDecimal(getUserWallet.CryptocurrencyStore.FloorPrice.ToString()).ToString("#,##");
+
+                    return View();
+                }
+            }
+
+            var orderDb = new Order();
             if (order != null)
             {
                 orderDb.Price = decimal.Parse(order["giatriquydoi"].ToString());
@@ -310,12 +346,51 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateBuyAd(FormCollection order)
         {
-            var orderDb = new Order();
-
             if (Session["AccountLogged"] == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+
+            var getUserWallet = walletServices.FindWalletByWalletAddress(order["diachivi"].ToString());
+            if (getUserWallet != null)
+            {
+                // check dieu kien dang mua
+                if (getUserWallet.BalanceAmount <= decimal.Parse(order["amount"].ToString()))
+                {
+                    ViewBag.errorMessage = "Tài khoản không đủ lượng coin giao dịch.";
+
+                    // fix the accountname
+                    ViewBag.AccountTradeNameBuy = getUserWallet.Account.UserName;
+
+                    // fix walletaddress
+                    ViewBag.GetDiaChiViMua = getUserWallet.WalletAddress;
+
+                    // fix the selected tag
+
+                    // fix the selected coin
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Bitcoin.ToLower()) // for bitcoin
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Ethereum.ToLower()) // for ethereum
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    if (order["selected_bitcoin"].ToString() == CryptoCurrencyCommon.Ripple.ToLower().ToString()) // for ripple
+                    {
+                        ViewBag.isSelected = "selected";
+                    }
+
+                    // fix the value money changed
+                    ViewBag.getMoney = Convert.ToDecimal(getUserWallet.CryptocurrencyStore.FloorPrice.ToString()).ToString("#,##");
+
+                    return View();
+                }
+            }
+
+            var orderDb = new Order();
 
             if (order != null)
             {

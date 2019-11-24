@@ -28,9 +28,9 @@
                     <div class="row">
                         <div class="col-sm-7">
                             <select class="form-control coin-selector" id="select_buy_coin" name="selected_bitcoin" onchange="BuyAdSelectedCoin();">
-                                <option value="btc" id="bitcointselected" class="btc">Bitcoin</option>
-                                <option value="eth" id="ethereumselected" class="eth">Ethereum</option>
-                                <option value="xrp" id="rippleselected" class="xrp">Ripple</option>
+                                <option selected="@ViewBag.IsSelected" value="btc" id="bitcointselected" class="btc">Bitcoin</option>
+                                <option selected="@ViewBag.IsSelected" value="eth" id="ethereumselected" class="eth">Ethereum</option>
+                                <option selected="@ViewBag.IsSelected" value="xrp" id="rippleselected" class="xrp">Ripple</option>
                             </select>
                         </div>
                     </div>
