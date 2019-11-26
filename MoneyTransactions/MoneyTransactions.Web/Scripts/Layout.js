@@ -268,24 +268,10 @@ function UserInputQuicktrade() {
                     "<p>Số lượng: " + object.Amount + " </p>" +
                     "</div>" +
                     "<div class='col-sm-2'>" +
-                    "<a href='#' class='btn btn-ask'>Mua ngay</a>" +
+                    "<a href='#' class='btn btn-danger'>Mua ngay</a>" +
                     "</div>" +
                     "</div>" +
                     "</div>";
-                //$.("showPageForMuaTu").html(
-                //    "<div style='margin-bottom: 5px;'>" +
-                //    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
-                //    "<div class='col-sm-10'>" +
-                //    "<p>Giá: " + object.Price + "</p>" +
-                //    "<p>Số lượng: " + object.Amount + " </p>" +
-                //    "</div>" +
-                //    "<div class='col-sm-2'>" +
-                //    "<a href='#' class='btn btn - ask'>Mua ngay</a>" +
-                //    "</div>" +
-                //    "</div>" +
-                //    "</div>");
-
-
             });
         },
         error: function (response, textStatus) {
@@ -295,22 +281,49 @@ function UserInputQuicktrade() {
     });
 }
 
-//$('#soLuongMoney').each(function () {
-//    alert("detect input tag");
-//    var elem = $(this);
+function UserInputQuicktradeForSell() {
 
-//    // Save current value of element
-//    elem.data('oldVal', elem.val());
+    // sleep
+    sleep(1000);
 
-//    // Look for changes in the value
-//    elem.bind("propertychange change click keyup input paste", function (event) {
-//        // If value has changed...
-//        if (elem.data('oldVal') !== elem.val()) {
-//            // Updated stored value
-//            elem.data('oldVal', elem.val());
+    // getdata
+    var getDataSoLuongMoney = document.getElementById("soLuongMoneySellFor").value;
+    console.log(getDataSoLuongMoney);
+    var show = document.getElementById("showforSellFor");
+    show.innerHTML = "";
 
-//            // Do action
-//            alert("detect input tag");
-//        }
-//    });
-//});
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/GetListOrder',
+        type: 'post',
+        data: { amountSearch: getDataSoLuongMoney },
+        success: function (data) {
+            // fill bitcoin address                       
+            //console.log(JSON.parse(data));
+
+            var array = JSON.parse(data);
+            array.forEach(function (object) {
+                //console.log(object.OrderID);
+                //console.log(object.Amount);
+                console.log(JSON.parse(data));
+                show.innerHTML += "<div style='margin-bottom: 5px;'>" +
+                    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
+                    "<div class='col-sm-10'>" +
+                    "<p>Giá: " + object.Price + "</p>" +
+                    "<p>Số lượng: " + object.Amount + " </p>" +
+                    "</div>" +
+                    "<div class='col-sm-2'>" +
+                    "<a href='#' class='btn btn-success'>Bán ngay</a>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+            });
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+}
+
