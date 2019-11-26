@@ -53,5 +53,16 @@ namespace MoneyTransactions.DAL.Implement
                 throw;
             }
         }
+
+        public List<Order> GetOrdersByAmount(decimal amountSearch)
+        {
+            var ds = db.Orders.Where(w => w.Amount <= amountSearch).ToList();
+            return db.Orders.Where(w => w.Amount <= amountSearch).ToList();
+        }
+
+        public List<Order> GetListOrder()
+        {
+            return db.Orders.ToList();
+        }
     }
 }

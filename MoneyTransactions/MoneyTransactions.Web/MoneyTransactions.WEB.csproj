@@ -66,8 +66,8 @@
     <Reference Include="NBitcoin, Version=4.1.2.36, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NBitcoin.4.1.2.36\lib\net461\NBitcoin.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="QBitNinja.Client, Version=1.0.3.50, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\QBitNinja.Client.1.0.3.50\lib\net472\QBitNinja.Client.dll</HintPath>
@@ -2220,6 +2220,7 @@
     <Content Include="Views\Account\CreateBuyAd.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
+    <Content Include="Views\Home\QuickTrade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

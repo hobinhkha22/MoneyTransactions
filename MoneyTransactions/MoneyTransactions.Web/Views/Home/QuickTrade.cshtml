@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Giao dịch nhanh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-heading remi-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <strong style="color: white;">Giao dịch nhanh</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1default" data-toggle="tab">Mua ngay</a></li>
+                    <li><a href="#tab2default" data-toggle="tab">Bán ngay</a></li>
+                </ul>
+            </div>
+
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1default">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Số lượng BTC:
+                                <input type="text" id="soLuongMoney" name="" onkeyup="UserInputQuicktrade();" value="" class="form-control" />
+                                <div></div>  <!-- Danh cho message -->
+                            </div>
+                            <div class="col-sm-6">
+                                Địa chỉ BTC của bạn
+                                <input type="text" id="" name="soluong" value="" class="form-control" />
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <!-- Handle Mua tu -->
+                        <div>
+                            <h2 style="font-weight: bold;">Mua từ</h2>
+                            <div id="showPageForMuaTu">
+                                @*
+                                <div style="margin-bottom: 5px;">
+                                    <div class="row" style="background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;">
+                                        <div class="col-sm-10">
+                                            <p>Tài khoản: </p>
+                                            <p>Số lượng: </p>
+                                            <p>Tỉ giá: </p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <!-- A link here -->
+                                            <a href="#" class="btn btn-ask">Mua ngay</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-bottom: 5px;">
+                                    <div class="row" style="background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;">
+                                        <div class="col-sm-10">
+                                            <p>Tài khoản: </p>
+                                            <p>Số lượng: </p>
+                                            <p>Tỉ giá: </p>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <!--A link here-->
+                                            <a href="#" class="btn btn-ask">Mua ngay</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            *@
+                            </div>
+                        </div>
+                        <!-- Handle Mua tu -->
+
+
+                    </div>
+                    <div class="tab-pane fade" id="tab2default">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Số lượng BTC:
+                                <input type="text" name="soluong" value="" class="form-control" />
+                                <div></div> <!-- Danh cho message -->
+                            </div>
+                            <div class="col-sm-6">
+                                Địa chỉ BTC của bạn
+                                <input type="text" name="soluong" value="" class="form-control" />
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+
+                        <div>
+                            <h2 style="font-weight: bold;">Bán cho</h2>
+                            <div id="showforSellFor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Br -->
+<div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+</div>

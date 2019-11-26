@@ -20,6 +20,9 @@
             console.log(textStatus);
         }
     });
+
+
+
 });
 
 function MoneyBitcoin() {
@@ -126,9 +129,9 @@ function GetMoneyForCreateSellAd() {
             console.log(response);
             console.log(textStatus);
         }
-    });  
-    
- 
+    });
+
+
 }
 
 function numberWithCommas(x) {
@@ -227,3 +230,87 @@ function BuyAdSelectedCoin() {
         }
     });
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function UserInputQuicktrade() {
+
+    // sleep
+    sleep(1000);
+
+    // getdata
+    var getDataSoLuongMoney = document.getElementById("soLuongMoney").value;
+    console.log(getDataSoLuongMoney);
+    var show = document.getElementById("showPageForMuaTu");
+    show.innerHTML = "";
+
+    $.ajax({
+        // edit to add steve's suggestion.
+        //url: "/ControllerName/ActionName",
+        url: '/Home/GetListOrder',
+        type: 'post',
+        data: { amountSearch: getDataSoLuongMoney },
+        success: function (data) {
+            // fill bitcoin address                       
+            //console.log(JSON.parse(data));
+
+            var array = JSON.parse(data);
+            array.forEach(function (object) {
+                //console.log(object.OrderID);
+                //console.log(object.Amount);
+                console.log(JSON.parse(data));
+                show.innerHTML += "<div style='margin-bottom: 5px;'>" +
+                    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
+                    "<div class='col-sm-10'>" +
+                    "<p>Giá: " + object.Price + "</p>" +
+                    "<p>Số lượng: " + object.Amount + " </p>" +
+                    "</div>" +
+                    "<div class='col-sm-2'>" +
+                    "<a href='#' class='btn btn-ask'>Mua ngay</a>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                //$.("showPageForMuaTu").html(
+                //    "<div style='margin-bottom: 5px;'>" +
+                //    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
+                //    "<div class='col-sm-10'>" +
+                //    "<p>Giá: " + object.Price + "</p>" +
+                //    "<p>Số lượng: " + object.Amount + " </p>" +
+                //    "</div>" +
+                //    "<div class='col-sm-2'>" +
+                //    "<a href='#' class='btn btn - ask'>Mua ngay</a>" +
+                //    "</div>" +
+                //    "</div>" +
+                //    "</div>");
+
+
+            });
+        },
+        error: function (response, textStatus) {
+            console.log(response);
+            console.log(textStatus);
+        }
+    });
+}
+
+//$('#soLuongMoney').each(function () {
+//    alert("detect input tag");
+//    var elem = $(this);
+
+//    // Save current value of element
+//    elem.data('oldVal', elem.val());
+
+//    // Look for changes in the value
+//    elem.bind("propertychange change click keyup input paste", function (event) {
+//        // If value has changed...
+//        if (elem.data('oldVal') !== elem.val()) {
+//            // Updated stored value
+//            elem.data('oldVal', elem.val());
+
+//            // Do action
+//            alert("detect input tag");
+//        }
+//    });
+//});

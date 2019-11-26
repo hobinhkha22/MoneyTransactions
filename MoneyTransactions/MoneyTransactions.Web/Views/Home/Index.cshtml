@@ -37,7 +37,8 @@
                                         <span class="currency">VND</span>
                                     </span>
                                 </div>
-                                <a class="btn btn-ask" href="#">Bán ngay</a>
+                                @*<a class="btn btn-ask" href="#">Bán ngay</a>*@
+                                @Html.ActionLink("Bán ngay", "QuickTrade", "Home", null, new { @class = "btn btn-ask" })
                             </div>
                         </div>
 
@@ -51,7 +52,8 @@
                                         <span class="currency">VND</span>
                                     </span>
                                 </div>
-                                <a class="btn btn-bid" href="#">Mua ngay</a>
+                                @*<a class="btn btn-bid" href="#">Mua ngay</a>*@
+                                @Html.ActionLink("Mua ngay", "QuickTrade", "Home", null, new { @class = "btn btn-bid" })
                             </div>
                         </div>
                     </div>

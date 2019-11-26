@@ -67,6 +67,12 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
+
+        public List<Order> GetListOrder()
+        {
+            return orderDataAccess.GetListOrder();
+        }
+
         public Order FindOrderByWalletID(Guid accountID)
         {
             return orderDataAccess.FindOrderByWalletID(accountID);
@@ -171,6 +177,11 @@ namespace MoneyTransactions.BUS.Services
                     }
                 }
             }
+        }
+
+        public List<Order> GetOrdersByAmount(decimal amountSearch)
+        {
+            return orderDataAccess.GetOrdersByAmount(amountSearch);
         }
 
         public void CreateSellTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)

@@ -1,10 +1,14 @@
 ﻿using MoneyTransactions.BUS.Services;
 using MoneyTransactions.Common;
+using MoneyTransactions.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MoneyTransactions.WEB.Controllers
 {
@@ -56,11 +60,30 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
-        // GET: Home/Create
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult QuickTrade()
         {
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetListOrder(string amountSearch)
+        {
+            var regex = new Regex("^-?[0-9]*(\\.|\\,)?[0-9]+$");
+
+            if (regex.IsMatch(amountSearch))
+            {
+                var changes = decimal.Parse(amountSearch);
+                var changed = _orderServices.GetOrdersByAmount(changes);
+
+                var json = JsonConvert.SerializeObject(changed);
+
+                return Json(json, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("", JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Home/Create
@@ -152,7 +175,7 @@ namespace MoneyTransactions.WEB.Controllers
                     // get username
                     ViewBag.UserName = getUser.UserName;
                     ViewBag.Email = getUser.Email;
-                    ViewBag.Phone = getUser.Phone;                    
+                    ViewBag.Phone = getUser.Phone;
                 }
             }
 
