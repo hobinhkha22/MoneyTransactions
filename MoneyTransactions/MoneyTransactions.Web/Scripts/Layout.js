@@ -255,24 +255,25 @@ function UserInputQuicktrade() {
         success: function (data) {
             // fill bitcoin address                       
             //console.log(JSON.parse(data));
-
-            var array = JSON.parse(data);
-            array.forEach(function (object) {
-                //console.log(object.OrderID);
-                //console.log(object.Amount);
-                console.log(JSON.parse(data));
-                show.innerHTML += "<div style='margin-bottom: 5px;'>" +
-                    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
-                    "<div class='col-sm-10'>" +
-                    "<p>Giá: " + object.Price + "</p>" +
-                    "<p>Số lượng: " + object.Amount + " </p>" +
-                    "</div>" +
-                    "<div class='col-sm-2'>" +
-                    "<a href='#' class='btn btn-danger'>Mua ngay</a>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>";
-            });
+            if ($.trim(data)) {
+                var array = JSON.parse(data);
+                array.forEach(function (object) {
+                    //console.log(object.OrderID);
+                    //console.log(object.Amount);
+                    console.log(JSON.parse(data));
+                    show.innerHTML += "<div style='margin-bottom: 5px;'>" +
+                        "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
+                        "<div class='col-sm-10'>" +
+                        "<p>Giá: " + object.Price + "</p>" +
+                        "<p>Số lượng: " + object.Amount + " </p>" +
+                        "</div>" +
+                        "<div class='col-sm-2'>" +
+                        "<a href='#' class='btn btn-danger'>Mua ngay</a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                });
+            }
         },
         error: function (response, textStatus) {
             console.log(response);
@@ -301,24 +302,25 @@ function UserInputQuicktradeForSell() {
         success: function (data) {
             // fill bitcoin address                       
             //console.log(JSON.parse(data));
-
-            var array = JSON.parse(data);
-            array.forEach(function (object) {
-                //console.log(object.OrderID);
-                //console.log(object.Amount);
-                console.log(JSON.parse(data));
-                show.innerHTML += "<div style='margin-bottom: 5px;'>" +
-                    "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
-                    "<div class='col-sm-10'>" +
-                    "<p>Giá: " + object.Price + "</p>" +
-                    "<p>Số lượng: " + object.Amount + " </p>" +
-                    "</div>" +
-                    "<div class='col-sm-2'>" +
-                    "<a href='#' class='btn btn-success'>Bán ngay</a>" +
-                    "</div>" +
-                    "</div>" +
-                    "</div>";
-            });
+            if ($.trim(data)) {
+                var array = JSON.parse(data);
+                array.forEach(function (object) {
+                    //console.log(object.OrderID);
+                    //console.log(object.Amount);
+                    console.log(JSON.parse(data));
+                    show.innerHTML += "<div style='margin-bottom: 5px;'>" +
+                        "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
+                        "<div class='col-sm-10'>" +
+                        "<p>Giá: " + object.Price + "</p>" +
+                        "<p>Số lượng: " + object.Amount + " </p>" +
+                        "</div>" +
+                        "<div class='col-sm-2'>" +
+                        "<a href='#' class='btn btn-success'>Bán ngay</a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                });
+            }
         },
         error: function (response, textStatus) {
             console.log(response);

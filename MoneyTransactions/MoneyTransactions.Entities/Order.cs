@@ -33,12 +33,12 @@ namespace MoneyTransactions.Entities
         [JsonProperty("OrderType")]
         public string OrderType { get; set; }
 
-        [JsonProperty("Wallet")]
-        //[JsonIgnore]
-        public Wallet Wallet { get; set; }
+        //[JsonProperty("Wallet")]
+        [JsonIgnore]
+        public virtual Wallet Wallet { get; set; }
 
-        [JsonProperty("OrderDetails")]
-        //[JsonIgnore]        
-        public List<OrderDetail> OrderDetails { get; set; }
+        //[JsonProperty("OrderDetails")]
+        [JsonIgnore]        
+        public virtual List<OrderDetail> OrderDetails { get; set; }
     }
 }
