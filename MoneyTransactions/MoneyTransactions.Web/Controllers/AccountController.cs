@@ -138,6 +138,7 @@ namespace MoneyTransactions.WEB.Controllers
 
             if (usermodel == null)
             {
+                TempData["Feedback"] = "The username or password does exist.";
                 return RedirectToAction("Login", "Account");
             }
             else
