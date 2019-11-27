@@ -142,7 +142,7 @@ namespace MoneyTransactions.WEB.Controllers
             }
             else
             {
-                if (usermodel.UserName.ToLower() == "admin" || usermodel.UserName.ToUpperInvariant() == "admin@gmail.com")
+                if (usermodel.UserName.ToLower() == "admin" || usermodel.UserName.ToLower() == "admin@gmail.com")
                 {
                     Session["AccountLogged"] = usermodel.UserName;
                     return RedirectToAction("AdminPage", "Account");
@@ -157,6 +157,11 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult AdminPage()
         {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 
