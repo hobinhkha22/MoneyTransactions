@@ -18,11 +18,19 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav remi-header-top-menu">
-                    <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Example 2", "About", "Home")</li>
+                    <li>@Html.ActionLink("Giao dịch P2P", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Đầu tư", "CommingSoon", "Home")</li>
                     <li>
-                        @Html.ActionLink("Example 3", "Contact", "Home")
-                        <!-- write here -->
+                        @{
+                            if (Session["AccountLogged"] == null)
+                            {
+                                @Html.ActionLink("Diễn dàn", "CommingSoon", "Home")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Ví", "YourWallet", "Home")
+                            }
+                        }
                     </li>
                     @{ if (Session["AccountLogged"] == null)
                         {
