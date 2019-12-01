@@ -133,8 +133,7 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Account userModel)
         {
-            string username = userModel.UserName;
-            var usermodel = accountService.FindUser(username, userModel.Password);
+            var usermodel = accountService.FindUser(userModel.UserName, userModel.Password);
 
             if (usermodel == null)
             {
@@ -143,12 +142,23 @@ namespace MoneyTransactions.WEB.Controllers
             }
             else
             {
-                if (usermodel.UserName.ToLower() == "admin" || usermodel.UserName.ToLower() == "admin@gmail.com")
+                var findUserWithRole = accountService.FindUerWithRole(usermodel.UserName, usermodel.Password, usermodel.Role.RoleName);
+                if (findUserWithRole == null)
                 {
-                    Session["AccountLogged"] = usermodel.UserName;
-                    return RedirectToAction("AdminPage", "Account");
+                    TempData["Feedback"] = "The username or password does exist.";
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    if (findUserWithRole.Role.RoleName == AccountConstant.AdminRole)
+                    {
+                        // for admin
+                        Session["AccountLogged"] = usermodel.UserName;
+                        return RedirectToAction("AdminPage", "Account");
+                    }
                 }
 
+                // for user 
                 Session["AccountLogged"] = usermodel.UserName;
                 Session["getWalletID"] = usermodel.AccountID;
                 return RedirectToAction("Index", "Home");

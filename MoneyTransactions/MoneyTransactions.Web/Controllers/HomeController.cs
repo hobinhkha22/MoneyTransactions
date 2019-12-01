@@ -20,12 +20,17 @@ namespace MoneyTransactions.WEB.Controllers
         private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
 
         // GET: Home
-        [HttpGet]
-        [AllowAnonymous]
+        [HttpGet]        
         public ActionResult Index()
         {
             // This is login
             //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
+
+            if (Session["AccountLogged"] == null)
+            {
+                //FormsAuthentication.SignOut();
+                Session.Abandon();
+            }
 
             return View(_orderServices.ShowRecentTransaction());
         }

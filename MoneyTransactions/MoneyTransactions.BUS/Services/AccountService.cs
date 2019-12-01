@@ -127,6 +127,11 @@ namespace MoneyTransactions.BUS.Services
             return accountDataAccess.FindUser(username, passWord);
         }
 
+        public Account FindUerWithRole(string username, string password, string role)
+        {
+            return accountDataAccess.FindUerWithRole(username, password, role);
+        }
+
 
         public Account FindUserByUserName(string username)
         {

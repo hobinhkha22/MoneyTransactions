@@ -20,6 +20,12 @@ namespace MoneyTransactions.DAL.Implement
             return db.Accounts.FirstOrDefault(x => x.UserName == userName && x.Password == passWord);
         }
 
+        public Account FindUerWithRole(string username, string password, string role)
+        {
+            return db.Accounts.FirstOrDefault(x => x.UserName == username && x.Password == password
+                            && x.Role.RoleName == role);
+        }
+
         public Account FindUserByUserName(string userName)
         {
             return db.Accounts.FirstOrDefault(x => x.UserName == userName);
