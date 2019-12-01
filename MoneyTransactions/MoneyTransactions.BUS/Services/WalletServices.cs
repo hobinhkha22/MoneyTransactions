@@ -26,6 +26,22 @@ namespace MoneyTransactions.BUS.Services
         public void CreateWallet(Guid AccountId)
         {
             List<Wallet> wallets = new List<Wallet>();
+
+            // wallet for vnd
+            var walletVNDAddress = CreateAddress();
+            Wallet walletvND = new Wallet
+            {
+                WalletID = Guid.NewGuid(),
+                CryptocurrencyStoreID = cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.VietnamDong).CryptocurrencyStoreID,
+                AccountID = AccountId,
+                WalletAddress = walletVNDAddress.Values.ElementAt(0),
+                PrivateKey = walletVNDAddress.Keys.ElementAt(0),
+                BalanceAmount = 0,
+                BalanceAmountTransaction = 0
+            };
+            wallets.Add(walletvND);
+
+
             // wallet for btc
             var walletBTCAddress = CreateAddress();
             Wallet walletBtc = new Wallet
@@ -107,7 +123,7 @@ namespace MoneyTransactions.BUS.Services
             var dic = new Dictionary<string, string>();
 
             Key privateKey = new Key(); // generate a random private key
-            BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main); // bitcoin secret
+            //BitcoinSecret mainNetPrivateKey = privateKey.GetBitcoinSecret(Network.Main); // bitcoin secret
             PubKey publicKey = privateKey.PubKey;
 
             var address = publicKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main);

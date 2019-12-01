@@ -20,7 +20,10 @@
                 <ul class="nav navbar-nav remi-header-top-menu">
                     <li>@Html.ActionLink("Example 1", "Index", "Home")</li>
                     <li>@Html.ActionLink("Example 2", "About", "Home")</li>
-                    <li>@Html.ActionLink("Example 3", "Contact", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Example 3", "Contact", "Home")
+                        <!-- write here -->
+                    </li>
                     @{ if (Session["AccountLogged"] == null)
                         {
                             <li>
@@ -38,7 +41,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li>
                                         @*<a class="dropdown-item" href="">My profile</a>*@
-                                        @Html.ActionLink("Hồ sơ của tôi", "MyProfile", "Home", null, new { @class = "dropdown-item"})
+                                        @Html.ActionLink("Hồ sơ", "MyProfile", "Home", null, new { @class = "dropdown-item" })
                                     </li>
                                     <li>
                                         @*<a class="dropdown-item" href="#">Setting</a>*@
