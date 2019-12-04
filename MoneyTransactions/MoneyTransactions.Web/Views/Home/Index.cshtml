@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MoneyTransactions.Entities.Order>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<MoneyTransactions.Entities.Order>
 
 @{
     ViewBag.Title = "Trang chủ";
@@ -118,13 +119,22 @@
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                            <td>@Html.DisplayName("204,020,231") VND</td>
+                            <td>@Html.DisplayFor(modelItem => item.Wallet.CryptocurrencyStore.FloorPrice)</td>
                             <td> @Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }
             }
         </table>
+
+        <div id="container" style="margin-left: 20px">
+            <p></p>
+            <p></p>
+            <div class="pagination" style="margin-left: 400px">
+                @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount   *@
+                @Html.PagedListPager(Model, pageBuy => Url.Action("Index", new { pageBuy }))
+            </div>
+        </div>
 
 
         <div class="container-fluid">
@@ -142,6 +152,8 @@
 
     </div>
 
+
+    <!--For sell-->
     <!-- Danh muc ban -->
     <!-- Ban muon mua bitcoin -->
     <div class="sell-offers offer-list-section mb-24">
@@ -164,13 +176,22 @@
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td>@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                            <td>@Html.DisplayName("204,020,231") VND</td>
+                            <td>@Html.DisplayFor(modelItem => item.Wallet.CryptocurrencyStore.FloorPrice)</td>
                             <td> @Html.ActionLink("Bán", "Details", "Account", new { walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
                 }
             }
         </table>
+
+        <div id="container" style="margin-left: 20px">
+            <p></p>
+            <p></p>
+            <div class="pagination" style="margin-left: 400px">
+                @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount *@
+                @Html.PagedListPager(Model, pageSell => Url.Action("Index", new { pageSell }))
+            </div>
+        </div>
 
         <div class="container-fluid">
             <div class="row-with-thick-left-border row flex-row remi-want-better-price px-24 py-16">
@@ -185,5 +206,7 @@
             </div>
         </div>
     </div>
+
+
 
 </div>

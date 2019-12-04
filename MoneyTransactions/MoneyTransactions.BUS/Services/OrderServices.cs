@@ -84,7 +84,7 @@ namespace MoneyTransactions.BUS.Services
         }
 
         [Obsolete]
-        public void CreateBuyTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        public void HandleTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy)
         {
             // noi xay ra giao dich tai day
             var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);

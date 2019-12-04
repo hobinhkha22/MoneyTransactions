@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using System.Web.Script.Serialization;
 
 namespace MoneyTransactions.WEB.Controllers
@@ -19,15 +20,57 @@ namespace MoneyTransactions.WEB.Controllers
         private WalletServices _walletServices = new WalletServices();
         private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
 
-        // GET: Home
+        // GET: Home      
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int? pageSell, int? pageBuy)
         {
-            // This is login
-            //ViewBag.ForAccount = "@Html.ActionLink('Đăng nhập / Đăng ký', 'Login', 'Account')";
+            if (pageSell != null)
+            {
+                int pageSize = 5;
+                int pageIndex = 1;
+                pageIndex = pageSell.HasValue ? Convert.ToInt32(pageSell) : 1;
+                IPagedList<Order> o = null;
 
-            return View(_orderServices.ShowRecentTransaction());
+                o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
+                return View(o);
+            }
+            else
+            {
+                int pageSize = 5;
+                int pageIndex = 1;
+                pageIndex = pageBuy.HasValue ? Convert.ToInt32(pageBuy) : 1;
+                IPagedList<Order> o = null;
+
+                o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
+                return View(o);
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult ForSellIndex(int? pageSell)
+        {
+            int pageSize = 10;
+            int pageIndex = 1;
+            pageIndex = pageSell.HasValue ? Convert.ToInt32(pageSell) : 1;
+            IPagedList<Order> o = null;
+
+            o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
+
+            return PartialView(o);
+        }
+
+        [HttpGet]
+        public PartialViewResult ForBuyIndex(int? pageBuy)
+        {
+            int pageSize = 10;
+            int pageIndex = 1;
+            pageIndex = pageBuy.HasValue ? Convert.ToInt32(pageBuy) : 1;
+            IPagedList<Order> o = null;
+
+            o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
+
+            return PartialView(o);
         }
 
         [HttpGet]

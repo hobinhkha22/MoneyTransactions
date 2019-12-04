@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using PagedList;
 
 namespace MoneyTransactions.WEB.Controllers
 {
@@ -31,6 +32,25 @@ namespace MoneyTransactions.WEB.Controllers
             else
             {
                 return View(orderServices.ShowRecentTransaction());
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Index(int? page)
+        {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                int pageSize = 5;
+                int pageIndex = 1;
+                pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+                IPagedList<Order> o = null;
+
+                o = orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
+                return View(o);
             }
         }
 
@@ -440,7 +460,8 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
-            orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+            //orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
 
             return RedirectToAction("Index", "Home");
         }
@@ -448,6 +469,8 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Sell(string sellerID, string buyerID, decimal amount)
         {
+            orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+
             return View();
         }
     }
