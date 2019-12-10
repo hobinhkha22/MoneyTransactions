@@ -56,9 +56,9 @@ namespace MoneyTransactions.WEB.Controllers
 
         // GET: Account/Details/5
         [HttpGet]
-        public ActionResult Details(string walletID)
+        public ActionResult Details(string walletID, decimal amount)
         {
-            var getAcc = orderServices.FindOrderByWalletID(Guid.Parse(walletID));
+            var getAcc = orderServices.FindOrderByWalletIDAndAmount(Guid.Parse(walletID), amount);
             if (getAcc != null)
             {
                 ViewBag.username = getAcc.Wallet.Account.UserName;
@@ -458,20 +458,24 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
+        [Obsolete]
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
+            var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(sellerID), amount);
             //orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
-            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
 
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
+        [Obsolete]
         public ActionResult Sell(string sellerID, string buyerID, decimal amount)
         {
-            orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
+            var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(sellerID), amount);
+            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

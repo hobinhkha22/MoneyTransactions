@@ -36,6 +36,16 @@ namespace MoneyTransactions.DAL.Implement
             return db.Orders.ToList();
         }
 
+        public Order FindOrderByWalletIDAndAmount(Guid walletID, decimal amount)
+        {
+            return db.Orders.FirstOrDefault(x => x.WalletID == walletID && x.Amount == amount);
+        }
+
+        public Order FindOrderByAccountIDAndAmount(Guid accountID, decimal amount)
+        {
+            return db.Orders.FirstOrDefault(x => x.Wallet.AccountID == accountID && x.Amount == amount);
+        }
+
         public Order FindOrderByWalletID(Guid walletID)
         {
             return db.Orders.FirstOrDefault(x => x.WalletID == walletID);

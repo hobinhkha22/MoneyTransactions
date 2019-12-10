@@ -73,9 +73,14 @@ namespace MoneyTransactions.BUS.Services
             return orderDataAccess.GetListOrder();
         }
 
-        public Order FindOrderByWalletID(Guid accountID)
+        public Order FindOrderByWalletIDAndAmount(Guid walletID, decimal amount)
         {
-            return orderDataAccess.FindOrderByWalletID(accountID);
+            return orderDataAccess.FindOrderByWalletIDAndAmount(walletID, amount);
+        }
+
+        public Order FindOrderByAccountIDAndAmount(Guid accountID, decimal amount)
+        {
+            return orderDataAccess.FindOrderByAccountIDAndAmount(accountID, amount);
         }
 
         public List<Order> ShowRecentTransaction()
@@ -84,70 +89,150 @@ namespace MoneyTransactions.BUS.Services
         }
 
         [Obsolete]
-        public void HandleTransaction(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        public void HandleTransaction(Guid Seller, Guid Buyer, decimal amountTransaction, Order order)
         {
-            // noi xay ra giao dich tai day
-            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
-            var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
-
-            BitcoinSecret buyerWallet = new BitcoinSecret(getBuyer.PrivateKey);
-            BitcoinSecret sellerWallet = new BitcoinSecret(getSeller.PrivateKey);
-
-            if (getBuyer != null && getSeller != null)
+            if (order.OrderType == OrderCommon.OrderSell) // Sell
             {
-                // check balance amount enough to perform buy action
-                if (getBuyer.BalanceAmount > amountWantToBuy)
+                // noi xay ra giao dich tai day
+                var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
+                var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
+
+                BitcoinSecret buyerWallet = new BitcoinSecret(getBuyer.PrivateKey);
+                BitcoinSecret sellerWallet = new BitcoinSecret(getSeller.PrivateKey);
+
+                if (getBuyer != null && getSeller != null)
                 {
-                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
-                    // trich quy ra de mua
-                    Transaction buyerFunding = new Transaction()
+                    // check balance amount enough to perform buy action
+                    if (getBuyer.BalanceAmount > amountTransaction)
                     {
-                        Outputs =   {
-                            new TxOut(amountWantToBuy.ToString(), buyerWallet.GetAddress())
+                        var buyerSubtract = getBuyer.BalanceAmount - amountTransaction;
+                        // trich quy ra de mua
+                        Transaction buyerFunding = new Transaction()
+                        {
+                            Outputs =   {
+                            new TxOut(amountTransaction.ToString(), buyerWallet.GetAddress())
                         }
-                    };
+                        };
 
-                    getBuyer.BalanceAmount = buyerSubtract; // trich xong roi add phan con lai vao balanaceamount
+                        getBuyer.BalanceAmount = buyerSubtract; // trich xong roi add phan con lai vao balanaceamount
 
-                    Coin[] buyerCoins = buyerFunding
-                                        .Outputs
-                                        .Select((o, i) => new Coin(new OutPoint(buyerFunding.GetHash(), i), o))
-                                        .ToArray();
+                        Coin[] buyerCoins = buyerFunding
+                                            .Outputs
+                                            .Select((o, i) => new Coin(new OutPoint(buyerFunding.GetHash(), i), o))
+                                            .ToArray();
 
-                    string totalToSend = "";
-                    foreach (var item in buyerCoins)
-                    {
-                        totalToSend += item.TxOut.Value.ToString();
+                        string totalToSend = "";
+                        foreach (var item in buyerCoins)
+                        {
+                            totalToSend += item.TxOut.Value.ToString();
+                        }
+
+                        Money fee = new Money(100);
+
+                        // construct transaction
+                        // chuyen cho nguoi ban
+                        TransactionBuilder txBuilder = new TransactionBuilder();
+                        var tx = txBuilder
+                            .AddCoins(buyerCoins)
+                            .AddKeys(buyerWallet.PrivateKey)
+                            .Send(sellerWallet.GetAddress(), totalToSend)
+                            //.SendFees(Money.Coins(0.0001m))
+                            .SetChange(buyerWallet.GetAddress())
+                            .BuildTransaction(true);
+                        //Assert(txBuilder.Verify(tx)); //check fully signed
+
+                        // get coin from buyer to sent for seller
+                        Coin[] sellerCoins = tx.Outputs.Select((o, i) => new Coin(new OutPoint(tx.GetHash(), i), o)).ToArray();
+
+                        string totalSend = "";
+                        foreach (var item in sellerCoins)
+                        {
+                            totalSend += item.TxOut.Value.ToString();
+                        }
+
+                        getSeller.BalanceAmount = getSeller.BalanceAmount + Decimal.Parse(totalSend);
+                        getBuyer.BalanceAmount = getBuyer.BalanceAmount + getSeller.BalanceAmountTransaction;
+                        getSeller.BalanceAmountTransaction = 0;
+
+                        walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
+
+                        // remove order transaction
+                        orderDataAccess.RemoveOrder(order);
                     }
+                }
+            }
+            else // buy
+            {
+                // noi xay ra giao dich tai day
+                var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
+                var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
 
-                    // construct transaction
-                    // chuyen cho nguoi ban
-                    TransactionBuilder txBuilder = new TransactionBuilder();
-                    var tx = txBuilder
-                        .AddCoins(buyerCoins)
-                        .AddKeys(buyerWallet.PrivateKey)
-                        .Send(sellerWallet.GetAddress(), totalToSend)
-                        .SendFees("0.0001")
-                        .SetChange(buyerWallet.GetAddress())
-                        .BuildTransaction(true);
-                    Assert(txBuilder.Verify(tx)); //check fully signed
+                BitcoinSecret buyerWallet = new BitcoinSecret(getBuyer.PrivateKey);
+                BitcoinSecret sellerWallet = new BitcoinSecret(getSeller.PrivateKey);
 
-                    // get coin from buyer to sent for seller
-                    Coin[] sellerCoins = tx.Outputs.Select((o, i) => new Coin(new OutPoint(tx.GetHash(), i), o)).ToArray();
-
-                    string totalSend = "";
-                    foreach (var item in sellerCoins)
+                if (getSeller != null && getBuyer != null)
+                {
+                    // check balance amount enough to perform buy action
+                    if (getSeller.BalanceAmount > amountTransaction)
                     {
-                        totalSend += item.TxOut.Value.ToString();
-                    }
-                    getSeller.BalanceAmount = getSeller.BalanceAmount + Decimal.Parse(totalSend);
-                    getBuyer.BalanceAmount = getBuyer.BalanceAmount + getSeller.BalanceAmountTransaction;
-                    getSeller.BalanceAmountTransaction = 0;
+                        var buyerSubtract = getSeller.BalanceAmount - amountTransaction;
+                        // trich quy ra de mua
+                        Transaction buyerFunding = new Transaction()
+                        {
+                            Outputs =   {
+                            new TxOut(amountTransaction.ToString(), buyerWallet.GetAddress())
+                        }
+                        };
 
-                    walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
+                        getSeller.BalanceAmount = buyerSubtract; // trich xong roi add phan con lai vao balanaceamount
+
+                        Coin[] buyerCoins = buyerFunding
+                                            .Outputs
+                                            .Select((o, i) => new Coin(new OutPoint(buyerFunding.GetHash(), i), o))
+                                            .ToArray();
+
+                        string totalToSend = "";
+                        foreach (var item in buyerCoins)
+                        {
+                            totalToSend += item.TxOut.Value.ToString();
+                        }
+
+                        Money fee = new Money(100);
+
+                        // construct transaction
+                        // chuyen cho nguoi ban
+                        TransactionBuilder txBuilder = new TransactionBuilder();
+                        var tx = txBuilder
+                            .AddCoins(buyerCoins)
+                            .AddKeys(buyerWallet.PrivateKey)
+                            .Send(sellerWallet.GetAddress(), totalToSend)
+                            //.SendFees(Money.Coins(0.0001m))
+                            .SetChange(buyerWallet.GetAddress())
+                            .BuildTransaction(true);
+                        //Assert(txBuilder.Verify(tx)); //check fully signed
+
+                        // get coin from buyer to sent for seller
+                        Coin[] sellerCoins = tx.Outputs.Select((o, i) => new Coin(new OutPoint(tx.GetHash(), i), o)).ToArray();
+
+                        string totalSend = "";
+                        foreach (var item in sellerCoins)
+                        {
+                            totalSend += item.TxOut.Value.ToString();
+                        }
+
+                        getBuyer.BalanceAmount = getBuyer.BalanceAmount + Decimal.Parse(totalSend);
+                        getSeller.BalanceAmount = getSeller.BalanceAmount + getSeller.BalanceAmountTransaction;
+                        getBuyer.BalanceAmountTransaction = 0;
+
+                        walletDataAccess.CreateWalletTransaction(getSeller, getSeller);
+
+                        // remove order transaction
+                        orderDataAccess.RemoveOrder(order);
+                    }
                 }
             }
         }
+
 
         public void CreateBuyTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
         {
