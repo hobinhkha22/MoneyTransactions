@@ -58,16 +58,21 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Details(string walletID, decimal amount)
         {
-            var getAcc = orderServices.FindOrderByWalletIDAndAmount(Guid.Parse(walletID), amount);
-            if (getAcc != null)
+            if (Session["AccountLogged"] != null)
             {
-                ViewBag.username = getAcc.Wallet.Account.UserName;
-                return View(getAcc);
+                var getAcc = orderServices.FindOrderByWalletIDAndAmount(Guid.Parse(walletID), amount);
+                if (getAcc != null)
+                {
+                    ViewBag.username = getAcc.Wallet.Account.UserName;
+                    return View(getAcc);
+                }
+                else
+                {
+                    return View("Error");
+                }
             }
-            else
-            {
-                return View("Error");
-            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         // GET: Account/Create
@@ -462,8 +467,17 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Buy(string sellerID, string buyerID, decimal amount)
         {
             var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(sellerID), amount);
-            //orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount);
-            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+            if (getOrder != null)
+            {
+                if (getOrder.Wallet.AccountID == Guid.Parse(buyerID))
+                {
+                    ViewBag.DuplicateOrderBuyer = "Không thể mua Order của chính mình.";
+                    ViewBag.username = getOrder.Wallet.Account.UserName;
+                    return View("Details", getOrder);
+                }
+
+                orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -473,7 +487,16 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Sell(string sellerID, string buyerID, decimal amount)
         {
             var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(sellerID), amount);
-            orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+            if (getOrder != null)
+            {
+                if (getOrder.Wallet.AccountID == Guid.Parse(sellerID))
+                {
+                    ViewBag.DuplicateOrderSeller = "Không thể bán Order cho chính mình.";
+                    ViewBag.username = getOrder.Wallet.Account.UserName;
+                    return View("Details", getOrder);
+                }
+                orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+            }
 
             return RedirectToAction("Index", "Home");
         }

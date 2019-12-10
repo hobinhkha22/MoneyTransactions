@@ -67,7 +67,6 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-
         public List<Order> GetListOrder()
         {
             return orderDataAccess.GetListOrder();
@@ -232,7 +231,6 @@ namespace MoneyTransactions.BUS.Services
                 }
             }
         }
-
 
         public void CreateBuyTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
         {

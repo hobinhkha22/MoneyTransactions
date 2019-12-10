@@ -49,7 +49,7 @@
                 <tr>
                     <td>@Html.DisplayName("Địa chỉ ví")</td>
                     <td>
-                        <strong class="offer-price text-success">                            
+                        <strong class="offer-price text-success">
                             <span class="coin-currency text-btc-color">@Html.DisplayFor(model => model.Wallet.WalletAddress)</span>
                         </strong>
                     </td>
@@ -61,6 +61,12 @@
             </tbody>
         </table>
     </div>
+
+    <div style="text-align: center;margin-top:5px;">
+        @ViewBag.DuplicateOrderBuyer
+        @ViewBag.DuplicateOrderSeller
+    </div>
+
 
     <div class="otherss" style="margin-top: 30px;margin-bottom: 136px;">
 
