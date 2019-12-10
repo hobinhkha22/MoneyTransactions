@@ -58,21 +58,16 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Details(string walletID, decimal amount)
         {
-            if (Session["AccountLogged"] != null)
+            var getAcc = orderServices.FindOrderByWalletIDAndAmount(Guid.Parse(walletID), amount);
+            if (getAcc != null)
             {
-                var getAcc = orderServices.FindOrderByWalletIDAndAmount(Guid.Parse(walletID), amount);
-                if (getAcc != null)
-                {
-                    ViewBag.username = getAcc.Wallet.Account.UserName;
-                    return View(getAcc);
-                }
-                else
-                {
-                    return View("Error");
-                }
+                ViewBag.username = getAcc.Wallet.Account.UserName;
+                return View(getAcc);
             }
-
-            return RedirectToAction("Login", "Account");
+            else
+            {
+                return View("Error");
+            }
         }
 
         // GET: Account/Create
