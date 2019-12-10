@@ -16,7 +16,18 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th style="text-align: center;" width="40%">@Html.DisplayName("Mua từ:")</th>
+                    <th style="text-align: center;" width="40%">
+                        @{
+                            if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderSell)
+                            {
+                                @Html.DisplayName("Mua từ:")
+                            }
+                            if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderBuy)
+                            {
+                                @Html.DisplayName("Bán cho:")
+                            }
+                        }
+                    </th>
                     <th style="text-align: center;">
                         @*<a href="#">
                                 <u>@Html.DisplayFor(model => model.Wallet.Account.UserName)</u>
@@ -77,7 +88,15 @@
             }
             else
             {
-                @Html.ActionLink("Mua", "Buy", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
+                if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderBuy)
+                {
+                    @Html.ActionLink("Bán", "Sell", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
+                }
+
+                if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderSell)
+                {
+                    @Html.ActionLink("Mua", "Buy", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
+                }
             }
         }
 
