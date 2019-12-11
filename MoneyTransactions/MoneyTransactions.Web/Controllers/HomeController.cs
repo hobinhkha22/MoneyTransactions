@@ -124,7 +124,7 @@ namespace MoneyTransactions.WEB.Controllers
                 var changes = decimal.Parse(amountSearch);
                 var changed = _orderServices.GetOrdersByAmount(changes);
 
-                var json = JsonConvert.SerializeObject(changed);
+                var json = JsonConvert.SerializeObject(changed, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
                 return Json(json, JsonRequestBehavior.AllowGet);
             }

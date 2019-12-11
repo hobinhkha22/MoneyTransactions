@@ -66,8 +66,14 @@ namespace MoneyTransactions.DAL.Implement
 
         public List<Order> GetOrdersByAmount(decimal amountSearch)
         {
-            var ds = db.Orders.Where(w => w.Amount <= amountSearch).ToList();
-            return db.Orders.Where(w => w.Amount <= amountSearch).ToList();
+            //List<Order> ds = null;
+            //using (db)
+            //{
+                var ds = db.Orders.Include("Wallet").Include("Wallet.Account").Include("OrderDetails").Where(w => w.Amount <= amountSearch).ToList();
+            //}
+            var dss = db.Orders;
+
+            return ds;
         }
 
         public List<Order> GetListOrder()

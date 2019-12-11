@@ -259,11 +259,12 @@ function UserInputQuicktrade() {
                 var array = JSON.parse(data);
                 array.forEach(function (object) {
                     //console.log(object.OrderID);
-                    //console.log(object.Amount);
+                    console.log(object);
                     console.log(JSON.parse(data));                    
                     show.innerHTML += "<div style='margin-bottom: 5px;'>" +
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
+                        "<p>Tài khoản: " + object.Wallet.Account.UserName + "</p>" +
                         "<p>Giá: " + object.Price + "</p>" +
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
@@ -307,12 +308,12 @@ function UserInputQuicktradeForSell() {
                 var array = JSON.parse(data);
                 array.forEach(function (object) {
                     //console.log(object.OrderID);
-                    //console.log(object.Amount);
+                    console.log(object);
                     console.log(JSON.parse(data));
                     show.innerHTML += "<div style='margin-bottom: 5px;'>" +
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
-                        "<p>Giá: " + object.Price + "</p>" +
+                        "<p>Tài khoản: " + object.Wallet.Account.UserName + "</p>" +
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
