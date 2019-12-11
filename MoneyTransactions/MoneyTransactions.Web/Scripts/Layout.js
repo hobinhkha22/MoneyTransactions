@@ -314,6 +314,7 @@ function UserInputQuicktradeForSell() {
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
                         "<p>Tài khoản: " + object.Wallet.Account.UserName + "</p>" +
+                        "<p>Giá: " + object.Price + "</p>" +
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
