@@ -260,7 +260,7 @@ function UserInputQuicktrade() {
                 array.forEach(function (object) {
                     //console.log(object.OrderID);
                     //console.log(object.Amount);
-                    console.log(JSON.parse(data));
+                    console.log(JSON.parse(data));                    
                     show.innerHTML += "<div style='margin-bottom: 5px;'>" +
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
@@ -268,7 +268,8 @@ function UserInputQuicktrade() {
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
-                        "<a href='#' class='btn btn-danger'>Mua ngay</a>" +
+                        //"@Html.ActionLink('Mua ngay', 'Details', 'Account', null, htmlAttributes: new { @class = 'btn btn-danger' })" +
+                        "<a href='/Account/Details?walletID=" + object.Amount + "&amount=" + object.Price + "' class='btn btn-danger'>Mua ngay</a>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
@@ -315,7 +316,7 @@ function UserInputQuicktradeForSell() {
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
-                        "<a href='#' class='btn btn-success'>Bán ngay</a>" +
+                        "<a href='/Account/Details?walletID=" + object.Amount + "&amount=" + object.Price + "' class='btn btn-success'>Bán ngay</a>" +
                         "</div>" +
                         "</div>" +
                         "</div>";

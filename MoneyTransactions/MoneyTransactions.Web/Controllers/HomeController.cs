@@ -35,7 +35,8 @@ namespace MoneyTransactions.WEB.Controllers
                 o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
                 return View(o);
             }
-            else
+
+            if (pageBuy != null)
             {
                 int pageSize = 5;
                 int pageIndex = 1;
@@ -45,6 +46,10 @@ namespace MoneyTransactions.WEB.Controllers
                 o = _orderServices.ShowRecentTransaction().ToPagedList(pageIndex, pageSize);
                 return View(o);
             }
+
+            IPagedList<Order> i = _orderServices.ShowRecentTransaction().ToPagedList(1, 5);
+
+            return View(i);
         }
 
         [HttpGet]
