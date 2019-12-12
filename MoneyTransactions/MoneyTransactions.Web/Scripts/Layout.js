@@ -270,7 +270,7 @@ function UserInputQuicktrade() {
                         "</div>" +
                         "<div class='col-sm-2'>" +
                         //"@Html.ActionLink('Mua ngay', 'Details', 'Account', null, htmlAttributes: new { @class = 'btn btn-danger' })" +
-                        "<a href='/Account/Details?walletID=" + object.Amount + "&amount=" + object.Price + "' class='btn btn-danger'>Mua ngay</a>" +
+                        "<a href='/Account/Details?walletID=" + object.WalletID + "&amount=" + object.Amount + "' class='btn btn-danger'>Mua ngay</a>" +
                         "</div>" +
                         "</div>" +
                         "</div>";
@@ -318,7 +318,7 @@ function UserInputQuicktradeForSell() {
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
-                        "<a href='/Account/Details?walletID=" + object.Amount + "&amount=" + object.Price + "' class='btn btn-success'>Bán ngay</a>" +
+                        "<a href='/Account/Details?walletID=" + object.WalletID + "&amount=" + object.Amount + "' class='btn btn-success'>Bán ngay</a>" +
                         "</div>" +
                         "</div>" +
                         "</div>";

@@ -5,7 +5,11 @@
     ViewBag.Title = "Trang chủ";
 }
 
-
+<script>
+    function numberWithCommasForRazor(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
 
 
 <div class="col-xs-12 container render-body-bottom" id="render-body">
@@ -35,7 +39,7 @@
                                 <div id="remi-rate">
                                     <span>
                                         <span class="ask-rate" id="forSell"></span>
-                                        <span class="currency">VND</span>
+                                        <span class="currency">VNĐ</span>
                                     </span>
                                 </div>
                                 @*<a class="btn btn-ask" href="#">Bán ngay</a>*@
@@ -50,7 +54,7 @@
                                 <div id="remi-rate">
                                     <span>
                                         <span class="bid-rate" id="forBuy"></span>
-                                        <span class="currency">VND</span>
+                                        <span class="currency">VNĐ</span>
                                     </span>
                                 </div>
                                 @*<a class="btn btn-bid" href="#">Mua ngay</a>*@
@@ -78,7 +82,7 @@
                     <span class="cta-details">
                         <div class="short-description">
                             <span>
-                                Nhận ngay <b>0.01 BTC (~ 2,100,000 VND)</b> cho mỗi một người
+                                Nhận ngay <b>0.01 BTC (~ 2,100,000 VNĐ)</b> cho mỗi một người
                                 được bạn giới thiệu tham gia Localhost.
                             </span>
                             <div class="block-10">Chia sẻ liên kết sau:</div>
@@ -119,7 +123,15 @@
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                            <td class="col-sm-5">@Html.DisplayFor(modelItem => item.Wallet.CryptocurrencyStore.FloorPrice)</td>
+                            <td class="col-sm-5">
+                                @{
+                                    var s = item.Wallet.CryptocurrencyStore.FloorPrice;                                    
+
+                                    <text>                                        
+                                        @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                                    </text>;
+                                }
+                            </td>
                             <td>@Html.ActionLink("Mua", "Details", "Account", new { walletID = item.WalletID, amount = item.Amount }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
@@ -176,7 +188,15 @@
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                            <td class="col-sm-5">@Html.DisplayFor(modelItem => item.Wallet.CryptocurrencyStore.FloorPrice)</td>
+                            <td class="col-sm-5">                                
+                                @{
+                                    var s = item.Wallet.CryptocurrencyStore.FloorPrice;
+
+                                    <text>
+                                        @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                                    </text>;
+                                }
+                            </td>
                             <td>@Html.ActionLink("Bán", "Details", "Account", new { amount = item.Amount, walletID = item.WalletID }, htmlAttributes: new { @class = "btn btn-info" })</td>
                         </tr>
                     </tbody>
@@ -210,3 +230,4 @@
 
 
 </div>
+
