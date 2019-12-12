@@ -261,22 +261,11 @@ function UserInputQuicktrade() {
                     //console.log(object.OrderID);
                     console.log(object);
                     console.log(JSON.parse(data));
-                    var MoneyUnit = "";
-
-                    if (object.OrderType === "Bitcoin") {
-                        MoneyUnit = object.MoneyType;
-                    }
-                    if (object.OrderType === "Ethereum") {
-                        MoneyUnit = object.MoneyType;
-                    }
-                    if (object.OrderType === "Ripple") {
-                        MoneyUnit = object.MoneyType;
-                    }
                     show.innerHTML += "<div style='margin-bottom: 5px;'>" +
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
                         //"<p>Tài khoản: " + object.Wallet.Account.UserName + "</p>" +
-                        "<p>Giá: " + numberWithCommas(object.Price) + " " + MoneyUnit + "</p>" +
+                        "<p>Giá: " + numberWithCommas(object.Price) + " VND" + "</p>" +
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
@@ -321,22 +310,11 @@ function UserInputQuicktradeForSell() {
                     //console.log(object.OrderID);
                     console.log(object);
                     console.log(JSON.parse(data));
-                    var MoneyUnit = "";
-
-                    if (object.OrderType === "Bitcoin") {
-                        MoneyUnit = object.MoneyType;
-                    }
-                    if (object.OrderType === "Ethereum") {
-                        MoneyUnit = object.MoneyType;
-                    }
-                    if (object.OrderType === "Ripple") {
-                        MoneyUnit = object.MoneyType;
-                    }
                     show.innerHTML += "<div style='margin-bottom: 5px;'>" +
                         "<div class='row' style='background-color:#e6e6e6;padding-top: 25px; margin: 0 auto;'>" +
                         "<div class='col-sm-10'>" +
                         //"<p>Tài khoản: " + object.Wallet.Account.UserName + "</p>" +
-                        "<p>Giá: " + numberWithCommas(object.Price) + " " + MoneyUnit + "</p>" +
+                        "<p>Giá: " + numberWithCommas(object.Price) + " VND" + "</p>" +
                         "<p>Số lượng: " + object.Amount + " </p>" +
                         "</div>" +
                         "<div class='col-sm-2'>" +
