@@ -210,11 +210,11 @@ namespace MoneyTransactions.WEB.Controllers
                 if (getUser != null)
                 {
                     //var getWallet = _walletServices.FindWalletByAccountIdAndMoneyType(getUser.AccountID, CryptoCurrencyCommon.Bitcoin.ToString());
-                    var getListWallet = _walletServices.ListWalletByAccountID(getUser.AccountID);
+                    //var getListWallet = _walletServices.ListWalletByAccountID(getUser.AccountID);
 
-                    ViewBag.YourBTC = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower().ToString()).BalanceAmount;
-                    ViewBag.YourETH = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower().ToString()).BalanceAmount;
-                    ViewBag.YourXRP = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower().ToString()).BalanceAmount;
+                    //ViewBag.YourBTC = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower().ToString()).BalanceAmount;
+                    //ViewBag.YourETH = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower().ToString()).BalanceAmount;
+                    //ViewBag.YourXRP = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower().ToString()).BalanceAmount;
 
                     // Wallet Address
                     //ViewBag.WalletAddressBTC = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower().ToString()).WalletAddress;
@@ -238,13 +238,17 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult YourWallet()
+        public ActionResult YourWallet() // nap tien
         {
             if (Session["AccountLogged"] == null)
             {
-                //FormsAuthentication.SignOut();
-                Session.Abandon();
+                return RedirectToAction("Login", "Account");
             }
+
+            var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+            ViewBag.yourBitcoin = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Bitcoin).BalanceAmount;
+            ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
+            ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;
 
             return View();
         }
