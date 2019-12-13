@@ -471,7 +471,7 @@ namespace MoneyTransactions.WEB.Controllers
                     return View("Details", getOrder);
                 }
 
-                orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
             }
 
             return RedirectToAction("Index", "Home");
@@ -481,7 +481,7 @@ namespace MoneyTransactions.WEB.Controllers
         [Obsolete]
         public ActionResult Sell(string sellerID, string buyerID, decimal amount)
         {
-            var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(sellerID), amount);
+            var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(buyerID), amount);
             if (getOrder != null)
             {
                 if (getOrder.Wallet.AccountID == Guid.Parse(sellerID))
@@ -490,7 +490,7 @@ namespace MoneyTransactions.WEB.Controllers
                     ViewBag.username = getOrder.Wallet.Account.UserName;
                     return View("Details", getOrder);
                 }
-                orderServices.HandleTransaction(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                orderServices.CreateSellTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
             }
 
             return RedirectToAction("Index", "Home");

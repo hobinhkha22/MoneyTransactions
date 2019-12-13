@@ -67,12 +67,29 @@ namespace MoneyTransactions.DAL.Implement
                 get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
             }
 
+            // vietnamdong
+            if (moneyType.ToLower() == CryptoCurrencyCommon.VietnamDong.ToLower())
+            {
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
+            }
+
+            if (moneyType.ToLower() == CryptoCurrencyCommon.VietNamDongDescription.ToLower())
+            {
+                var change = CryptoCurrencyCommon.Ripple.ToLower();
+                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
+            }
+
             return get;
         }
 
         public Wallet FindWalletByAccountID(Guid accountID)
         {
             return db.Wallets.FirstOrDefault(x => x.AccountID == accountID);
+        }
+
+        public Wallet FindWalletByMoneyType(Guid accountID, string crypto)
+        {
+            return db.Wallets.FirstOrDefault(x => x.AccountID == accountID && x.CryptocurrencyStore.MoneyType.ToLower() == crypto.ToLower());
         }
 
         public bool CreateWalletTransaction(Wallet seller, Wallet buyer)

@@ -246,6 +246,7 @@ namespace MoneyTransactions.WEB.Controllers
             }
 
             var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
+            ViewBag.yourVietNamDong = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.VietnamDong).BalanceAmount;
             ViewBag.yourBitcoin = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Bitcoin).BalanceAmount;
             ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
             ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;

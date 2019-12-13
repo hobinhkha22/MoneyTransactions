@@ -27,11 +27,16 @@ namespace MoneyTransactions.BUS.Services
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ethereum).FloorPrice;
             }
-            else
+            else if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower() || moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ripple).FloorPrice;
             }
-            //  if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
+            else
+            {
+                return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.VietnamDong).FloorPrice;
+            }            
         }
+
+        
     }
 }

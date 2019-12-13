@@ -17,12 +17,14 @@ namespace MoneyTransactions.BUS.Services
         private readonly OrderDataAccess orderDataAccess;
         private readonly WalletDataAccess walletDataAccess;
         private WalletServices walletServices;
+        private CryptocurrencyStoreServices cryptocurrencyStoreServices;
 
         public OrderServices()
         {
             orderDataAccess = new OrderDataAccess();
             walletDataAccess = new WalletDataAccess();
             walletServices = new WalletServices();
+            cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
         }
 
         [Obsolete]
@@ -232,31 +234,38 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public void CreateBuyTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        public void CreateBuyTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy, Order order)
         {
-            // noi xay ra giao dich tai day
-            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer);
-            var getSeller = walletDataAccess.FindWalletByAccountID(Seller);
-
-            if (getBuyer != null && getSeller != null)
+            // getSeller dang qc ban 1 luong money
+            // getBuyer muon mua
+            if (order.OrderType == OrderCommon.OrderSell) // Sell
             {
-                // check balance amount enough to perform buy action
-                if (getBuyer.BalanceAmount > amountWantToBuy)
+                // noi xay ra giao dich tai day
+                var getBuyer = walletDataAccess.FindWalletByMoneyType(Buyer, CryptoCurrencyCommon.Bitcoin);
+                var getSeller = walletDataAccess.FindWalletByMoneyType(Seller, CryptoCurrencyCommon.Bitcoin);
+
+                if (getBuyer != null && getSeller != null)
                 {
-                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
-                    getBuyer.BalanceAmount = buyerSubtract;
-
-                    // tru fee
-                    var amountSellerGet = amountWantToBuy - ExchangeRateConstant.Fees;
-                    getSeller.BalanceAmount += amountSellerGet;
-
-                    walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
-
-                    // remove order
-                    var orderToRemove = orderDataAccess.FindOrderByWalletID(getSeller.WalletID); // find by walletId
-                    if (orderToRemove != null)
+                    // check balance amount enough to perform buy action                    
+                    if (getBuyer.BalanceAmount > amountWantToBuy)
                     {
-                        orderDataAccess.RemoveOrder(orderToRemove);
+                        // nguoi mua se co 2 thu
+                        // 1. cong bitcoin vao vi bitcoin
+                        getBuyer.BalanceAmount += amountWantToBuy;
+
+                        // 2. tru tien vnd vao nguoi mua
+                        var buyerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Buyer, CryptoCurrencyCommon.Bitcoin);                        
+                        buyerVietNamDong.BalanceAmount -= (amountWantToBuy * cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon.Bitcoin));
+
+                        // seller se duoc cong vao tien vnd
+                        var sellerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Seller, CryptoCurrencyCommon.VietnamDong);
+                        sellerVietNamDong.BalanceAmount += (amountWantToBuy * cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon.Bitcoin));
+
+                        walletDataAccess.CreateWalletTransaction(sellerVietNamDong, buyerVietNamDong);
+                        walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
+
+                        // remove order                        
+                        orderDataAccess.RemoveOrder(order);
                     }
                 }
             }
@@ -267,35 +276,41 @@ namespace MoneyTransactions.BUS.Services
             return orderDataAccess.GetOrdersByAmount(amountSearch);
         }
 
-        public void CreateSellTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToBuy)
+        public void CreateSellTransactionNoComplex(Guid Seller, Guid Buyer, decimal amountWantToSell, Order order)
         {
-            // noi xay ra giao dich tai day
-            var getBuyer = walletDataAccess.FindWalletByAccountID(Buyer); // get wallet buyer
-            var getSeller = walletDataAccess.FindWalletByAccountID(Seller); // get wallet seller
-
-            if (getBuyer != null && getSeller != null)
+            // getBuyer dang qc mua 1 luong money
+            // getSeller muon ban
+            if (order.OrderType == OrderCommon.OrderBuy) // Buy
             {
-                // check balance amount enough to perform buy action
-                if (getBuyer.BalanceAmount > amountWantToBuy)
+                // noi xay ra giao dich tai day
+                var getBuyer = walletDataAccess.FindWalletByMoneyType(Buyer, CryptoCurrencyCommon.Bitcoin);
+                var getSeller = walletDataAccess.FindWalletByMoneyType(Seller, CryptoCurrencyCommon.Bitcoin);
+
+                // check balance amount enough to perform buy action                    
+                if (getSeller.BalanceAmount > amountWantToSell)
                 {
-                    var buyerSubtract = getBuyer.BalanceAmount - amountWantToBuy;
-                    getBuyer.BalanceAmount = buyerSubtract;
+                    // nguoi mua se co 2 thu
+                    // 1. cong bitcoin vao vi bitcoin
+                    getBuyer.BalanceAmount += amountWantToSell;
+                    getSeller.BalanceAmount -= amountWantToSell;
 
-                    // tru fee
-                    var amountSellerGet = amountWantToBuy - ExchangeRateConstant.Fees;
-                    getSeller.BalanceAmount += amountSellerGet;
+                    // 2. tru tien vnd vao nguoi mua
+                    var buyerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Buyer, CryptoCurrencyCommon.Bitcoin);
+                    buyerVietNamDong.BalanceAmount -= (amountWantToSell * cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon.Bitcoin));
 
+                    // seller se duoc cong vao tien vnd
+                    var sellerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Seller, CryptoCurrencyCommon.VietnamDong);
+                    sellerVietNamDong.BalanceAmount += (amountWantToSell * cryptocurrencyStoreServices.ShowFloorPrice(CryptoCurrencyCommon.Bitcoin));
+
+                    walletDataAccess.CreateWalletTransaction(sellerVietNamDong, buyerVietNamDong);
                     walletDataAccess.CreateWalletTransaction(getSeller, getBuyer);
 
-                    // remove order
-                    var orderToRemove = orderDataAccess.FindOrderByWalletID(getSeller.WalletID); // find by walletId
-                    if (orderToRemove != null)
-                    {
-                        orderDataAccess.RemoveOrder(orderToRemove);
-                    }
+                    // remove order                        
+                    orderDataAccess.RemoveOrder(order);
                 }
             }
         }
+
 
         public void CreateOrderTransaction(Order order)
         {

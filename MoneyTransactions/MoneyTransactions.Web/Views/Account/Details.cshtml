@@ -90,7 +90,7 @@
             {
                 if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderBuy)
                 {
-                    @Html.ActionLink("Bán", "Sell", "Account", new { sellerID = Model.Wallet.AccountID, buyerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Bán", "Sell", "Account", new { buyerID = Model.Wallet.AccountID, sellerID = Session["getWalletID"].ToString(), amount = Model.Amount }, new { @class = "btn btn-success" })
                 }
 
                 if (Model.OrderType == MoneyTransactions.Common.OrderCommon.OrderSell)
