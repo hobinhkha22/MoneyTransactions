@@ -27,7 +27,7 @@ namespace MoneyTransactions.BUS.Services
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ethereum).FloorPrice;
             }
-            else if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower() || moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
+            else if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower() || moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
             {
                 return cryptocurrencyStoreDataAccess.GetCryptocurrencyStoreByMoneyType(CryptoCurrencyCommon.Ripple).FloorPrice;
             }

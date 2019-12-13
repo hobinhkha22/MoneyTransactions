@@ -107,7 +107,7 @@
         <div class="title-accent heading-03">
             <div>
                 <span style="font-size: 25px;">
-                    Bạn muốn <span class="text-success">mua</span> Bitcoin?
+                    Bạn muốn <span class="text-success">mua</span> BTC/ETH/XRP?
                 </span>
             </div>
         </div>
@@ -121,7 +121,7 @@
                 {
                     <tbody>
                         <tr>
-                            <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
+                            <th scope="row">@Html.DisplayFor(modelItem => item.Amount) @item.Wallet.CryptocurrencyStore.MoneyType.ToString()</th>
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td class="col-sm-5">
                                 @{
@@ -172,7 +172,7 @@
         <div class="title-accent heading-03">
             <div>
                 <span style="font-size: 25px;">
-                    Bạn muốn <span class="text-danger">bán</span> Bitcoin?
+                    Bạn muốn <span class="text-danger">bán</span> BTC/ETH/XRP?
                 </span>
             </div>
         </div>
@@ -186,7 +186,7 @@
                 {
                     <tbody>
                         <tr>
-                            <th scope="row">@Html.DisplayFor(modelItem => item.Amount) BTC</th>
+                            <th scope="row">@Html.DisplayFor(modelItem => item.Amount) @item.Wallet.CryptocurrencyStore.MoneyType.ToString()</th>
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td class="col-sm-5">                                
                                 @{
