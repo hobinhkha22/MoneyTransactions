@@ -25,6 +25,7 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            TempData["isHidden"] = "hidden";
             if (Session["AccountLogged"] == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -474,7 +475,13 @@ namespace MoneyTransactions.WEB.Controllers
                 var result = orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
                 if (result)
                 {
-                    ViewBag.HandleSell = "Giao dịch thành công";
+                    TempData["HandleSell"] = "Giao dịch thành công";
+                    TempData["yourColor"] = "Green";
+                }
+                else
+                {
+                    TempData["HandleSell"] = "Giao dịch thất bại";
+                    TempData["yourColor"] = "Red";
                 }
             }
 
@@ -486,6 +493,7 @@ namespace MoneyTransactions.WEB.Controllers
         public ActionResult Sell(string sellerID, string buyerID, decimal amount)
         {
             var getOrder = orderServices.FindOrderByAccountIDAndAmount(Guid.Parse(buyerID), amount);
+            bool result = false;
             if (getOrder != null)
             {
                 if (getOrder.Wallet.AccountID == Guid.Parse(sellerID))
@@ -494,11 +502,18 @@ namespace MoneyTransactions.WEB.Controllers
                     ViewBag.username = getOrder.Wallet.Account.UserName;
                     return View("Details", getOrder);
                 }
-                var result = orderServices.CreateSellTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
-                if (result)
-                {
-                    ViewBag.HandleSell = "Giao dịch thành công";
-                }
+                result = orderServices.CreateSellTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+            }
+
+            if (result)
+            {
+                TempData["HandleSell"] = "Giao dịch thành công";
+                TempData["yourColor"] = "Green";
+            }
+            else
+            {
+                TempData["HandleSell"] = "Giao dịch thất bại";
+                TempData["yourColor"] = "Red";
             }
 
             return RedirectToAction("Index", "Home");

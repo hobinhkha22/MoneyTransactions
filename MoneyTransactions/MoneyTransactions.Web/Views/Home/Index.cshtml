@@ -11,6 +11,18 @@
     }
 </script>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" id="div-intro">
+                <p style="color: @Html.Encode(@TempData["yourColor"]);">
+                    @TempData["HandleSell"]
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="col-xs-12 container render-body-bottom" id="render-body">
     <div class="row" id="render-body">
@@ -125,9 +137,9 @@
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
                             <td class="col-sm-5">
                                 @{
-                                    var s = item.Wallet.CryptocurrencyStore.FloorPrice;                                    
+                                    var s = item.Wallet.CryptocurrencyStore.FloorPrice;
 
-                                    <text>                                        
+                                    <text>
                                         @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
                                     </text>;
                                 }
@@ -188,7 +200,7 @@
                         <tr>
                             <th scope="row">@Html.DisplayFor(modelItem => item.Amount) @item.Wallet.CryptocurrencyStore.MoneyType.ToString()</th>
                             <td class="col-sm-3">@Html.DisplayFor(modelItem => item.Wallet.Account.UserName)</td>
-                            <td class="col-sm-5">                                
+                            <td class="col-sm-5">
                                 @{
                                     var s = item.Wallet.CryptocurrencyStore.FloorPrice;
 

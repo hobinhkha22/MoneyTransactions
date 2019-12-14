@@ -24,7 +24,7 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index(int? pageSell, int? pageBuy)
-        {
+        {            
             if (pageSell != null)
             {
                 int pageSize = 5;
@@ -183,24 +183,7 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
-        // POST: Home/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
+     
         [HttpGet]
         public ActionResult MyProfile()
         {

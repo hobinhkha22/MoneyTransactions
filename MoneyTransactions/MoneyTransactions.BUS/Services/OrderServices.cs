@@ -249,13 +249,13 @@ namespace MoneyTransactions.BUS.Services
                     // check balance amount enough to perform buy action                    
                     if (getBuyer.BalanceAmount > amountWantToBuy)
                     {
-                        
+
                         // nguoi mua se co 2 thu
                         // 1. cong bitcoin vao vi bitcoin
                         getBuyer.BalanceAmount += amountWantToBuy;
 
                         // 2. tru tien vnd vao buyer
-                        var buyerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Buyer, CryptoCurrencyCommon.VietnamDong);                        
+                        var buyerVietNamDong = walletDataAccess.FindWalletByAccountAndMoneyType(Buyer, CryptoCurrencyCommon.VietnamDong);
                         buyerVietNamDong.BalanceAmount -= (amountWantToBuy * cryptocurrencyStoreServices.ShowFloorPrice(order.Wallet.CryptocurrencyStore.MoneyType));
 
                         // seller se duoc cong tien vnd vao vi
@@ -267,6 +267,10 @@ namespace MoneyTransactions.BUS.Services
 
                         // remove order                        
                         orderDataAccess.RemoveOrder(order);
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
                 return true;
@@ -314,6 +318,11 @@ namespace MoneyTransactions.BUS.Services
                     // remove order                        
                     orderDataAccess.RemoveOrder(order);
                 }
+                else
+                {
+                    return false;
+                }
+
                 return true;
             }
             else
