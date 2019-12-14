@@ -26,7 +26,7 @@ namespace MoneyTransactions.DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=BLUE;Initial Catalog=MoneyTransactions;User ID=sa;Password=hello@worl" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ALEX;Initial Catalog=MoneyTransactions;User ID=sa;Password=hello@worl" +
             "d22")]
         public string MoneyTransactionsConnectionString {
             get {

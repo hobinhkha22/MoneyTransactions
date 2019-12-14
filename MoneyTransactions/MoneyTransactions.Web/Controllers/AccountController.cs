@@ -471,7 +471,11 @@ namespace MoneyTransactions.WEB.Controllers
                     return View("Details", getOrder);
                 }
 
-                orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                var result = orderServices.CreateBuyTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                if (result)
+                {
+                    ViewBag.HandleSell = "Giao dịch thành công";
+                }
             }
 
             return RedirectToAction("Index", "Home");
@@ -490,7 +494,11 @@ namespace MoneyTransactions.WEB.Controllers
                     ViewBag.username = getOrder.Wallet.Account.UserName;
                     return View("Details", getOrder);
                 }
-                orderServices.CreateSellTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                var result = orderServices.CreateSellTransactionNoComplex(Guid.Parse(sellerID), Guid.Parse(buyerID), amount, getOrder);
+                if (result)
+                {
+                    ViewBag.HandleSell = "Giao dịch thành công";
+                }
             }
 
             return RedirectToAction("Index", "Home");
