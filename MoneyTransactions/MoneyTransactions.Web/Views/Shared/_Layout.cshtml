@@ -21,11 +21,16 @@
                     <li>
                         @if (Session["AccountLogged"] != null)
                         {
-                            @Html.ActionLink("Admin", "Admin", "Account")
+                            var getAccount = new MoneyTransactions.BUS.Services.AccountService();
+                            var isAdmin = getAccount.FindUserByUserName(Session["AccountLogged"].ToString());
+                            if (isAdmin.Role.RoleName.ToLower() == MoneyTransactions.Common.AccountConstant.AdminRole.ToLower())
+                            {
+                                @Html.ActionLink("Admin", "Admin", "Account")
+                            }
                         }
                     </li>
                     <li>@Html.ActionLink("Giao dịch P2P", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Đầu tư", "DienDan", "DauTu")</li>
+                    <li>@Html.ActionLink("Đầu tư", "CommingSoon", "Home")</li>
                     <li>
                         @{
                             if (Session["AccountLogged"] != null)

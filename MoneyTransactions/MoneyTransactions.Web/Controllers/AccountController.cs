@@ -184,25 +184,15 @@ namespace MoneyTransactions.WEB.Controllers
                 Session["getWalletID"] = usermodel.AccountID;
                 return RedirectToAction("Index", "Home");
             }
-        }
+        }        
 
         [HttpGet]
-        public ActionResult AdminPage()
+        public ActionResult Admin(int? page)
         {
             if (Session["AccountLogged"] == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Admin(int? page)
-        {
-            //if (Session["AccountLogged"] == null)
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
 
             int pageSize = 5;
             int pageIndex = 1;
