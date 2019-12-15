@@ -1,0 +1,38 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<MoneyTransactions.Entities.Order>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h4>User</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Số lượng</td>
+                <td>Giá</td>
+                <td>Tài khoản</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Amount</td>
+                    <td>@item.Price</td>
+                    <td>@item.Wallet.Account.UserName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="container" style="margin-left: 20px">
+        <p></p>
+        <p></p>
+        <div class="pagination" style="margin-left: 400px">
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount   *@
+            @Html.PagedListPager(Model, page => Url.Action("AdminInOrder", new { page }))
+        </div>
+    </div>
+
+</div>

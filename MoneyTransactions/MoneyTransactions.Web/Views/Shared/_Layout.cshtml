@@ -18,6 +18,12 @@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav remi-header-top-menu">
+                    <li>
+                        @if (Session["AccountLogged"] != null)
+                        {
+                            @Html.ActionLink("Admin", "Admin", "Account")
+                        }
+                    </li>
                     <li>@Html.ActionLink("Giao dịch P2P", "Index", "Home")</li>
                     <li>@Html.ActionLink("Đầu tư", "DienDan", "DauTu")</li>
                     <li>

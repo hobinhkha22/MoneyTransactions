@@ -2263,6 +2263,8 @@
     <Content Include="Views\DauTu\Article3.cshtml" />
     <Content Include="Views\DauTu\Article4.cshtml" />
     <Content Include="Views\DauTu\Article5.cshtml" />
+    <Content Include="Views\Account\Admin.cshtml" />
+    <Content Include="Views\Account\AdminInOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

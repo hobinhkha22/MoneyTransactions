@@ -175,7 +175,7 @@ namespace MoneyTransactions.WEB.Controllers
                     {
                         // for admin
                         Session["AccountLogged"] = usermodel.UserName;
-                        return RedirectToAction("AdminPage", "Account");
+                        return RedirectToAction("Admin", "Account");
                     }
                 }
 
@@ -193,8 +193,41 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Admin(int? page)
+        {
+            //if (Session["AccountLogged"] == null)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
+
+            int pageSize = 5;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            IPagedList<Account> acc = null;
+            acc = accountService.GetAccounts().ToPagedList(pageIndex, pageSize);
+
+            // viewdata in order
+            IPagedList<Order> ord = null;
+            ord = orderServices.GetListOrder().ToPagedList(pageIndex, pageSize);
+            ViewData["InOrder"] = ord;
+
+            return View(acc);
+        }
+
+        [HttpGet]
+        public ActionResult AdminInOrder(int? page)
+        {
+            int pageSize = 5;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            IPagedList<Order> ord = null;
+            ord = orderServices.GetListOrder().ToPagedList(pageIndex, pageSize);
+
+            return View(ord);
         }
 
         [HttpGet]

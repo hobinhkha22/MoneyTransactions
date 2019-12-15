@@ -1,0 +1,114 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<MoneyTransactions.Entities.Account>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-heading remi-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <strong style="color: white;">Admin</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Manage user -->
+<!-- Table -->
+
+<div class="container">
+    <h4>User List</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Username</td>
+                <td>Password</td>
+                <td>Email</td>
+                <td>Phone</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Password</td>
+                    <td>@item.Email</td>
+                    <td>@item.Phone</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="container" style="margin-left: 20px">
+        <p></p>
+        <p></p>
+        <div class="pagination" style="margin-left: 400px">
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount   *@
+            @Html.PagedListPager(Model, page => Url.Action("Admin", new { page }))
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h4>Order List</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Price</td>
+                <td>Amount</td>                
+                <td>Username</td>
+            </tr>
+            @foreach (var item in ViewData["InOrder"] as PagedList.IPagedList<MoneyTransactions.Entities.Order>)
+            {
+                <tr>
+                    <td>@item.Amount</td>
+                    <td>@item.Price</td>
+                    <td>@item.Wallet.Account.UserName</td>                    
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="container" style="margin-left: 20px">
+        <p></p>
+        <p></p>
+        <div class="pagination" style="margin-left: 400px">
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount   *@
+            @Html.PagedListPager(ViewData["InOrder"] as PagedList.IPagedList<MoneyTransactions.Entities.Order>, page => Url.Action("Admin", new { page }))
+        </div>
+    </div>
+</div>
+
+
+
+<div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+</div>
