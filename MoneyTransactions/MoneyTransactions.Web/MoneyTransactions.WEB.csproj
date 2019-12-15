@@ -1852,6 +1852,9 @@
     <Content Include="Content\fonts\raleway\OFL.txt" />
     <Content Include="Content\fonts\ubuntu\UFL.txt" />
     <Content Include="Content\gijgo.min.css" />
+    <Content Include="Content\images\DauTu\bitcoinchinhlataisandaututotnhat.jpg" />
+    <Content Include="Content\images\DauTu\lenhlongbitcoinlapkyluc.jpg" />
+    <Content Include="Content\images\DauTu\tinvancrypto.jpg" />
     <Content Include="Content\images\icons\favicon.ico" />
     <Content Include="Content\images\icons\icon-google.png" />
     <Content Include="Content\images\icons\map-marker.png" />
