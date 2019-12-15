@@ -1852,6 +1852,13 @@
     <Content Include="Content\fonts\raleway\OFL.txt" />
     <Content Include="Content\fonts\ubuntu\UFL.txt" />
     <Content Include="Content\gijgo.min.css" />
+    <Content Include="Content\images\Article2\article2_1.PNG" />
+    <Content Include="Content\images\Article2\article2_2.PNG" />
+    <Content Include="Content\images\Article2\article2_3.PNG" />
+    <Content Include="Content\images\Article2\article2_4.PNG" />
+    <Content Include="Content\images\BigArticle\bitcoin-la-tai-san-dau-tu-tot-nhat-trong-thap-ky-nay.jpg" />
+    <Content Include="Content\images\BigArticle\twitterembeeded.PNG" />
+    <Content Include="Content\images\BigArticle\twitterembeeded2.PNG" />
     <Content Include="Content\images\DauTu\bitcoinchinhlataisandaututotnhat.jpg" />
     <Content Include="Content\images\DauTu\cardano.jpg" />
     <Content Include="Content\images\DauTu\ether.jpg" />
@@ -2237,6 +2244,11 @@
     <Content Include="Views\Home\CommingSoon.cshtml" />
     <Content Include="Views\Home\YourWallet.cshtml" />
     <Content Include="Views\DauTu\DienDan.cshtml" />
+    <Content Include="Views\DauTu\Article1.cshtml" />
+    <Content Include="Views\DauTu\Article2.cshtml" />
+    <Content Include="Views\DauTu\Article3.cshtml" />
+    <Content Include="Views\DauTu\Article4.cshtml" />
+    <Content Include="Views\DauTu\Article5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

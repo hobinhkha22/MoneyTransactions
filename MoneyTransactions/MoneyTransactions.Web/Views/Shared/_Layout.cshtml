@@ -19,12 +19,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav remi-header-top-menu">
                     <li>@Html.ActionLink("Giao dịch P2P", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Đầu tư", "CommingSoon", "Home")</li>
+                    <li>@Html.ActionLink("Đầu tư", "DienDan", "DauTu")</li>
+                    <li>
+                        @{
+                            if (Session["AccountLogged"] != null)
+                            {
+                                @Html.ActionLink("Diễn dàn", "DienDan", "DauTu")
+                            }
+                        }
+                    </li>
                     <li>
                         @{
                             if (Session["AccountLogged"] == null)
                             {
-                                @Html.ActionLink("Diễn dàn", "CommingSoon", "Home")
+                                @Html.ActionLink("Diễn dàn", "DienDan", "DauTu")
                             }
                             else
                             {
@@ -68,19 +76,19 @@
     <!-- From here container from index.cshtml -->
     <!-- Container -->
     @*<div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-info" id="div-intro">
-                    <p>
-                        In order to further protect sellers from fraud attempt,
-                        starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
-                        and increase the limit on a daily basis for each account based on verification level.
-                        Please beware of this when you schedule to buy a large amount of coin on Demo.
-                    </p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info" id="div-intro">
+                        <p>
+                            In order to further protect sellers from fraud attempt,
+                            starting Oct 18 2019, Remitano will start apply a withdrawal limit on all account,
+                            and increase the limit on a daily basis for each account based on verification level.
+                            Please beware of this when you schedule to buy a large amount of coin on Demo.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 
     <div style="padding-bottom:50px;">
         @RenderBody()

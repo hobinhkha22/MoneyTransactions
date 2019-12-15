@@ -14,6 +14,36 @@ namespace MoneyTransactions.WEB.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Article1()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Article2()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Article3()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Article4()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Article5()
+        {
+            return View();
+        }
+
         // GET: DauTu/Details/5
         public ActionResult Details(int id)
         {
