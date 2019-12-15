@@ -1853,6 +1853,8 @@
     <Content Include="Content\fonts\ubuntu\UFL.txt" />
     <Content Include="Content\gijgo.min.css" />
     <Content Include="Content\images\DauTu\bitcoinchinhlataisandaututotnhat.jpg" />
+    <Content Include="Content\images\DauTu\cardano.jpg" />
+    <Content Include="Content\images\DauTu\ether.jpg" />
     <Content Include="Content\images\DauTu\lenhlongbitcoinlapkyluc.jpg" />
     <Content Include="Content\images\DauTu\tinvancrypto.jpg" />
     <Content Include="Content\images\icons\favicon.ico" />
