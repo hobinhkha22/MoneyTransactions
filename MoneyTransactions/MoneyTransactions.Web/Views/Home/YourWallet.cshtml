@@ -1,4 +1,4 @@
-﻿@model MoneyTransactions.Entities.Wallet
+﻿@model MoneyTransactions.Entities.Account
 
 @{
     ViewBag.Title = "Your Wallet";
@@ -31,65 +31,50 @@
                     <table class="table table-striped">
                         <tbody>
 
+                            @foreach (var item in Model.Wallets)
+                            {
+                                <!-- Ripple -->
+                                <tr>
+                                    <td>
+                                        @{
+                                            if (@item.CryptocurrencyStore.MoneyType == MoneyTransactions.Common.CryptoCurrencyCommon.Bitcoin)
+                                            {
+                                                <text>
+                                                    Bitcoin(BTC)
+                                                </text>
+                                            }
+                                            if (@item.CryptocurrencyStore.MoneyType == MoneyTransactions.Common.CryptoCurrencyCommon.Ethereum)
+                                            {
+                                                <text>
+                                                    Ethereum(ETH)
+                                                </text>
+                                            }
+                                            if (@item.CryptocurrencyStore.MoneyType == MoneyTransactions.Common.CryptoCurrencyCommon.Ripple)
+                                            {
+                                                <text>
+                                                    Ripple(XRP)
+                                                </text>
+                                            }
+                                            if (@item.CryptocurrencyStore.MoneyType == MoneyTransactions.Common.CryptoCurrencyCommon.VietnamDong)
+                                            {
+                                                <text>
+                                                    Việt Nam Đồng(VNĐ)
+                                                </text>
+                                            }
+                                        }
 
-                            <!-- Ripple -->
-                            <tr>
-                                <td>Việt Nam Đồng (VNĐ)</td>
-                                <td>
-                                    @ViewBag.yourVietNamDong
-                                </td>
-                                <td>
-                                    @*new { accountID = Model.AccountID, isType = "NapTien", moneyType = "VND" }*@
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.Account.AccountID, isType = "VND" }, new { @class = "btn btn-success", @target = "_blank" })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.Account.AccountID, isType = "VND" }, new { @class = "btn btn-danger", @target = "_blank" })
-                                </td>
-                            </tr>
-
-                            <!-- Bitcoin -->
-                            <tr>
-                                <td>Bitcoin (BTC)</td>
-                                <td>
-                                    @ViewBag.yourBitcoin
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.Account.AccountID, isType = "BTC" }, new { @class = "btn btn-success", @target = "_blank" })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.Account.AccountID, isType = "BTC" }, new { @class = "btn btn-danger", @target = "_blank" })
-                                </td>
-                            </tr>
-
-                            <!-- Ethereum -->
-                            <tr>
-                                <td>Ethereum (ETH)</td>
-                                <td>
-                                    @ViewBag.yourEthereum
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-success", @target = "_blank" })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-danger", @target = "_blank" })
-                                </td>
-                            </tr>
-
-
-                            <!-- Ripple -->
-                            <tr>
-                                <td>Ripple (XRP)</td>
-                                <td>
-                                    @ViewBag.yourRipple
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-success", @target = "_blank" })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-danger", @target = "_blank" })
-                                </td>
-                            </tr>
-
+                                    </td>
+                                    <td>
+                                        @item.BalanceAmount
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { accountID = @item.AccountID, isType = @item.CryptocurrencyStore.MoneyType }, new { @class = "btn btn-success", @target = "_blank" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { accountID = @item.AccountID, isType = @item.CryptocurrencyStore.MoneyType }, new { @class = "btn btn-danger", @target = "_blank" })
+                                    </td>
+                                </tr>
+                            }
 
 
                         </tbody>

@@ -29,57 +29,8 @@ namespace MoneyTransactions.DAL.Implement
 
         public Wallet FindWalletByAccountAndMoneyType(Guid AccountID, string moneyType)
         {
-            var get = new Wallet();
-
-            // bitcoin
-            if (moneyType.ToLower() == CryptoCurrencyCommon.Bitcoin.ToLower())
-            {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
-            }
-
-            if (moneyType.ToLower() == CryptoCurrencyCommon.BitcointDescription.ToLower())
-            {
-                var change = CryptoCurrencyCommon.Bitcoin.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
-            }
-
-            // ethereum
-            if (moneyType.ToLower() == CryptoCurrencyCommon.Ethereum.ToLower())
-            {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
-            }
-
-            if (moneyType.ToLower() == CryptoCurrencyCommon.EthereumDescription.ToLower())
-            {
-                var change = CryptoCurrencyCommon.Ethereum.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
-            }
-
-            // ripple
-            if (moneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower())
-            {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
-            }
-
-            if (moneyType.ToLower() == CryptoCurrencyCommon.RippleDescription.ToLower())
-            {
-                var change = CryptoCurrencyCommon.Ripple.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
-            }
-
-            // vietnamdong
-            if (moneyType.ToLower() == CryptoCurrencyCommon.VietnamDong.ToLower())
-            {
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
-            }
-
-            if (moneyType.ToLower() == CryptoCurrencyCommon.VietNamDongDescription.ToLower())
-            {
-                var change = CryptoCurrencyCommon.Ripple.ToLower();
-                get = db.Wallets.FirstOrDefault(w => w.AccountID == AccountID && w.CryptocurrencyStore.MoneyType.ToLower() == change);
-            }
-
-            return get;
+            var g = db.Wallets.FirstOrDefault(x => x.AccountID == AccountID && x.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
+            return db.Wallets.FirstOrDefault(x => x.AccountID == AccountID && x.CryptocurrencyStore.MoneyType.ToLower() == moneyType.ToLower());
         }
 
         public Wallet FindWalletByAccountID(Guid accountID)
@@ -146,6 +97,21 @@ namespace MoneyTransactions.DAL.Implement
         public List<Wallet> GetListWalletByAccountID(Guid AccountID)
         {
             return db.Wallets.Where(w => w.AccountID == AccountID).ToList();
+        }
+
+        public WalletOutside FindWalletOutSideByWalletOutSideID(Guid wOutsideID)
+        {
+            return db.WalletOutsides.FirstOrDefault(x => x.WalletOutsideID == wOutsideID);
+        }
+
+        public WalletOutside FindWalletOutSideByAccountID(Guid AccountID)
+        {
+            return db.WalletOutsides.FirstOrDefault(x => x.AccountID == AccountID);
+        }
+
+        public WalletOutside FindWalletOutSideByWalletOutSideIDAndAccountID(Guid wOutsideID, Guid AccountID)
+        {
+            return db.WalletOutsides.FirstOrDefault(x => x.WalletOutsideID == wOutsideID && x.AccountID == AccountID);
         }
     }
 }

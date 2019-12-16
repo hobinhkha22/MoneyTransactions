@@ -57,9 +57,9 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult DepositFromBank(Guid walletID, string isType)
+        public ActionResult DepositFromBank(Guid accountID, string isType)
         {
-            var getWall = walletService.FindWalletByAccountIdAndMoneyType(walletID, isType);
+            var getWall = walletService.FindWalletByAccountIdAndMoneyType(accountID, isType);
             if (getWall != null)
             {
                 return View(getWall);
@@ -89,15 +89,15 @@ namespace MoneyTransactions.WEB.Controllers
             }
 
             ViewBag.YourColorNapTien = "red";
-            ViewBag.NapTienResult = "Nạp tiền thất bại";           
+            ViewBag.NapTienResult = "Nạp tiền thất bại";
 
-            return RedirectToAction("DepositFromBank", "Bank");
+            return View("Close");
         }
 
         [HttpGet]
-        public ActionResult WithdrawToBank(Guid walletID)
+        public ActionResult WithdrawToBank(Guid accountID, string isType)
         {
-            var getWall = walletService.FindWalletByAccountId(walletID);
+            var getWall = walletService.FindWalletByAccountIdAndMoneyType(accountID, isType);
             if (getWall != null)
             {
                 return View(getWall);
@@ -112,15 +112,18 @@ namespace MoneyTransactions.WEB.Controllers
             // Guid accountID, string isType, string walletAddress, decimal luongTienNap
             if (form["diaChiVi"] != "")
             {
-                var luongtienNap = decimal.Parse(form["luongTienNap"]);
-                var findWallet = walletService.FindWalletByWalletAddress(form["diaChiVi"]);
-                var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
-                var result = bankServices.RutTien(accInside, findWallet, luongtienNap);
+                var luongtienNap = decimal.Parse(form["luongTienRut"]);
+                var findWalletInside = walletService.FindWalletByWalletAddress(form["diaChiViInside"]);
+                var findWalletOutside = walletService.FindWalletOutSideByAccountID(findWalletInside.Account.AccountID);
+
+                var result = bankServices.RutTien(findWalletOutside, findWalletInside, luongtienNap, findWalletInside.CryptocurrencyStore.MoneyType);
 
                 if (result)
                 {
                     ViewBag.YourColorNapTien = "green";
                     ViewBag.NapTienResult = "Nạp tiền thành công";
+
+                    return View("Close");
                 }
             }
 
@@ -128,13 +131,13 @@ namespace MoneyTransactions.WEB.Controllers
             ViewBag.NapTienResult = "Nạp tiền thất bại";
 
 
-            return View();
+            return View("Close");
         }
 
         [HttpGet]
         public ActionResult Close()
         {
             return View();
-        }    
+        }
     }
 }

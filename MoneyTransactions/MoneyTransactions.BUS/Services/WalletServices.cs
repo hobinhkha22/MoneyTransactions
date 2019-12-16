@@ -147,5 +147,20 @@ namespace MoneyTransactions.BUS.Services
         {
             return walletDataAccess.GetListWalletByAccountID(accountID);
         }
+
+        public WalletOutside FindWalletOutSideByWalletOutSideID(Guid wOutsideID)
+        {
+            return walletDataAccess.FindWalletOutSideByWalletOutSideID(wOutsideID);
+        }
+
+        public WalletOutside FindWalletOutSideByAccountID(Guid AccountID)
+        {
+            return walletDataAccess.FindWalletOutSideByAccountID(AccountID);
+        }
+
+        public WalletOutside FindWalletOutSideByWalletOutSideIDAndAccountID(Guid wOutsideID, Guid AccountID)
+        {
+            return walletDataAccess.FindWalletOutSideByWalletOutSideIDAndAccountID(wOutsideID, AccountID);
+        }
     }
 }

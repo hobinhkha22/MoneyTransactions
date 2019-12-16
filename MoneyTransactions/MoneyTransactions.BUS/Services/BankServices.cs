@@ -1,4 +1,5 @@
-﻿using MoneyTransactions.DAL.Implement;
+﻿using MoneyTransactions.Common;
+using MoneyTransactions.DAL.Implement;
 using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace MoneyTransactions.BUS.Services
                 findWalletInside.BalanceAmount += luongNapTien; // cong vao wallet trong dua theo moneyType
                 bankDataAccess.NapTien(wallet);
 
-                return true;                
+                return true;
             }
             else
             {
@@ -45,36 +46,59 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public bool RutTien(Account account, Wallet wallet, decimal luongRutTien)
+        public bool RutTien(WalletOutside walletOutside, Wallet wallet, decimal luongRutTien, string moneyType)
         {
             // Scenario:
             // user trong muon rut tien tu trong wallet trong ra bank ngoai
             // get object wallet trong
             // get object bank ngoai de rut tien ra
             // va check so tien wallet trong co du de rut
-            var findBankOutside = bankDataAccess.FindBankOutside(account.AccountID);
+            var findWalletOutSide = WalletDataAccess.FindWalletOutSideByWalletOutSideID(walletOutside.WalletOutsideID);
             var findWalletInside = WalletDataAccess.FindWalletByWalletID(wallet.WalletID);
 
-            if (findBankOutside != null && findWalletInside != null)
+            if (findWalletOutSide != null && findWalletInside != null)
             {
-                // check so tien bank ngoai
-                if (findWalletInside.BalanceAmount > luongRutTien)
+                if (findWalletInside.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Bitcoin)
+                {
+                    if (findWalletInside.BalanceAmount > luongRutTien)
+                    {
+                        findWalletInside.BalanceAmount -= luongRutTien; // tru tien wallet trong
+                        findWalletOutSide.BTC += luongRutTien; // cong vao bank ngoai
+                        bankDataAccess.RutTien(findWalletOutSide, findWalletInside, findWalletInside.CryptocurrencyStore.MoneyType);
+
+                        return true;
+                    }
+                }
+
+                if (findWalletInside.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum)
                 {
                     findWalletInside.BalanceAmount -= luongRutTien; // tru tien wallet trong
-                    findBankOutside.VietNamDong += luongRutTien; // cong vao bank ngoai
-                    bankDataAccess.RutTien(account, wallet, luongRutTien);
+                    findWalletOutSide.ETH += luongRutTien; // cong vao bank ngoai
+                    bankDataAccess.RutTien(findWalletOutSide, findWalletInside, findWalletInside.CryptocurrencyStore.MoneyType);
 
                     return true;
                 }
-                else
+
+                if (findWalletInside.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple)
                 {
-                    return false;
+                    findWalletInside.BalanceAmount -= luongRutTien; // tru tien wallet trong
+                    findWalletOutSide.XRP += luongRutTien; // cong vao bank ngoai
+                    bankDataAccess.RutTien(findWalletOutSide, findWalletInside, findWalletInside.CryptocurrencyStore.MoneyType);
+
+                    return true;
+                }
+
+                if (findWalletInside.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.VietnamDong)
+                {
+                    findWalletInside.BalanceAmount -= luongRutTien; // tru tien wallet trong
+                    findWalletOutSide.VND += luongRutTien; // cong vao bank ngoai
+                    bankDataAccess.RutTien(findWalletOutSide, findWalletInside, findWalletInside.CryptocurrencyStore.MoneyType);
+
+                    return true;
                 }
             }
-            else
-            {
-                return true;
-            }
+
+            return false;
         }
 
         public AccountBankDetail FindAccountBankDetailByAccountID(Guid accountID)

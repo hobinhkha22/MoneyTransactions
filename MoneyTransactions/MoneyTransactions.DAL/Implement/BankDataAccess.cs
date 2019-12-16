@@ -1,4 +1,5 @@
-﻿using MoneyTransactions.Entities;
+﻿using MoneyTransactions.Common;
+using MoneyTransactions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,9 +33,10 @@ namespace MoneyTransactions.DAL.Implement
 
         }
 
-        public Bank FindBankOutside(Guid bankID)
+
+        public Bank FindBankByBankID(Guid BankID)
         {
-            return db.Banks.FirstOrDefault(x => x.BankID == bankID);
+            return db.Banks.FirstOrDefault(x => x.BankID == BankID);
         }
 
         public bool NapTien(Wallet wallet)
@@ -62,24 +64,21 @@ namespace MoneyTransactions.DAL.Implement
             }
         }
 
-        public bool RutTien(Account account, Wallet wallet, decimal luongNapTien)
+        public bool RutTien(WalletOutside walletOutside, Wallet walletInside, string moneyType)
         {
 
             using (DbContextTransaction transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var accbank = db.AccountBankDetails.Find(account.AccountID);
-                    var walletBank = db.Wallets.Find(wallet.WalletID);
+                    var wOutside = db.WalletOutsides.Find(walletOutside.WalletOutsideID);
+                    var wInside = db.Wallets.Find(walletInside.WalletID);
 
-                    if (accbank == null || walletBank == null)
+                    if (wOutside == null || wInside == null)
                     {
                         transaction.Commit();
                         return false;
                     }
-
-                    accbank.Bank.VietNamDong = luongNapTien;
-                    walletBank.BalanceAmount = luongNapTien;
 
                     db.SaveChanges();
                     transaction.Commit();
@@ -91,6 +90,33 @@ namespace MoneyTransactions.DAL.Implement
                 }
             }
         }
+
+        public bool RutTienVND(Wallet wallet, Bank bank)
+        {
+            using (DbContextTransaction transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    var wInside = db.Wallets.Find(wallet.WalletID);
+                    var bOutside = db.Banks.Find(bank.BankID);
+
+                    if (wInside == null || bOutside == null)
+                    {
+                        transaction.Commit();
+                        return false;
+                    }
+
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
 
         public AccountBankDetail FindAccountBankDetailByAccountID(Guid accountID)
         {

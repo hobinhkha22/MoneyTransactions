@@ -1,7 +1,7 @@
 ﻿@model MoneyTransactions.Entities.Wallet
 
 @{
-    ViewBag.Title = "Nạp tiền";
+    ViewBag.Title = "Rút tiền";
     Layout = null;
 }
 
@@ -40,38 +40,47 @@
     <div class="container-contact100">
 
         <div class="wrap-contact100">
-            <form class="contact100-form validate-form">
+            @*<form class="contact100-form validate-form">*@
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
                 <span class="contact100-form-title">
                     Rút tiền
                 </span>
 
+                <h4 style="margin-bottom: 5px;">Địa chỉ ví</h4>
                 <div class="wrap-input100 validate-input">
-                    <input disabled class="input100" type="text" value="@Model.WalletAddress" name="WalletAddress" placeholder="Địa chỉ ví">
+                    <input readonly class="input100" type="text" value="@Model.WalletAddress" name="diaChiViInside" placeholder="Địa chỉ ví">
                     <span class="focus-input100"></span>
                 </div>
 
+                <h4 style="margin-bottom: 5px;">Số tiền</h4>
                 <div class="wrap-input100 validate-input">
-                    <input class="input100" type="text" name="AmountCoin" placeholder="Số lượng">
+                    <input class="input100" type="text" name="luongTienRut" placeholder="Số tiền">
                     <span class="focus-input100"></span>
                 </div>
 
                 @*<div class="wrap-input100 validate-input">
-            <input class="input100" type="text" name="phone" placeholder="Phone">
-            <span class="focus-input100"></span>
-        </div>*@
+                        <input class="input100" type="text" name="phone" placeholder="Phone">
+                        <span class="focus-input100"></span>
+                    </div>*@
 
+                <h4 style="margin-bottom: 5px;">Nội dung</h4>
                 <div class="wrap-input100 validate-input">
-                    <textarea class="input100" name="message" placeholder="Nội dung"></textarea>
+                    <textarea class="input100" name="NoiDung" placeholder="Nội dung"></textarea>
                     <span class="focus-input100"></span>
                 </div>
 
+                <input readonly type="hidden" name="RutTienAccountID" value="@Model.AccountID" />
+
                 <div class="container-contact100-form-btn">
                     <span>
-                        @Html.ActionLink("Rút", "RutTien", "Bank", null, new { @class = "contact100-form-btn" })
+                        <input type="submit" class="btn btn-primary" name="SubmitRutTien" value="Rút" />
                     </span>
                 </div>
-            </form>
-
+                @*</form>*@
+            }
             <div id="dropDownSelect1" style="margin-top: 50px;" class="text-center">@ViewBag.RutTienResult</div>
         </div>
     </div>

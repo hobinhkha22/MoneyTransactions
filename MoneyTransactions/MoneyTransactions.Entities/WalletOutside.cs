@@ -24,11 +24,15 @@ namespace MoneyTransactions.Entities
 
         public decimal XRP { get; set; }
 
+        public decimal VND { get; set; }
+
         public string BTCAddress { get; set; }
         
         public string ETHAddress { get; set; }
         
         public string XRPAddress { get; set; }
+        
+        public string VNDAddress { get; set; }
 
         public Guid AccountID { get; set; }
 

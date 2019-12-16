@@ -179,13 +179,12 @@ namespace MoneyTransactions.WEB.Controllers
             }
 
             var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
-            ViewBag.yourBitcoin = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Bitcoin).BalanceAmount;
-            ViewBag.yourVietNamDong = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.VietnamDong).BalanceAmount;
-            ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
-            ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;
-            var getWall = _walletServices.FindWalletByAccountId(getUser.AccountID);
+            //ViewBag.yourBitcoin = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Bitcoin).BalanceAmount;
+            //ViewBag.yourVietNamDong = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.VietnamDong).BalanceAmount;
+            //ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
+            //ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;
 
-            return View(getWall);
+            return View(getUser);
         }
 
         [HttpGet]
