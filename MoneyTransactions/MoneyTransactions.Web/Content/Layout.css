@@ -31,9 +31,12 @@
     margin: 250px;
 }
 
-#render-body {
-    background-color: #210c34;
+#render-body {    
     padding: 60px;
+}
+
+.for-images {
+    background-image: url('images/Main/btcbgr01.jpg');
 }
 
 .render-body-bottom {

@@ -1882,6 +1882,7 @@
     <Content Include="Content\images\icons\icon-google.png" />
     <Content Include="Content\images\icons\map-marker.png" />
     <Content Include="Content\images\icons\symbol-01.png" />
+    <Content Include="Content\images\Main\btcbgr01.jpg" />
     <Content Include="Content\js\bootnavbar.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\Layout.css" />
