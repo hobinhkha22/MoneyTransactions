@@ -207,6 +207,12 @@
         <br />
         <br />
 
+        <h3>
+            <strong>
+                Lịch sử giao dịch
+            </strong>
+        </h3>        
+        <br />
         <div class="row profile-offers my-16">
             <div class="col-xs-12">
                 <div class="sell-offers offer-list-section mb-24">
@@ -224,7 +230,6 @@
                                 <div class="col-xs-12">
                                     <table class="table">
                                         <tr>
-                                            <td>Tài khoản</td>
                                             <td>Số lượng</td>
                                             <td>Giá</td>
                                             <td>Thời gian</td>
@@ -233,7 +238,6 @@
                                         @foreach (var item in Model.OrderHistories)
                                         {
                                             <tr>
-                                                <td>@item.Account.UserName</td>
                                                 <td>@item.Amount</td>
                                                 <td>
                                                     @{
@@ -246,7 +250,15 @@
                                                 </td>
                                                 <td>@item.Time</td>
                                                 <td>
-                                                    @item.Account.Wallets.FirstOrDefault(x => x.AccountID == @item.Buyer).Account.UserName
+                                                    @{
+                                                        MoneyTransactions.BUS.Services.AccountService accountService = new MoneyTransactions.BUS.Services.AccountService();
+                                                        var buy = accountService.FindUserById(Guid.Parse(item.Buyer.ToString()));
+
+                                                        <text>
+                                                            @buy.UserName
+                                                        </text>
+                                                    }
+
                                                 </td>
                                             </tr>
                                         }
@@ -273,7 +285,6 @@
                                 <div class="col-xs-12">
                                     <table class="table">
                                         <tr>
-                                            <td>Tài khoản</td>
                                             <td>Số lượng</td>
                                             <td>Giá</td>
                                             <td>Thời gian</td>
@@ -282,7 +293,6 @@
                                         @foreach (var item in Model.OrderHistories)
                                         {
                                             <tr>
-                                                <td>@item.Account.UserName</td>
                                                 <td>@item.Amount</td>
                                                 <td>
                                                     @{

@@ -507,17 +507,17 @@ namespace MoneyTransactions.WEB.Controllers
                     TempData["yourColor"] = "Green";
                     
                     // add seller history
-                    var hisSeller = new OrderHistory();
-                    hisSeller.HistoryID = Guid.NewGuid();
-                    hisSeller.AccountID = Guid.Parse(sellerID);
-                    hisSeller.Amount = getOrder.Amount;                    
-                    hisSeller.Buyer = Guid.Parse(buyerID);
-                    hisSeller.Price = getOrder.Price;
-                    hisSeller.Seller = Guid.Parse(sellerID);
-                    hisSeller.IsDoneYet = true;
-                    hisSeller.Time = DateTime.Now;
-                    hisSeller.OrderType = OrderCommon.OrderSell;
-                    historyServices.AddOrderHisto(hisSeller);
+                    //var hisSeller = new OrderHistory();
+                    //hisSeller.HistoryID = Guid.NewGuid();
+                    //hisSeller.AccountID = Guid.Parse(sellerID);
+                    //hisSeller.Amount = getOrder.Amount;                    
+                    //hisSeller.Buyer = Guid.Parse(buyerID);
+                    //hisSeller.Price = getOrder.Price;
+                    //hisSeller.Seller = Guid.Parse(sellerID);
+                    //hisSeller.IsDoneYet = true;
+                    //hisSeller.Time = DateTime.Now;
+                    //hisSeller.OrderType = OrderCommon.OrderSell;
+                    //historyServices.AddOrderHisto(hisSeller);
 
                     // add buyer history
                     var hisBuyer = new OrderHistory();
@@ -578,17 +578,17 @@ namespace MoneyTransactions.WEB.Controllers
                 historyServices.AddOrderHisto(hisSeller);
 
                 // add buyer history
-                var hisBuyer = new OrderHistory();
-                hisBuyer.HistoryID = Guid.NewGuid();
-                hisBuyer.AccountID = Guid.Parse(buyerID);
-                hisBuyer.Amount = getOrder.Amount;
-                hisBuyer.Buyer = Guid.Parse(buyerID);
-                hisBuyer.Seller = Guid.Parse(sellerID);
-                hisBuyer.IsDoneYet = true;
-                hisBuyer.Price = getOrder.Price;
-                hisBuyer.Time = DateTime.Now;
-                hisBuyer.OrderType = OrderCommon.OrderBuy;
-                historyServices.AddOrderHisto(hisBuyer);
+                //var hisBuyer = new OrderHistory();
+                //hisBuyer.HistoryID = Guid.NewGuid();
+                //hisBuyer.AccountID = Guid.Parse(buyerID);
+                //hisBuyer.Amount = getOrder.Amount;
+                //hisBuyer.Buyer = Guid.Parse(buyerID);
+                //hisBuyer.Seller = Guid.Parse(sellerID);
+                //hisBuyer.IsDoneYet = true;
+                //hisBuyer.Price = getOrder.Price;
+                //hisBuyer.Time = DateTime.Now;
+                //hisBuyer.OrderType = OrderCommon.OrderBuy;
+                //historyServices.AddOrderHisto(hisBuyer);
             }
             else
             {
