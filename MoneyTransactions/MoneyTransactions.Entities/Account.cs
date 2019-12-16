@@ -36,7 +36,7 @@ namespace MoneyTransactions.Entities
         public virtual List<Wallet> Wallets { get; set; }
         public virtual List<WalletOutside> WalletOutsides { get; set; }
 
-        public virtual List<History> Histories { get; set; }
+        public virtual List<OrderHistory> OrderHistories { get; set; }
 
     }
 }

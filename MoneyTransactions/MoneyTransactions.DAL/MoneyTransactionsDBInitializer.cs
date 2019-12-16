@@ -30,6 +30,9 @@ namespace MoneyTransactions.DAL
             context.Accounts.Add(new Entities.Account { AccountID = Guid.Parse("12f39e21-704e-4481-8b85-07d3cf74782a"), Email = "angelo.batz@windler.com", NickName = "Mcdonella", Password = "Mcdonella", Phone = "062627558471", UserName = "edgy", RoleID = Guid.Parse("0c3ab0cc-6cac-4235-a9c0-94aedc2af6fa") });
             context.Accounts.Add(new Entities.Account { AccountID = Guid.Parse("e3163d28-9ffb-48e2-bcfb-fce1303575f7"), Email = "jimmy51@gmail.com", NickName = "ElSeaEm", Password = "ElSeaEm", Phone = "084103724042", UserName = "dilber", RoleID = Guid.Parse("0c3ab0cc-6cac-4235-a9c0-94aedc2af6fa") });
 
+            // History
+            //context.OrderHistories.Add(new Entities.OrderHistory { HistoryID = Guid.Parse(""), OrderType = "", Amount = 0m, Price = 0m, IsDoneYet = true, Time = DateTime.Now, AccountID = Guid.Parse(""), Seller = Guid.Parse(""), Buyer = Guid.Parse("") });
+
             // Bank 
             context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("7ea342be-247d-46ee-9ed9-786fdd2d1677"), Email = "user1@gmail.com", UserName = "user1", Password = "123456", VietNamDong = 10000000m, BankName = "Tien Phong Bank" });
             context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("0bc377b2-8c15-4652-b305-287a144a372c"), Email = "user2@gmail.com", UserName = "user2", Password = "123456", VietNamDong = 10000000m, BankName = "DongA Bank" });

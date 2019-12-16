@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoneyTransactions.Entities
 {
-    public class History
+    public class OrderHistory
     {
         [Key]
         public Guid HistoryID { get; set; }
@@ -26,8 +26,8 @@ namespace MoneyTransactions.Entities
 
         public Account Account { get; set; }
 
-        public Guid Seller { get; set; }
+        public Nullable<Guid> Seller { get; set; }
         
-        public Guid Buyer { get; set; }
+        public Nullable<Guid> Buyer { get; set; }
     }
 }
