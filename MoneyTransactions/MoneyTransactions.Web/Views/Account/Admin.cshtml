@@ -71,22 +71,24 @@
                 <td>Giá</td>
                 <td>Số lượng</td>
                 <td>Tài khoản</td>
+                <td>Loại giao dịch</td>
             </tr>
             @foreach (var item in ViewData["InOrder"] as PagedList.IPagedList<MoneyTransactions.Entities.Order>)
             {
-                <tr>
-                    <td>
-                        @{
-                            var s = item.Price;
+        <tr>
+            <td>
+                @{
+                    var s = item.Price;
 
-                            <text>
-                                @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
-                            </text>;
-                        }
-                    </td>
-                    <td>@item.Amount</td>
-                    <td>@item.Wallet.Account.UserName</td>
-                </tr>
+                    <text>
+                        @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                    </text>;
+                }
+            </td>
+            <td>@item.Amount</td>
+            <td>@item.Wallet.Account.UserName</td>
+            <td>@item.OrderType</td>
+        </tr>
             }
         </tbody>
     </table>
