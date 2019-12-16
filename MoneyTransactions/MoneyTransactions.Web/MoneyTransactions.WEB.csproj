@@ -2385,6 +2385,7 @@
     <Content Include="Views\DauTu\Article5.cshtml" />
     <Content Include="Views\Account\Admin.cshtml" />
     <Content Include="Views\Account\AdminInOrder.cshtml" />
+    <Content Include="Views\Bank\Close.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

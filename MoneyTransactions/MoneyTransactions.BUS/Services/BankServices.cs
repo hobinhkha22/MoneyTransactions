@@ -19,30 +19,25 @@ namespace MoneyTransactions.BUS.Services
             WalletDataAccess = new WalletDataAccess();
         }
 
-        public bool NapTien(Account account, Wallet wallet, decimal luongNapTien)
+        public bool NapTien(Wallet wallet, decimal luongNapTien)
         {
             // Scenario:
             // user trong muon nap tien tu bank ngoai vao
             // get object bank tu ngoai vao
             // va check so tien bank ngoai neu du yeu cau thi nap vao vi [findWallet]
-            var findBankOutside = bankDataAccess.FindBankOutside(account.AccountID);
+            //var findAccountInside = acc acc(account.AccountID);
             var findWalletInside = WalletDataAccess.FindWalletByWalletID(wallet.WalletID);
 
-            if (findBankOutside != null && findWalletInside != null)
+            if (findWalletInside != null)
             {
                 // check so tien bank ngoai
-                if (findBankOutside.VietNamDong > luongNapTien)
-                {
-                    findBankOutside.VietNamDong -= luongNapTien; // tru vao bank ngoai
-                    findWalletInside.BalanceAmount += luongNapTien; // cong vao wallet trong dua theo moneyType
-                    bankDataAccess.NapTien(account, wallet, luongNapTien);
+                //if (findWalletInside.BalanceAmount > luongNapTien)
+                //{
+                //findBankOutside.VietNamDong -= luongNapTien; // tru vao bank ngoai
+                findWalletInside.BalanceAmount += luongNapTien; // cong vao wallet trong dua theo moneyType
+                bankDataAccess.NapTien(wallet);
 
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;                
             }
             else
             {

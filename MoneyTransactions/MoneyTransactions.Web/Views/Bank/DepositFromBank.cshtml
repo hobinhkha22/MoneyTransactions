@@ -35,18 +35,18 @@
     <!--===============================================================================================-->
 </head>
 <body>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
 
-        <div class="container-contact100">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="wrap-contact100">
-                <form class="contact100-form validate-form">
+    <div class="container-contact100">
+        <div class="wrap-contact100">
+            @*<form class="contact100-form validate-form">*@
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
                     <span class="contact100-form-title">
                         Nạp tiền
                     </span>
-                    
+
                     <h4 style="margin-bottom: 5px;">Địa chỉ ví</h4>
                     <div class="wrap-input100 validate-input">
                         <input readonly class="input100" type="text" value="@Model.WalletAddress" name="diaChiVi" placeholder="Địa chỉ ví">
@@ -86,12 +86,12 @@
                                 }, new { @class = "contact100-form-btn" })*@
                         </span>
                     </div>
-                </form>                
-
-                <div id="dropDownSelect1" style="margin-top: 50px;color: @ViewBag.YourColorNapTien;" class="text-center">@ViewBag.NapTienResult</div>
-            </div>
+                }
+            @*</form>*@
+            <div id="dropDownSelect1" style="margin-top: 50px;color: @ViewBag.YourColorNapTien;" class="text-center">@ViewBag.NapTienResult</div>
         </div>
-    }
+    </div>
+
 
 
     @section Javascript {

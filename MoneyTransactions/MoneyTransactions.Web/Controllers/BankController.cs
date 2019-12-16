@@ -76,22 +76,23 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 var luongtienNap = decimal.Parse(form["luongTienNap"]);
                 var findWallet = walletService.FindWalletByWalletAddress(form["diaChiVi"]);
-                var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
-                var result = bankServices.NapTien(accInside, findWallet, luongtienNap);
+                //var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
+                var result = bankServices.NapTien(findWallet, luongtienNap);
 
                 if (result)
                 {
                     ViewBag.YourColorNapTien = "green";
                     ViewBag.NapTienResult = "Nạp tiền thành công";
+
+                    return View("Close");
                 }
             }
 
             ViewBag.YourColorNapTien = "red";
-            ViewBag.NapTienResult = "Nạp tiền thất bại";
+            ViewBag.NapTienResult = "Nạp tiền thất bại";           
 
-            return View();
+            return RedirectToAction("DepositFromBank", "Bank");
         }
-
 
         [HttpGet]
         public ActionResult WithdrawToBank(Guid walletID)
@@ -114,7 +115,7 @@ namespace MoneyTransactions.WEB.Controllers
                 var luongtienNap = decimal.Parse(form["luongTienNap"]);
                 var findWallet = walletService.FindWalletByWalletAddress(form["diaChiVi"]);
                 var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
-                var result = bankServices.NapTien(accInside, findWallet, luongtienNap);
+                var result = bankServices.RutTien(accInside, findWallet, luongtienNap);
 
                 if (result)
                 {
@@ -131,16 +132,9 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult RutTien(Guid accountID, string isType, string moneyType, decimal luongTienNap)
+        public ActionResult Close()
         {
-            if (isType == "RutTien")
-            {
-                var acc = accountService.FindUserById(accountID);
-                var accBankDetail = bankServices.FindAccountBankDetailByAccountID(accountID);
-                var findWallet = walletService.FindWalletByAccountIdAndMoneyType(acc.AccountID, moneyType);
-                bankServices.NapTien(accBankDetail, findWallet, moneyType, luongTienNap);
-            }
             return View();
-        }
+        }    
     }
 }

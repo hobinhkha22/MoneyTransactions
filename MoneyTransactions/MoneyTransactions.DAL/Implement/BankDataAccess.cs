@@ -37,23 +37,19 @@ namespace MoneyTransactions.DAL.Implement
             return db.Banks.FirstOrDefault(x => x.BankID == bankID);
         }
 
-        public bool NapTien(Account account, Wallet wallet, decimal luongNapTien)
+        public bool NapTien(Wallet wallet)
         {
             using (DbContextTransaction transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var accbank = db.AccountBankDetails.Find(account.AccountID);
                     var walletBank = db.Wallets.Find(wallet.WalletID);
 
-                    if (accbank == null || walletBank == null)
+                    if (walletBank == null)
                     {
                         transaction.Commit();
                         return false;
                     }
-
-                    accbank.Bank.VietNamDong = luongNapTien;
-                    walletBank.BalanceAmount = luongNapTien;
 
                     db.SaveChanges();
                     transaction.Commit();
