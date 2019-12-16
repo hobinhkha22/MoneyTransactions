@@ -10,7 +10,7 @@ namespace MoneyTransactions.Entities
     public class WalletOutside
     {
         [Key]
-        public int WalletOutsideID { get; set; }
+        public Guid WalletOutsideID { get; set; }
 
         public string Email { get; set; }
 
@@ -18,6 +18,20 @@ namespace MoneyTransactions.Entities
 
         public string Password { get; set; }
 
-        public decimal VietNamDong { get; set; }
+        public decimal BTC { get; set; }
+
+        public decimal ETH { get; set; }
+
+        public decimal XRP { get; set; }
+
+        public string BTCAddress { get; set; }
+        
+        public string ETHAddress { get; set; }
+        
+        public string XRPAddress { get; set; }
+
+        public Guid AccountID { get; set; }
+
+        public Account Account { get; set; }
     }
 }

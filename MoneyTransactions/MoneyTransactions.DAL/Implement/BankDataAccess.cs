@@ -96,5 +96,10 @@ namespace MoneyTransactions.DAL.Implement
                 }
             }
         }
+
+        public AccountBankDetail FindAccountBankDetailByAccountID(Guid accountID)
+        {
+            return db.AccountBankDetails.FirstOrDefault(x => x.AccountID == accountID);
+        }
     }
 }

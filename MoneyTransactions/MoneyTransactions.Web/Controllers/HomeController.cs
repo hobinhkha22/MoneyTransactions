@@ -184,7 +184,7 @@ namespace MoneyTransactions.WEB.Controllers
             ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
             ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;
 
-            return View();
+            return View(getUser);
         }
 
         [HttpGet]

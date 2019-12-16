@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyTransactions.BUS.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace MoneyTransactions.WEB.Controllers
 {
     public class BankController : Controller
     {
+        private BankServices bankServices = new BankServices();
+        private AccountService accountService = new AccountService();
+        private WalletServices walletService = new WalletServices();
         /// <summary>
         /// Website for bank simulator        
         /// </summary>
@@ -53,39 +57,47 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult DepositFromBank(int id)
+        public ActionResult DepositFromBank(Guid accountID)
         {
-            try
+            var getAcc = accountService.FindUserById(accountID);
+            if (getAcc != null)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return View(getAcc);
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         [HttpGet]
-        public ActionResult WithdrawToBank(int id)
+        public ActionResult WithdrawToBank(Guid accountID)
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public ActionResult NapTien(Guid accountID, string isType, string moneyType, decimal luongTienNap)
         {
-            try
+            if (isType == "NapTien")
             {
-                // TODO: Add delete logic here
+                var acc = accountService.FindUserById(accountID);
+                var accBankDetail = bankServices.FindAccountBankDetailByAccountID(accountID);
+                var findWallet = walletService.FindWalletByAccountIdAndMoneyType(acc.AccountID, moneyType);
+                bankServices.NapTien(accBankDetail, findWallet, moneyType, luongTienNap);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult RutTien(Guid accountID, string isType, string moneyType, decimal luongTienNap)
+        {
+            if (isType == "RutTien")
             {
-                return View();
+                var acc = accountService.FindUserById(accountID);
+                var accBankDetail = bankServices.FindAccountBankDetailByAccountID(accountID);
+                var findWallet = walletService.FindWalletByAccountIdAndMoneyType(acc.AccountID, moneyType);
+                bankServices.NapTien(accBankDetail, findWallet, moneyType, luongTienNap);
             }
+            return View();
         }
     }
 }

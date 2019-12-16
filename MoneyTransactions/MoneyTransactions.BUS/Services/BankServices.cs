@@ -81,5 +81,10 @@ namespace MoneyTransactions.BUS.Services
                 return true;
             }
         }
+    
+        public AccountBankDetail FindAccountBankDetailByAccountID(Guid accountID)
+        {
+            return bankDataAccess.FindAccountBankDetailByAccountID(accountID);
+        }
     }
 }

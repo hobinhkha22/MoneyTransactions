@@ -18,7 +18,7 @@ namespace MoneyTransactions.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
-        public DbSet<WalletOutside> walletOutsides { get; set; }
+        public DbSet<WalletOutside> WalletOutsides { get; set; }
 
         public MoneyTransactionsContext(string connectionString) : base(connectionString)
         {
@@ -55,6 +55,13 @@ namespace MoneyTransactions.DAL
                 .HasRequired<Account>(r => r.Account)
                 .WithMany(e => e.Wallets)
                 .HasForeignKey<Guid>(r => r.AccountID);
+
+            // Account - WalletOutside
+            modelBuilder.Entity<WalletOutside>()
+                .HasRequired<Account>(r => r.Account)
+                .WithMany(e => e.WalletOutsides)
+                .HasForeignKey<Guid>(r => r.AccountID)
+                    .WillCascadeOnDelete(false);
 
             // Wallet - Order
             modelBuilder.Entity<Order>()

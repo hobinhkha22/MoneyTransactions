@@ -34,6 +34,7 @@ namespace MoneyTransactions.Entities
         public virtual List<AccountBankDetail> AccountBankDetails { get; set; }
 
         public virtual List<Wallet> Wallets { get; set; }
+        public virtual List<WalletOutside> WalletOutsides { get; set; }
 
     }
 }
