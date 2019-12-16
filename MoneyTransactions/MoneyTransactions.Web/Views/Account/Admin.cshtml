@@ -6,6 +6,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<script>
+    function numberWithCommasForRazor(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+</script>
+
+
 <section class="page-heading remi-heading">
     <div class="container">
         <div class="row">
@@ -23,14 +31,14 @@
 <!-- Table -->
 
 <div class="container">
-    <h4>User List</h4>
+    <h4 style="margin-top: 20px;">Danh sách tải khoản</h4>
     <table class="table">
         <tbody>
             <tr>
-                <td>Username</td>
-                <td>Password</td>
+                <td>Tài khoản</td>
+                <td>Mật khẩu</td>
                 <td>Email</td>
-                <td>Phone</td>
+                <td>Số điện thoại</td>
             </tr>
             @foreach (var item in Model)
             {
@@ -56,20 +64,28 @@
 
 
 <div class="container">
-    <h4>Order List</h4>
+    <h4>Danh sách các giao dịch</h4>
     <table class="table">
         <tbody>
             <tr>
-                <td>Price</td>
-                <td>Amount</td>                
-                <td>Username</td>
+                <td>Giá</td>
+                <td>Số lượng</td>
+                <td>Tài khoản</td>
             </tr>
             @foreach (var item in ViewData["InOrder"] as PagedList.IPagedList<MoneyTransactions.Entities.Order>)
             {
                 <tr>
+                    <td>
+                        @{
+                            var s = item.Price;
+
+                            <text>
+                                @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                            </text>;
+                        }                        
+                    </td>
                     <td>@item.Amount</td>
-                    <td>@item.Price</td>
-                    <td>@item.Wallet.Account.UserName</td>                    
+                    <td>@item.Wallet.Account.UserName</td>
                 </tr>
             }
         </tbody>
