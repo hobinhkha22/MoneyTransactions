@@ -19,6 +19,7 @@ namespace MoneyTransactions.WEB.Controllers
         private readonly AccountService accountService = new AccountService();
         private readonly WalletServices walletServices = new WalletServices();
         private readonly OrderServices orderServices = new OrderServices();
+        private readonly HistoryServices historyServices = new HistoryServices();
         private readonly CryptocurrencyStoreServices cryptocurrencyStoreServices = new CryptocurrencyStoreServices();
 
         // GET: Account
@@ -504,6 +505,32 @@ namespace MoneyTransactions.WEB.Controllers
                 {
                     TempData["HandleSell"] = "Giao dịch thành công";
                     TempData["yourColor"] = "Green";
+                    
+                    // add seller history
+                    var hisSeller = new OrderHistory();
+                    hisSeller.HistoryID = Guid.NewGuid();
+                    hisSeller.AccountID = Guid.Parse(sellerID);
+                    hisSeller.Amount = getOrder.Amount;                    
+                    hisSeller.Buyer = Guid.Parse(buyerID);
+                    hisSeller.Price = getOrder.Price;
+                    hisSeller.Seller = Guid.Parse(sellerID);
+                    hisSeller.IsDoneYet = true;
+                    hisSeller.Time = DateTime.Now;
+                    hisSeller.OrderType = OrderCommon.OrderSell;
+                    historyServices.AddOrderHisto(hisSeller);
+
+                    // add buyer history
+                    var hisBuyer = new OrderHistory();
+                    hisBuyer.HistoryID = Guid.NewGuid();
+                    hisBuyer.AccountID = Guid.Parse(buyerID);
+                    hisBuyer.Amount = getOrder.Amount;
+                    hisBuyer.Price = getOrder.Price;
+                    hisBuyer.Buyer = Guid.Parse(buyerID);
+                    hisBuyer.Seller = Guid.Parse(sellerID);
+                    hisBuyer.IsDoneYet = true;
+                    hisBuyer.Time = DateTime.Now;
+                    hisBuyer.OrderType = OrderCommon.OrderBuy;
+                    historyServices.AddOrderHisto(hisBuyer);
                 }
                 else
                 {
@@ -536,6 +563,32 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 TempData["HandleSell"] = "Giao dịch thành công";
                 TempData["yourColor"] = "Green";
+
+                // add seller history
+                var hisSeller = new OrderHistory();
+                hisSeller.HistoryID = Guid.NewGuid();
+                hisSeller.AccountID = Guid.Parse(sellerID);
+                hisSeller.Amount = getOrder.Amount;
+                hisSeller.Price = getOrder.Price;                
+                hisSeller.Buyer = Guid.Parse(buyerID);
+                hisSeller.Seller = Guid.Parse(sellerID);
+                hisSeller.IsDoneYet = true;
+                hisSeller.Time = DateTime.Now;
+                hisSeller.OrderType = OrderCommon.OrderSell;
+                historyServices.AddOrderHisto(hisSeller);
+
+                // add buyer history
+                var hisBuyer = new OrderHistory();
+                hisBuyer.HistoryID = Guid.NewGuid();
+                hisBuyer.AccountID = Guid.Parse(buyerID);
+                hisBuyer.Amount = getOrder.Amount;
+                hisBuyer.Buyer = Guid.Parse(buyerID);
+                hisBuyer.Seller = Guid.Parse(sellerID);
+                hisBuyer.IsDoneYet = true;
+                hisBuyer.Price = getOrder.Price;
+                hisBuyer.Time = DateTime.Now;
+                hisBuyer.OrderType = OrderCommon.OrderBuy;
+                historyServices.AddOrderHisto(hisBuyer);
             }
             else
             {

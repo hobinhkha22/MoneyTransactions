@@ -135,6 +135,7 @@ namespace MoneyTransactions.WEB.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             var getUser = accountService.FindUserByUserName(Session["AccountLogged"].ToString());
             if (getUser != null)
             {
@@ -151,12 +152,12 @@ namespace MoneyTransactions.WEB.Controllers
                 //ViewBag.WalletAddressXRP = getListWallet.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType.ToLower() == CryptoCurrencyCommon.Ripple.ToLower().ToString()).WalletAddress;
 
                 // get username
-                ViewBag.UserName = getUser.UserName;
-                ViewBag.Email = getUser.Email;
-                ViewBag.Phone = getUser.Phone;
+                //ViewBag.UserName = getUser.UserName;
+                //ViewBag.Email = getUser.Email;
+                //ViewBag.Phone = getUser.Phone;
             }
 
-            return View();
+            return View(getUser);
         }
 
         [HttpGet]

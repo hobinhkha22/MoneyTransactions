@@ -87,6 +87,7 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\BankServices.cs" />
     <Compile Include="Services\CryptocurrencyStoreServices.cs" />
+    <Compile Include="Services\HistoryServices.cs" />
     <Compile Include="Services\OrderServices.cs" />
     <Compile Include="Services\WalletServices.cs" />
   </ItemGroup>

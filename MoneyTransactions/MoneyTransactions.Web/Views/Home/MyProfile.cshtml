@@ -1,4 +1,5 @@
-﻿
+﻿@model MoneyTransactions.Entities.Account
+
 @{
     ViewBag.Title = "Thông tin người dùng";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -30,7 +31,7 @@
                     <div class="loading-bar"></div>
                 </div>
                 <div class="panel panel-default profile-details">
-                    <div class="panel-heading"><span>Tóm lược về @ViewBag.UserName</span></div>
+                    <div class="panel-heading"><span>Tóm lược về @Model.UserName</span></div>
                     <table class="table table-striped">
                         <tbody>
 
@@ -38,7 +39,7 @@
                             <tr>
                                 <td>Tài khoản</td>
                                 <td>
-                                    @ViewBag.UserName
+                                    @Model.UserName
                                 </td>
                             </tr>
 
@@ -46,7 +47,7 @@
                             <tr>
                                 <td>Email</td>
                                 <td>
-                                    @ViewBag.Email
+                                    @Model.Email
                                 </td>
                             </tr>
 
@@ -55,132 +56,132 @@
                             <tr>
                                 <td>Số điện thoại</td>
                                 <td>
-                                    @ViewBag.Phone
+                                    @Model.Phone
                                 </td>
                             </tr>
 
 
                             <!-- Money -->
                             @*<tr>
-                                <td>Số dư VND</td>
-                                <td>
-                                    @ViewBag.YourVND
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số dư BTC</td>
-                                <td>
-                                    @ViewBag.YourBTC
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số dư Ethereum</td>
-                                <td>
-                                    @ViewBag.YourETH
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Số dư XRP</td>
-                                <td>
-                                    @ViewBag.YourXRP
-                                </td>
-                            </tr>*@
+                                    <td>Số dư VND</td>
+                                    <td>
+                                        @ViewBag.YourVND
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số dư BTC</td>
+                                    <td>
+                                        @ViewBag.YourBTC
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số dư Ethereum</td>
+                                    <td>
+                                        @ViewBag.YourETH
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Số dư XRP</td>
+                                    <td>
+                                        @ViewBag.YourXRP
+                                    </td>
+                                </tr>*@
 
 
 
                             @*<tr class="trading-volume">
-            <td>Đã giao dịch</td>
-            <td>
-                <span class="currency-amount">
-                    <span class="badge badge-warning btc">
-                        0.00000000 BTC
-                    </span>
-                </span><span class="currency-amount">
-                    <span class="badge badge-warning eth">0.00000000 ETH</span>
-                </span><span class="currency-amount">
-                    <span class="badge badge-warning usdt">0.00 USDT</span>
-                </span><span class="currency-amount">
-                    <span class="badge badge-warning bch">0.00000000 BCH</span>
-                </span><span class="currency-amount">
-                    <span class="badge badge-warning ltc">
-                        0.00000000 LTC
-                    </span>
-                </span><span class="currency-amount">
-                    <span class="badge badge-warning xrp">0.000000 XRP</span>
-                </span>
-            </td>
-        </tr>*@
+                                    <td>Đã giao dịch</td>
+                                    <td>
+                                        <span class="currency-amount">
+                                            <span class="badge badge-warning btc">
+                                                0.00000000 BTC
+                                            </span>
+                                        </span><span class="currency-amount">
+                                            <span class="badge badge-warning eth">0.00000000 ETH</span>
+                                        </span><span class="currency-amount">
+                                            <span class="badge badge-warning usdt">0.00 USDT</span>
+                                        </span><span class="currency-amount">
+                                            <span class="badge badge-warning bch">0.00000000 BCH</span>
+                                        </span><span class="currency-amount">
+                                            <span class="badge badge-warning ltc">
+                                                0.00000000 LTC
+                                            </span>
+                                        </span><span class="currency-amount">
+                                            <span class="badge badge-warning xrp">0.000000 XRP</span>
+                                        </span>
+                                    </td>
+                                </tr>*@
                             @*<tr>
-            <td>Số giao dịch thành công</td>
-            <td><strong class="text-success">0</strong></td>
-        </tr>
-        <tr>
-            <td>Số lượng đối tác khác nhau</td>
-            <td><strong class="text-success">0</strong></td>
-        </tr>*@
+                                    <td>Số giao dịch thành công</td>
+                                    <td><strong class="text-success">0</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Số lượng đối tác khác nhau</td>
+                                    <td><strong class="text-success">0</strong></td>
+                                </tr>*@
                             @*<tr>
-            <td>Điểm số phản hồi</td>
-            <td><span><strong>-</strong></span></td>
-        </tr>
-        <tr>
-            <td>Tài khoản được tạo</td>
-            <td><strong>3 tháng trước</strong></td>
-        </tr>
-        <tr>
-            <td>Lần truy cập cuối</td>
-            <td><strong>vài giây trước</strong></td>
-        </tr>
-        <tr>
-            <td>Xác minh nhân thân và cư trú</td>
-            <td><strong class="text-danger">Chưa gửi</strong></td>
-        </tr>
-        <tr class="peer-certification">
-            <td>Chứng nhận ngang hàng</td>
-            <td><strong class="text-default">Chưa được chứng nhận</strong></td>
-        </tr>*@
+                                    <td>Điểm số phản hồi</td>
+                                    <td><span><strong>-</strong></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tài khoản được tạo</td>
+                                    <td><strong>3 tháng trước</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Lần truy cập cuối</td>
+                                    <td><strong>vài giây trước</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Xác minh nhân thân và cư trú</td>
+                                    <td><strong class="text-danger">Chưa gửi</strong></td>
+                                </tr>
+                                <tr class="peer-certification">
+                                    <td>Chứng nhận ngang hàng</td>
+                                    <td><strong class="text-default">Chưa được chứng nhận</strong></td>
+                                </tr>*@
                             @*<tr>
-            <td>Xác minh ngân hàng</td>
-            <td class="bank-verification-status">
-                <strong class="text-warning pending">
-                    Đang chờ xử
-                    lý
-                </strong>
-            </td>
-        </tr>*@
+                                    <td>Xác minh ngân hàng</td>
+                                    <td class="bank-verification-status">
+                                        <strong class="text-warning pending">
+                                            Đang chờ xử
+                                            lý
+                                        </strong>
+                                    </td>
+                                </tr>*@
                             @*<tr>
-            <td>Số điện thoại</td>
-            <td>
-                <strong class="text-danger">Chưa gửi</strong>
-                <div><a>Thêm số điện thoại</a></div>
-            </td>
-        </tr>*@
+                                    <td>Số điện thoại</td>
+                                    <td>
+                                        <strong class="text-danger">Chưa gửi</strong>
+                                        <div><a>Thêm số điện thoại</a></div>
+                                    </td>
+                                </tr>*@
                             @*<tr>
-            <td>Facebook</td>
-            <td><strong>Chưa gửi</strong></td>
-        </tr>
-        <tr>
-            <td>Twitter</td>
-            <td><strong>Chưa gửi</strong></td>
-        </tr>
-        <tr>
-            <td class="text-center" colspan="2">
-                <em class="trust-badge badge badge-danger">
-                    người mua
-                    mới
-                </em><em class="speed-badge badge badge-danger">người bán chậm</em>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center" colspan="2">
-                <span class="text-center">
-                    <button type="button"
-                            class="btn-block-trader btn btn-danger">
-                        <span>Chặn tài khoản này</span>
-                        <div></div>
-                    </button>
-                </span>
-            </td>
-        </tr>*@
+                                    <td>Facebook</td>
+                                    <td><strong>Chưa gửi</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Twitter</td>
+                                    <td><strong>Chưa gửi</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">
+                                        <em class="trust-badge badge badge-danger">
+                                            người mua
+                                            mới
+                                        </em><em class="speed-badge badge badge-danger">người bán chậm</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" colspan="2">
+                                        <span class="text-center">
+                                            <button type="button"
+                                                    class="btn-block-trader btn btn-danger">
+                                                <span>Chặn tài khoản này</span>
+                                                <div></div>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>*@
                         </tbody>
                     </table>
                 </div>
@@ -211,7 +212,7 @@
                 <div class="sell-offers offer-list-section mb-24">
                     <div class="title-accent heading-03">
                         <span>
-                            <span class="vertical-middless">Mua BTC từ bluebox</span>
+                            <span class="vertical-middless">Mua từ @Model.UserName</span>
                         </span>
                     </div>
                     <div class="loading-container text-center">
@@ -220,7 +221,38 @@
                     <div class="content-wrapper mt-16">
                         <div class="main-container container-fluid">
                             <div class="row no-offers pt-0 pb-16 px-16">
-                                <div class="col-xs-12"><i>Không tìm thấy quảng cáo nào</i></div>
+                                <div class="col-xs-12">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Tài khoản</td>
+                                            <td>Số lượng</td>
+                                            <td>Giá</td>
+                                            <td>Thời gian</td>
+                                            <td>Người mua</td>
+                                        </tr>
+                                        @foreach (var item in Model.OrderHistories)
+                                        {
+                                            <tr>
+                                                <td>@item.Account.UserName</td>
+                                                <td>@item.Amount</td>
+                                                <td>
+                                                    @{
+                                                        var s = item.Price;
+
+                                                        <text>
+                                                            @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                                                        </text>;
+                                                    }
+                                                </td>
+                                                <td>@item.Time</td>
+                                                <td>
+                                                    @item.Account.Wallets.FirstOrDefault(x => x.AccountID == @item.Buyer).Account.UserName
+                                                </td>
+                                            </tr>
+                                        }
+                                        @*write here*@
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -229,7 +261,7 @@
                 <div class="buy-offers offer-list-section mb-24">
                     <div class="title-accent heading-03">
                         <span>
-                            <span class="vertical-middless">Bán BTC cho bluebox</span>
+                            <span class="vertical-middless">Bán cho @Model.UserName</span>
                         </span>
                     </div>
                     <div class="loading-container text-center">
@@ -238,7 +270,46 @@
                     <div class="content-wrapper mt-16">
                         <div class="main-container container-fluid">
                             <div class="row no-offers pt-0 pb-16 px-16">
-                                <div class="col-xs-12"><i>Không tìm thấy quảng cáo nào</i></div>
+                                <div class="col-xs-12">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Tài khoản</td>
+                                            <td>Số lượng</td>
+                                            <td>Giá</td>
+                                            <td>Thời gian</td>
+                                            <td>Người bán</td>
+                                        </tr>
+                                        @foreach (var item in Model.OrderHistories)
+                                        {
+                                            <tr>
+                                                <td>@item.Account.UserName</td>
+                                                <td>@item.Amount</td>
+                                                <td>
+                                                    @{
+                                                        var s = item.Price;
+
+                                                        <text>
+                                                            @s.ToString("N", new System.Globalization.CultureInfo("en-US")) VNĐ
+                                                        </text>;
+                                                    }
+                                                </td>
+                                                <td>@item.Time</td>
+                                                <td>
+                                                    @{
+                                                        MoneyTransactions.BUS.Services.AccountService accountService = new MoneyTransactions.BUS.Services.AccountService();
+                                                        var sell = accountService.FindUserById(Guid.Parse(item.Seller.ToString()));
+
+                                                        <text>
+                                                            @sell.UserName
+                                                        </text>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                        }
+                                        @*write here*@
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -56,6 +56,7 @@
     <Compile Include="Implement\AccountDataAccess.cs" />
     <Compile Include="Implement\BankDataAccess.cs" />
     <Compile Include="Implement\CryptocurrencyStoreDataAccess.cs" />
+    <Compile Include="Implement\HistoryDataAccess.cs" />
     <Compile Include="Implement\OrderDataAccess.cs" />
     <Compile Include="Implement\WalletDataAccess.cs" />
     <Compile Include="MoneyTransactionsContext.cs" />

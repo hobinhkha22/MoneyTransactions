@@ -59,6 +59,10 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult DepositFromBank(Guid accountID, string isType)
         {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var getWall = walletService.FindWalletByAccountIdAndMoneyType(accountID, isType);
             if (getWall != null)
             {
@@ -71,6 +75,11 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DepositFromBank(FormCollection form)
         {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             // Guid accountID, string isType, string walletAddress, decimal luongTienNap
             if (form["diaChiVi"] != "")
             {
@@ -97,6 +106,10 @@ namespace MoneyTransactions.WEB.Controllers
         [HttpGet]
         public ActionResult WithdrawToBank(Guid accountID, string isType)
         {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var getWall = walletService.FindWalletByAccountIdAndMoneyType(accountID, isType);
             if (getWall != null)
             {
@@ -109,6 +122,11 @@ namespace MoneyTransactions.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult WithdrawToBank(FormCollection form)
         {
+            if (Session["AccountLogged"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             // Guid accountID, string isType, string walletAddress, decimal luongTienNap
             if (form["diaChiVi"] != "")
             {
@@ -129,8 +147,6 @@ namespace MoneyTransactions.WEB.Controllers
 
             ViewBag.YourColorNapTien = "red";
             ViewBag.NapTienResult = "Nạp tiền thất bại";
-
-
             return View("Close");
         }
 
