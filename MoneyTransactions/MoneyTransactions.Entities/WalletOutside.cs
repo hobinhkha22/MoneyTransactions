@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace MoneyTransactions.Entities
 {
-    public class Bank
+    public class WalletOutside
     {
         [Key]
-        public Guid BankID { get; set; }
-        [StringLength(20)]
-        public string BankName { get; set; }
+        public int WalletOutsideID { get; set; }
 
         public string Email { get; set; }
 
@@ -21,7 +19,5 @@ namespace MoneyTransactions.Entities
         public string Password { get; set; }
 
         public decimal VietNamDong { get; set; }
-
-        public virtual List<AccountBankDetail> AccountBankDetails { get; set; }
     }
 }

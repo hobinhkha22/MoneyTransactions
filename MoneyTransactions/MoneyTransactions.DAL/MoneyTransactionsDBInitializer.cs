@@ -31,17 +31,17 @@ namespace MoneyTransactions.DAL
             context.Accounts.Add(new Entities.Account { AccountID = Guid.Parse("e3163d28-9ffb-48e2-bcfb-fce1303575f7"), Email = "jimmy51@gmail.com", NickName = "ElSeaEm", Password = "ElSeaEm", Phone = "084103724042", UserName = "dilber", RoleID = Guid.Parse("0c3ab0cc-6cac-4235-a9c0-94aedc2af6fa") });
 
             // Bank 
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("7ea342be-247d-46ee-9ed9-786fdd2d1677"), BankName = "Tien Phong Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("0bc377b2-8c15-4652-b305-287a144a372c"), BankName = "DongA Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("1749ccc4-13de-4fbc-a4ea-4bc60a636cb5"), BankName = "Agribank Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("fe18ac45-38f1-48e4-b821-882b35a721fb"), BankName = "Vietcombank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("c087241a-9203-49b6-a54b-a7914da79301"), BankName = "Bac A Bank" });
-            
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("e0ebcbc9-c1f0-4ee6-ba7d-f3b9279e0bfd"), BankName = "Sacombank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("e9922c87-33f2-4e04-88d0-97468c40c972"), BankName = "Nam A Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("5c91bf3b-eaaa-4a08-9d68-2c705f51cc24"), BankName = "Viet A Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("9d7d8781-af81-4e48-8eaf-49955913f1e9"), BankName = "Bao Viet Bank" });
-            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("0f0ac77e-423d-429f-b66d-4697e2d30402"), BankName = "	Viet Capital Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("7ea342be-247d-46ee-9ed9-786fdd2d1677"), Email = "user1@gmail.com", UserName = "user1", Password = "123456", VietNamDong = 10000000m, BankName = "Tien Phong Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("0bc377b2-8c15-4652-b305-287a144a372c"), Email = "user2@gmail.com", UserName = "user2", Password = "123456", VietNamDong = 10000000m, BankName = "DongA Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("1749ccc4-13de-4fbc-a4ea-4bc60a636cb5"), Email = "user3@gmail.com", UserName = "user3", Password = "123456", VietNamDong = 10000000m, BankName = "Agribank Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("fe18ac45-38f1-48e4-b821-882b35a721fb"), Email = "user4@gmail.com", UserName = "user4", Password = "123456", VietNamDong = 10000000m, BankName = "Vietcombank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("c087241a-9203-49b6-a54b-a7914da79301"), Email = "user5@gmail.com", UserName = "user5", Password = "123456", VietNamDong = 10000000m, BankName = "Bac A Bank" });
+
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("e0ebcbc9-c1f0-4ee6-ba7d-f3b9279e0bfd"), Email = "user6@gmail.com", UserName = "user6", Password = "1234567", VietNamDong = 10000000m, BankName = "Sacombank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("e9922c87-33f2-4e04-88d0-97468c40c972"), Email = "user7@gmail.com", UserName = "user7", Password = "1234567", VietNamDong = 10000000m, BankName = "Nam A Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("5c91bf3b-eaaa-4a08-9d68-2c705f51cc24"), Email = "user8@gmail.com", UserName = "user8", Password = "1234567", VietNamDong = 10000000m, BankName = "Viet A Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("9d7d8781-af81-4e48-8eaf-49955913f1e9"), Email = "user9@gmail.com", UserName = "user9", Password = "1234567", VietNamDong = 10000000m, BankName = "Bao Viet Bank" });
+            context.Banks.Add(new Entities.Bank { BankID = Guid.Parse("0f0ac77e-423d-429f-b66d-4697e2d30402"), Email = "user10@gmail.com", UserName = "user10", Password = "1234567", VietNamDong = 10000000m, BankName = "	Viet Capital Bank" });
 
 
             // Account Bank Detail

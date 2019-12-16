@@ -18,6 +18,7 @@ namespace MoneyTransactions.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<WalletOutside> walletOutsides { get; set; }
 
         public MoneyTransactionsContext(string connectionString) : base(connectionString)
         {
