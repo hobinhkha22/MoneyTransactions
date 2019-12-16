@@ -55,6 +55,10 @@ namespace MoneyTransactions.WEB.Controllers
             }
         }
 
+        
+
+
+
         // GET: Account/Details/5
         [HttpGet]
         public ActionResult Details(string walletID, decimal amount)

@@ -18,6 +18,7 @@ namespace MoneyTransactions.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<History> Histories{ get; set; }
         public DbSet<WalletOutside> WalletOutsides { get; set; }
 
         public MoneyTransactionsContext(string connectionString) : base(connectionString)
@@ -56,6 +57,12 @@ namespace MoneyTransactions.DAL
                 .WithMany(e => e.Wallets)
                 .HasForeignKey<Guid>(r => r.AccountID);
 
+            // Account - History
+            modelBuilder.Entity<History>()
+                .HasRequired<Account>(r => r.Account)
+                .WithMany(e => e.Histories)
+                .HasForeignKey<Guid>(r => r.AccountID);
+
             // Account - WalletOutside
             modelBuilder.Entity<WalletOutside>()
                 .HasRequired<Account>(r => r.Account)
@@ -92,7 +99,8 @@ namespace MoneyTransactions.DAL
             modelBuilder.Entity<Order>().Property(x => x.Amount).HasPrecision(18, 5);
             modelBuilder.Entity<Order>().Property(x => x.Price).HasPrecision(18, 5);
             modelBuilder.Entity<OrderDetail>().Property(x => x.Amount).HasPrecision(18, 5);
-
+            modelBuilder.Entity<History>().Property(x => x.Amount).HasPrecision(18, 5);
+            modelBuilder.Entity<History>().Property(x => x.Price).HasPrecision(18, 5);
             modelBuilder.Entity<CryptocurrencyStore>().Property(x => x.FloorPrice).HasPrecision(18, 5);
             modelBuilder.Entity<Wallet>().Property(x => x.BalanceAmount).HasPrecision(18, 5);
             modelBuilder.Entity<Wallet>().Property(x => x.BalanceAmountTransaction).HasPrecision(18, 5);

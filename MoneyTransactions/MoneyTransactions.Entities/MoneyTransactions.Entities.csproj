@@ -63,6 +63,7 @@
     <Compile Include="AccountBankDetail.cs" />
     <Compile Include="Bank.cs" />
     <Compile Include="CryptocurrencyStore.cs" />
+    <Compile Include="History.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
