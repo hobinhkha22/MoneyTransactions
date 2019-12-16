@@ -19,14 +19,14 @@ namespace MoneyTransactions.BUS.Services
             WalletDataAccess = new WalletDataAccess();
         }
 
-        public bool NapTien(AccountBankDetail accountBankDetail, Wallet wallet, string moneyType, decimal luongNapTien)
+        public bool NapTien(Account account, Wallet wallet, decimal luongNapTien)
         {
             // Scenario:
             // user trong muon nap tien tu bank ngoai vao
             // get object bank tu ngoai vao
             // va check so tien bank ngoai neu du yeu cau thi nap vao vi [findWallet]
-            var findBankOutside = bankDataAccess.FindBankOutside(accountBankDetail.BankID);
-            var findWalletInside = WalletDataAccess.FindWalletByMoneyType(accountBankDetail.AccountID, moneyType);
+            var findBankOutside = bankDataAccess.FindBankOutside(account.AccountID);
+            var findWalletInside = WalletDataAccess.FindWalletByWalletID(wallet.WalletID);
 
             if (findBankOutside != null && findWalletInside != null)
             {
@@ -35,8 +35,8 @@ namespace MoneyTransactions.BUS.Services
                 {
                     findBankOutside.VietNamDong -= luongNapTien; // tru vao bank ngoai
                     findWalletInside.BalanceAmount += luongNapTien; // cong vao wallet trong dua theo moneyType
-                    bankDataAccess.NapTien(accountBankDetail, wallet, luongNapTien);
-                    
+                    bankDataAccess.NapTien(account, wallet, luongNapTien);
+
                     return true;
                 }
                 else
@@ -50,15 +50,15 @@ namespace MoneyTransactions.BUS.Services
             }
         }
 
-        public bool RutTien(AccountBankDetail accountBankDetail, Wallet wallet, string moneyType, decimal luongRutTien)
+        public bool RutTien(Account account, Wallet wallet, decimal luongRutTien)
         {
             // Scenario:
             // user trong muon rut tien tu trong wallet trong ra bank ngoai
             // get object wallet trong
             // get object bank ngoai de rut tien ra
             // va check so tien wallet trong co du de rut
-            var findBankOutside = bankDataAccess.FindBankOutside(accountBankDetail.BankID);
-            var findWalletInside = WalletDataAccess.FindWalletByMoneyType(accountBankDetail.AccountID, moneyType);
+            var findBankOutside = bankDataAccess.FindBankOutside(account.AccountID);
+            var findWalletInside = WalletDataAccess.FindWalletByWalletID(wallet.WalletID);
 
             if (findBankOutside != null && findWalletInside != null)
             {
@@ -67,7 +67,7 @@ namespace MoneyTransactions.BUS.Services
                 {
                     findWalletInside.BalanceAmount -= luongRutTien; // tru tien wallet trong
                     findBankOutside.VietNamDong += luongRutTien; // cong vao bank ngoai
-                    bankDataAccess.RutTien(accountBankDetail, wallet, luongRutTien);
+                    bankDataAccess.RutTien(account, wallet, luongRutTien);
 
                     return true;
                 }
@@ -81,7 +81,7 @@ namespace MoneyTransactions.BUS.Services
                 return true;
             }
         }
-    
+
         public AccountBankDetail FindAccountBankDetailByAccountID(Guid accountID)
         {
             return bankDataAccess.FindAccountBankDetailByAccountID(accountID);

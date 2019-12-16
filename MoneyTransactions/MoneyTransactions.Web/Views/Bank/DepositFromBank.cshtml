@@ -1,22 +1,118 @@
-﻿@model MoneyTransactions.Entities.Account
+﻿@model MoneyTransactions.Entities.Wallet
 
-    @{
-        ViewBag.Title = "Nạp tiền";
-        Layout = null;
-    }
-    @* Nap tien *@
+@{
+    ViewBag.Title = "Nạp tiền";
+    Layout = null;
+}
+@* Nap tien Crypto Money *@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nạp tiền</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/ContactFrom_v10/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <section class="page-heading remi-heading">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title">
-                        <strong style="color: white;">Ví tiền</strong>
+        <div class="container-contact100">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="wrap-contact100">
+                <form class="contact100-form validate-form">
+                    <span class="contact100-form-title">
+                        Nạp tiền
+                    </span>
+                    
+                    <h4 style="margin-bottom: 5px;">Địa chỉ ví</h4>
+                    <div class="wrap-input100 validate-input">
+                        <input readonly class="input100" type="text" value="@Model.WalletAddress" name="diaChiVi" placeholder="Địa chỉ ví">
+                        @*@Html.LabelFor(model => model.WalletAddress, new { @class = "input100", @name = "WalletAddress", @value = @Model.WalletAddress, @disabled = "" })*@
+                        <span class="focus-input100"></span>
                     </div>
-                </div>
+
+                    <h4 style="margin-bottom: 5px;">Số tiền</h4>
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" name="luongTienNap" placeholder="Số tiền">
+                        @*@Html.EditorFor(luongTienNap => Model.BalanceAmount, new { @class = "input100", @name = "luongTienNap", @type = "text", @placeholder = "Số tiền" })*@
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    @*<div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" name="phone" placeholder="Phone">
+                            <span class="focus-input100"></span>
+                        </div>*@
+
+                    <h4 style="margin-bottom: 5px;">Nội dung</h4>
+                    <div class="wrap-input100 validate-input">
+                        <textarea class="input100" name="NoiDung" placeholder="Nội dung"></textarea>
+                        @*@Html.EditorFor(luongTienNap => Model.BalanceAmount, new { @class = "input100", @name = "NoiDung", @type = "text", @placeholder = "Số tiền" })*@
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <input readonly type="hidden" name="NapTienAccountID" value="@Model.AccountID" />
+
+                    <div class="container-contact100-form-btn">
+                        <span>
+                            <input type="submit" class="btn btn-primary" name="SubmitNapTien" value="Nạp" />
+                            @*@Html.ActionLink("Nạp", "NapTien", "Bank", new
+                                {
+                                    accountID = Model.AccountID,
+                                    isType = "NapTien",
+                                    walletAddress = Model.WalletAddress
+                                }, new { @class = "contact100-form-btn" })*@
+                        </span>
+                    </div>
+                </form>                
+
+                <div id="dropDownSelect1" style="margin-top: 50px;color: @ViewBag.YourColorNapTien;" class="text-center">@ViewBag.NapTienResult</div>
             </div>
         </div>
-    </section>
+    }
 
+
+    @section Javascript {
+
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/bootstrap/js/popper.js"></script>
+        <script src="~/Content/ContactFrom_v10/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/daterangepicker/moment.min.js"></script>
+        <script src="~/Content/ContactFrom_v10/vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/js/main.js"></script>
+    }
+
+</body>
+</html>

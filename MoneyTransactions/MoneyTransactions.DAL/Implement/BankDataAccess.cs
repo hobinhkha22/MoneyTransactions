@@ -37,15 +37,15 @@ namespace MoneyTransactions.DAL.Implement
             return db.Banks.FirstOrDefault(x => x.BankID == bankID);
         }
 
-        public bool NapTien(AccountBankDetail accountBankDetail, Wallet wallet, decimal luongNapTien)
+        public bool NapTien(Account account, Wallet wallet, decimal luongNapTien)
         {
             using (DbContextTransaction transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var accbank = db.AccountBankDetails.Find(accountBankDetail);
-                    var walletBank = db.Wallets.Find(wallet);
-                    
+                    var accbank = db.AccountBankDetails.Find(account.AccountID);
+                    var walletBank = db.Wallets.Find(wallet.WalletID);
+
                     if (accbank == null || walletBank == null)
                     {
                         transaction.Commit();
@@ -61,20 +61,20 @@ namespace MoneyTransactions.DAL.Implement
                 }
                 catch (Exception)
                 {
-
                     return false;
                 }
             }
         }
 
-        public bool RutTien(AccountBankDetail accountBankDetail, Wallet wallet, decimal luongRutTien)
+        public bool RutTien(Account account, Wallet wallet, decimal luongNapTien)
         {
+
             using (DbContextTransaction transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    var accbank = db.AccountBankDetails.Find(accountBankDetail);
-                    var walletBank = db.Wallets.Find(wallet);
+                    var accbank = db.AccountBankDetails.Find(account.AccountID);
+                    var walletBank = db.Wallets.Find(wallet.WalletID);
 
                     if (accbank == null || walletBank == null)
                     {
@@ -82,8 +82,8 @@ namespace MoneyTransactions.DAL.Implement
                         return false;
                     }
 
-                    accbank.Bank.VietNamDong = luongRutTien;
-                    walletBank.BalanceAmount = luongRutTien;
+                    accbank.Bank.VietNamDong = luongNapTien;
+                    walletBank.BalanceAmount = luongNapTien;
 
                     db.SaveChanges();
                     transaction.Commit();
@@ -91,7 +91,6 @@ namespace MoneyTransactions.DAL.Implement
                 }
                 catch (Exception)
                 {
-
                     return false;
                 }
             }

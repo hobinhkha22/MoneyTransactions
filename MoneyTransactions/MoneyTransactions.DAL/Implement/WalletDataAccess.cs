@@ -85,7 +85,12 @@ namespace MoneyTransactions.DAL.Implement
         public Wallet FindWalletByAccountID(Guid accountID)
         {
             return db.Wallets.FirstOrDefault(x => x.AccountID == accountID);
-        }        
+        }
+
+        public Wallet FindWalletByWalletID(Guid WalletID)
+        {
+            return db.Wallets.FirstOrDefault(x => x.WalletID == WalletID);
+        }
 
         public Wallet FindWalletByMoneyType(Guid accountID, string crypto)
         {

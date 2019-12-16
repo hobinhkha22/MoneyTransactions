@@ -1,19 +1,101 @@
-﻿
+﻿@model MoneyTransactions.Entities.Wallet
+
 @{
+    ViewBag.Title = "Nạp tiền";
     Layout = null;
 }
 
 @* Rut tien *@
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>WithdrawToBank</title>
+    <title>Rút tiền</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/ContactFrom_v10/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ContactFrom_v10/css/main.css">
+    <!--===============================================================================================-->
 </head>
 <body>
-    <div> 
+
+    <div class="container-contact100">
+
+        <div class="wrap-contact100">
+            <form class="contact100-form validate-form">
+                <span class="contact100-form-title">
+                    Rút tiền
+                </span>
+
+                <div class="wrap-input100 validate-input">
+                    <input disabled class="input100" type="text" value="@Model.WalletAddress" name="WalletAddress" placeholder="Địa chỉ ví">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" name="AmountCoin" placeholder="Số lượng">
+                    <span class="focus-input100"></span>
+                </div>
+
+                @*<div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="phone" placeholder="Phone">
+            <span class="focus-input100"></span>
+        </div>*@
+
+                <div class="wrap-input100 validate-input">
+                    <textarea class="input100" name="message" placeholder="Nội dung"></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-contact100-form-btn">
+                    <span>
+                        @Html.ActionLink("Rút", "RutTien", "Bank", null, new { @class = "contact100-form-btn" })
+                    </span>
+                </div>
+            </form>
+
+            <div id="dropDownSelect1" style="margin-top: 50px;" class="text-center">@ViewBag.RutTienResult</div>
+        </div>
     </div>
+
+
+    @section Javascript {
+
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/animsition/js/animsition.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/bootstrap/js/popper.js"></script>
+        <script src="~/Content/ContactFrom_v10/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/select2/select2.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/daterangepicker/moment.min.js"></script>
+        <script src="~/Content/ContactFrom_v10/vendor/daterangepicker/daterangepicker.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/vendor/countdowntime/countdowntime.js"></script>
+        <!--===============================================================================================-->
+        <script src="~/Content/ContactFrom_v10/js/main.js"></script>
+    }
+
 </body>
 </html>

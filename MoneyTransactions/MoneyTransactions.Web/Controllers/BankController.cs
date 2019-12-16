@@ -57,32 +57,75 @@ namespace MoneyTransactions.WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult DepositFromBank(Guid accountID)
+        public ActionResult DepositFromBank(Guid walletID, string isType)
         {
-            var getAcc = accountService.FindUserById(accountID);
-            if (getAcc != null)
+            var getWall = walletService.FindWalletByAccountIdAndMoneyType(walletID, isType);
+            if (getWall != null)
             {
-                return View(getAcc);
+                return View(getWall);
             }
             return View();
         }
 
-        [HttpGet]
-        public ActionResult WithdrawToBank(Guid accountID)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DepositFromBank(FormCollection form)
         {
+            // Guid accountID, string isType, string walletAddress, decimal luongTienNap
+            if (form["diaChiVi"] != "")
+            {
+                var luongtienNap = decimal.Parse(form["luongTienNap"]);
+                var findWallet = walletService.FindWalletByWalletAddress(form["diaChiVi"]);
+                var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
+                var result = bankServices.NapTien(accInside, findWallet, luongtienNap);
+
+                if (result)
+                {
+                    ViewBag.YourColorNapTien = "green";
+                    ViewBag.NapTienResult = "Nạp tiền thành công";
+                }
+            }
+
+            ViewBag.YourColorNapTien = "red";
+            ViewBag.NapTienResult = "Nạp tiền thất bại";
+
             return View();
         }
 
+
         [HttpGet]
-        public ActionResult NapTien(Guid accountID, string isType, string moneyType, decimal luongTienNap)
+        public ActionResult WithdrawToBank(Guid walletID)
         {
-            if (isType == "NapTien")
+            var getWall = walletService.FindWalletByAccountId(walletID);
+            if (getWall != null)
             {
-                var acc = accountService.FindUserById(accountID);
-                var accBankDetail = bankServices.FindAccountBankDetailByAccountID(accountID);
-                var findWallet = walletService.FindWalletByAccountIdAndMoneyType(acc.AccountID, moneyType);
-                bankServices.NapTien(accBankDetail, findWallet, moneyType, luongTienNap);
+                return View(getWall);
             }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult WithdrawToBank(FormCollection form)
+        {
+            // Guid accountID, string isType, string walletAddress, decimal luongTienNap
+            if (form["diaChiVi"] != "")
+            {
+                var luongtienNap = decimal.Parse(form["luongTienNap"]);
+                var findWallet = walletService.FindWalletByWalletAddress(form["diaChiVi"]);
+                var accInside = accountService.FindUserById(Guid.Parse(form["NapTienAccountID"]));
+                var result = bankServices.NapTien(accInside, findWallet, luongtienNap);
+
+                if (result)
+                {
+                    ViewBag.YourColorNapTien = "green";
+                    ViewBag.NapTienResult = "Nạp tiền thành công";
+                }
+            }
+
+            ViewBag.YourColorNapTien = "red";
+            ViewBag.NapTienResult = "Nạp tiền thất bại";
+
 
             return View();
         }

@@ -1,4 +1,4 @@
-﻿@model MoneyTransactions.Entities.Account
+﻿@model MoneyTransactions.Entities.Wallet
 
 @{
     ViewBag.Title = "Your Wallet";
@@ -40,10 +40,10 @@
                                 </td>
                                 <td>
                                     @*new { accountID = Model.AccountID, isType = "NapTien", moneyType = "VND" }*@
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-success", @target = "_blank" })
+                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.Account.AccountID, isType = "VND" }, new { @class = "btn btn-success", @target = "_blank" })
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-danger", @target = "_blank" })
+                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.Account.AccountID, isType = "VND" }, new { @class = "btn btn-danger", @target = "_blank" })
                                 </td>
                             </tr>
 
@@ -54,10 +54,10 @@
                                     @ViewBag.yourBitcoin
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-success", @target = "_blank" })
+                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.Account.AccountID, isType = "BTC" }, new { @class = "btn btn-success", @target = "_blank" })
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-danger", @target = "_blank" })
+                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.Account.AccountID, isType = "BTC" }, new { @class = "btn btn-danger", @target = "_blank" })
                                 </td>
                             </tr>
 
@@ -68,10 +68,10 @@
                                     @ViewBag.yourEthereum
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-success", @target = "_blank" })
+                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-success", @target = "_blank" })
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-danger", @target = "_blank" })
+                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-danger", @target = "_blank" })
                                 </td>
                             </tr>
 
@@ -83,10 +83,10 @@
                                     @ViewBag.yourRipple
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-success", @target = "_blank" })
+                                    @Html.ActionLink("Nạp tiền", "DepositFromBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-success", @target = "_blank" })
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { accountID = Model.AccountID }, new { @class = "btn btn-danger", @target = "_blank" })
+                                    @Html.ActionLink("Rút tiền", "WithdrawToBank", "Bank", new { walletID = Model.WalletID }, new { @class = "btn btn-danger", @target = "_blank" })
                                 </td>
                             </tr>
 

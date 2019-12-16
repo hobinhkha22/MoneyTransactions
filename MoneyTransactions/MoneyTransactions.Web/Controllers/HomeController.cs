@@ -183,8 +183,9 @@ namespace MoneyTransactions.WEB.Controllers
             ViewBag.yourVietNamDong = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.VietnamDong).BalanceAmount;
             ViewBag.yourEthereum = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ethereum).BalanceAmount;
             ViewBag.yourRipple = getUser.Wallets.FirstOrDefault(b => b.CryptocurrencyStore.MoneyType == CryptoCurrencyCommon.Ripple).BalanceAmount;
+            var getWall = _walletServices.FindWalletByAccountId(getUser.AccountID);
 
-            return View(getUser);
+            return View(getWall);
         }
 
         [HttpGet]

@@ -106,7 +106,7 @@ namespace MoneyTransactions.BUS.Services
             return walletDataAccess.FindWalletByWalletAddress(walletAddress);
         }
 
-        public Wallet FindWalletById(Guid accountID)
+        public Wallet FindWalletByAccountId(Guid accountID)
         {
             return walletDataAccess.FindWalletByAccountID(accountID);
         }
